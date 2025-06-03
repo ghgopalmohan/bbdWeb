@@ -24,13 +24,13 @@ export default function ClientsSection() {
         <div className="relative w-full overflow-hidden">
           <div className="flex animate-marquee whitespace-nowrap">
             {extendedClientLogos.map((logo, index) => (
-              <div key={index} className="flex-shrink-0 w-auto mx-6 sm:mx-8 md:mx-10 flex items-center justify-center" style={{ minWidth: '150px' }}>
+              <div key={index} className="flex-shrink-0 w-auto mx-6 sm:mx-8 md:mx-10 flex items-center justify-center" style={{ minWidth: '120px' }}> {/* Adjusted minWidth if needed */}
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={150}
-                  height={60}
-                  className="object-contain h-10 sm:h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  width={120} // Adjusted width
+                  height={48} // Adjusted height
+                  className="object-contain h-8 sm:h-10 md:h-12 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0" // Adjusted height classes
                   data-ai-hint={logo.dataAiHint}
                 />
               </div>

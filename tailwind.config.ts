@@ -92,7 +92,7 @@ export default {
           '0%, 100%': { boxShadow: '0 0 5px hsl(var(--accent))' },
           '50%': { boxShadow: '0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent))' },
         },
-        'marquee': { // Added marquee keyframes
+        'marquee': { 
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
         },
@@ -101,7 +101,7 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'hero-glow': 'hero-glow 2s ease-in-out infinite alternate',
-        'marquee': 'marquee 30s linear infinite', // Added marquee animation
+        'marquee': 'marquee 20s linear infinite', // Changed duration from 30s to 20s
       },
     },
   },
