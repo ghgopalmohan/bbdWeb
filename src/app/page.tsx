@@ -1,6 +1,7 @@
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import HeroSection from '@/components/sections/hero-section';
+import ClientsSection from '@/components/sections/clients-section'; // Added import
 import AboutSection from '@/components/sections/about-section';
 import PortfolioSection from '@/components/sections/portfolio-section';
 import ServicesSection from '@/components/sections/services-section';
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+        <ClientsSection /> {/* Added ClientsSection */}
         <AboutSection />
         <PortfolioSection />
         <ServicesSection />
