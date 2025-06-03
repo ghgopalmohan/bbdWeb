@@ -1,0 +1,44 @@
+import Link from 'next/link';
+
+const footerNavItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Services', href: '#services' },
+];
+
+export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-secondary text-secondary-foreground py-12">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="flex justify-center md:justify-start">
+            <Link href="#home" className="font-headline text-4xl font-bold text-primary">
+              GM
+            </Link>
+          </div>
+          
+          <div className="text-center">
+            <p className="text-sm">
+              &copy; {currentYear} Gopal Mohan. All rights reserved.
+            </p>
+          </div>
+
+          <nav className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
+            {footerNavItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </footer>
+  );
+}
