@@ -40,15 +40,15 @@ const processSteps: ProcessStep[] = [
   }
 ];
 
-// Define positions for 5 items along an S-curve
-// Values are percentages for top/left/right and transform for centering text block
-// This will require careful tweaking.
+// Adjusted positions for better alignment on the S-curve and alternating text.
+// Percentages are approximate for a 800x600 SVG viewbox concept.
+// `left` for `markerAlign: 'right'` is an offset from the right edge of the container.
 const stepPositions = [
-  { top: '15%', left: '5%', textAlign: 'left', textTranslateX: '0%', markerAlign: 'left' },
-  { top: '35%', left: '40%', textAlign: 'right', textTranslateX: '-100%', markerAlign: 'right' },
-  { top: '50%', left: '10%', textAlign: 'left', textTranslateX: '0%', markerAlign: 'left' },
-  { top: '65%', left: '55%', textAlign: 'right', textTranslateX: '-100%', markerAlign: 'right' },
-  { top: '80%', left: '20%', textAlign: 'left', textTranslateX: '0%', markerAlign: 'left' },
+  { top: '75%', left: '5%', textAlign: 'left', markerAlign: 'left' },   // Bottom-left of curve, text right
+  { top: '58%', left: '60%', textAlign: 'right', markerAlign: 'right' }, // Mid-curve (around 35-40% from left), text left
+  { top: '40%', left: '40%', textAlign: 'left', markerAlign: 'left' }, // Apex of first curve (around 50-60% from left), text right
+  { top: '22%', left: '35%', textAlign: 'right', markerAlign: 'right' }, // Mid-curve descending (around 60-70% from left), text left
+  { top: '5%', left: '10%', textAlign: 'right', markerAlign: 'right' },  // Top-right of curve, text left
 ];
 
 
@@ -70,25 +70,23 @@ export default function DesignProcessSection() {
 
         {/* Desktop Roadmap Layout */}
         <div className="hidden md:block relative min-h-[600px] lg:min-h-[700px] w-full max-w-4xl mx-auto">
-          {/* S-curve SVG Road */}
           <svg
             className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 800 600" // Adjust viewBox as needed
+            viewBox="0 0 800 600" 
             preserveAspectRatio="xMidYMid meet"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Simplified S-curve path for 5 points. Adjust d attribute for desired shape and size */}
             <path
               d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
               strokeWidth="20"
-              className="stroke-muted"
+              className="stroke-muted" 
             />
             <path
               d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
               stroke="hsl(var(--background))"
               strokeWidth="4"
-              strokeDasharray="15 15" // Dashed line
+              strokeDasharray="15 15" 
             />
           </svg>
 
@@ -102,33 +100,35 @@ export default function DesignProcessSection() {
                 style={{
                   top: position.top,
                   left: position.markerAlign === 'left' ? position.left : undefined,
-                  right: position.markerAlign === 'right' ? position.left : undefined, // 'left' here is used as offset from right
+                  right: position.markerAlign === 'right' ? position.left : undefined,
                 }}
               >
                 <div className={cn(
-                  "flex items-start",
+                  "flex items-center", // Changed from items-start to items-center
                   position.markerAlign === 'right' ? "flex-row-reverse" : "flex-row"
                 )}>
                   {/* Marker and Icon */}
                   <div className={cn(
                     "flex flex-col items-center z-10",
-                    position.markerAlign === 'left' ? "mr-4" : "ml-4"
+                    position.markerAlign === 'left' ? "mr-4" : "ml-4" // Reduced from mr-6/ml-6
                   )}>
-                    <div className="w-16 h-16 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg">
-                      <step.icon className="h-8 w-8 text-primary" />
+                    <div className="relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300">
+                      <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" /> {/* Icon size reduced */}
+                      <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background"> {/* Badge size reduced */}
+                        {index + 1}
+                      </span>
                     </div>
-                    <div className="w-1 h-16 bg-primary"></div> {/* Vertical line */}
                   </div>
 
                   {/* Text Content */}
                   <div
                     className={cn(
-                      "w-64 p-1",
+                      "w-48 p-1", // Width reduced from w-56
                       position.markerAlign === 'left' ? "text-left" : "text-right"
                     )}
                   >
-                    <h3 className="font-headline text-2xl font-semibold mb-2 text-primary">{index + 1}. {step.title}</h3>
-                    <p className="font-body text-muted-foreground text-base leading-relaxed">
+                    <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3> {/* Font size reduced, added Step prefix */}
+                    <p className="font-body text-muted-foreground text-xs leading-relaxed"> {/* Font size reduced */}
                       {step.description}
                     </p>
                   </div>
@@ -149,7 +149,7 @@ export default function DesignProcessSection() {
               <div className="p-3 bg-primary/10 rounded-full mb-4 inline-block">
                 <step.icon className="h-9 w-9 md:h-10 md:w-10 text-primary" />
               </div>
-              <h3 className="font-headline text-3xl font-semibold mb-3 text-primary">{step.title}</h3>
+              <h3 className="font-headline text-3xl font-semibold mb-3 text-primary">Step {index + 1}: {step.title}</h3>
               <p className="font-body text-muted-foreground text-lg leading-relaxed max-w-md">
                 {step.description}
               </p>
