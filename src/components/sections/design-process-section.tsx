@@ -12,6 +12,14 @@ interface ProcessStep {
   description: string;
 }
 
+interface StepPositionConfig {
+  top: string;
+  alignBlock: 'left' | 'right'; // Which side of the road the content block is on
+  blockOffset: string; // Percentage offset for left/right positioning of the block
+  textAlign: 'left' | 'right'; // Text alignment within the content block
+  markerIsLeft: boolean; // True if marker is to the left of text, false if to the right
+}
+
 const processSteps: ProcessStep[] = [
   {
     icon: Users,
@@ -40,13 +48,17 @@ const processSteps: ProcessStep[] = [
   }
 ];
 
-// Adjusted positions for better alignment on the S-curve and alternating text.
-const stepPositions = [
-  { top: '75%', left: '5%', textAlign: 'left', markerAlign: 'left' },   // Step 1
-  { top: '50%', left: '60%', textAlign: 'right', markerAlign: 'right' }, // Step 2 (Moved up from 58%)
-  { top: '40%', left: '40%', textAlign: 'left', markerAlign: 'left' }, // Step 3
-  { top: '22%', left: '35%', textAlign: 'right', markerAlign: 'right' }, // Step 4
-  { top: '5%', left: '10%', textAlign: 'right', markerAlign: 'right' },  // Step 5
+const stepPositions: StepPositionConfig[] = [
+  // Step 1: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
+  { top: '75%', alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
+  // Step 2: Content block on the LEFT of the road. Marker is to the RIGHT of text. Text aligns right.
+  { top: '58%', alignBlock: 'left',  blockOffset: '52%', textAlign: 'right', markerIsLeft: false },
+  // Step 3: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
+  { top: '40%', alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
+  // Step 4: Content block on the LEFT of the road. Marker is to the RIGHT of text. Text aligns right.
+  { top: '22%', alignBlock: 'left',  blockOffset: '52%', textAlign: 'right', markerIsLeft: false },
+  // Step 5: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
+  { top: '5%',  alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
 ];
 
 
@@ -97,18 +109,18 @@ export default function DesignProcessSection() {
                 className={`scroll-animate delay-${index + 1} absolute`}
                 style={{
                   top: position.top,
-                  left: position.markerAlign === 'left' ? position.left : undefined,
-                  right: position.markerAlign === 'right' ? position.left : undefined,
+                  left: position.alignBlock === 'right' ? position.blockOffset : undefined,
+                  right: position.alignBlock === 'left' ? position.blockOffset : undefined,
                 }}
               >
                 <div className={cn(
                   "flex items-center", 
-                  position.markerAlign === 'right' ? "flex-row-reverse" : "flex-row"
+                  position.markerIsLeft ? "flex-row" : "flex-row-reverse" // if markerIsLeft, [Marker, Text]. Else [Text, Marker]
                 )}>
                   {/* Marker and Icon */}
                   <div className={cn(
                     "flex flex-col items-center z-10",
-                    position.markerAlign === 'left' ? "mr-4" : "ml-4" 
+                     position.markerIsLeft ? "mr-4" : "ml-4" // If marker is on left of text, it needs margin-right.
                   )}>
                     <div className="relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300">
                       <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" /> 
@@ -122,7 +134,7 @@ export default function DesignProcessSection() {
                   <div
                     className={cn(
                       "w-48 p-1", 
-                      position.markerAlign === 'left' ? "text-left" : "text-right"
+                      position.textAlign === 'left' ? "text-left" : "text-right"
                     )}
                   >
                     <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3> 
