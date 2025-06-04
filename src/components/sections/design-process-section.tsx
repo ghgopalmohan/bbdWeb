@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 interface Principle {
   id: number;
@@ -69,13 +70,15 @@ const Arrow2 = () => (
 
 
 export default function DesignProcessSection() {
+  const addScrollAnimElement = useScrollAnimation();
   return (
     <section id="design-process" className="py-24 md:py-32 bg-zinc-900 text-white">
       <div className="container mx-auto px-4 md:px-6">
         <div
-          className="text-center mb-16 md:mb-20"
+          ref={addScrollAnimElement}
+          className="scroll-animate text-center mb-16 md:mb-20"
         >
-          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">My Core Principles</h2>
+          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">My Core Principles</h2>
           <p className="font-body text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
             Guiding my work and ensuring your success with a streamlined approach.
           </p>
@@ -85,7 +88,8 @@ export default function DesignProcessSection() {
           {principlesData.map((principle, index) => (
             <React.Fragment key={principle.id}>
               <div
-                className="flex flex-col items-center text-center max-w-xs mb-12 md:mb-0"
+                ref={addScrollAnimElement}
+                className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center max-w-xs mb-12 md:mb-0`}
                 data-cursor-type="pointer"
               >
                 <ScribbleCircle numberText={principle.number} />
