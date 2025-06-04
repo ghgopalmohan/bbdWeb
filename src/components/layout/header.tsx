@@ -36,7 +36,7 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-300 ease-out",
-        isScrolled ? "bg-background/80 backdrop-blur-md shadow-md" : "bg-transparent py-4"
+        isScrolled ? "bg-background/80 backdrop-blur-md shadow-lg border-b border-border" : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto flex h-16 sm:h-20 items-center justify-between px-4 md:px-6">
@@ -44,7 +44,6 @@ export default function Header() {
           GM
         </Link>
         
-        {/* Desktop Navigation */}
         <nav className="hidden items-center space-x-8 md:flex">
           {navItems.map((item) => (
             <Link
@@ -58,7 +57,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Navigation Trigger */}
         <div className="flex items-center md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>

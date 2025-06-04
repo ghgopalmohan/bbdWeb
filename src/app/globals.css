@@ -5,53 +5,53 @@
 
 @layer base {
   :root {
-    /* Strict Black & White Theme */
-    --background: 0 0% 0%; /* Pure black */
-    --foreground: 0 0% 100%; /* Pure white */
+    /* New Sophisticated Dark Theme */
+    --background: 222 47% 11%; /* Dark Slate Blue */
+    --foreground: 210 40% 98%; /* Very Light Grey/Off-white */
 
-    --card: 0 0% 7%; /* Very dark gray */
-    --card-foreground: 0 0% 100%; /* White */
+    --card: 222 47% 15%; /* Slightly Lighter Dark Slate Blue */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 5%; /* Very dark gray */
-    --popover-foreground: 0 0% 100%; /* White */
+    --popover: 222 47% 10%; /* Darker Popover */
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 0 0% 100%; /* White */
-    --primary-foreground: 0 0% 0%; /* Black (for text on primary buttons) */
+    --primary: 45 100% 51%; /* Gold/Amber */
+    --primary-foreground: 222 47% 11%; /* Dark for contrast on gold */
 
-    --secondary: 0 0% 10%; /* Dark gray */
-    --secondary-foreground: 0 0% 80%; /* Light gray */
+    --secondary: 222 47% 20%; /* Muted Blue for secondary elements/backgrounds */
+    --secondary-foreground: 210 40% 90%;
 
-    --muted: 0 0% 15%; /* Dark gray */
-    --muted-foreground: 0 0% 65%; /* Medium gray */
+    --muted: 222 47% 18%; /* Darker Muted */
+    --muted-foreground: 210 40% 60%; /* Lighter Muted Foreground */
 
-    --accent: 0 0% 100%; /* White */
-    --accent-foreground: 0 0% 0%; /* Black (for text on accent elements) */
+    --accent: 35 85% 65%; /* Softer Gold/Orange */
+    --accent-foreground: 222 47% 11%;
 
-    --destructive: 0 62.8% 30.6%; /* Keeping destructive as is, usually red */
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%; 
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 20%; /* Gray */
-    --input: 0 0% 10%; /* Dark gray for input background */
-    --ring: 0 0% 100%; /* White for focus rings */
+    --border: 222 47% 22%; /* Border for cards, inputs */
+    --input: 222 47% 18%; /* Input background */
+    --ring: 35 85% 70%; /* Focus ring, related to accent */
 
     --radius: 0.5rem;
 
-    /* Grayscale Chart colors */
-    --chart-1: 0 0% 80%;
-    --chart-2: 0 0% 60%;
-    --chart-3: 0 0% 40%;
-    --chart-4: 0 0% 70%;
-    --chart-5: 0 0% 50%;
-
-    /* Grayscale Sidebar specific vars */
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 0 0% 90%;
-    --sidebar-accent-foreground: 0 0% 0%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 100%;
+    /* Chart colors - Grayscale and Gold accents */
+    --chart-1: 45 100% 60%; /* Brighter Gold */
+    --chart-2: 35 85% 55%; /* Accent Gold */
+    --chart-3: 210 20% 70%; /* Light Grey */
+    --chart-4: 210 20% 50%; /* Medium Grey */
+    --chart-5: 210 20% 30%; /* Dark Grey */
+    
+    /* Sidebar specific vars - adapt to new theme */
+    --sidebar-background: 222 47% 9%; /* Even darker for sidebar */
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 45 100% 51%; /* Gold */
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 35 85% 65%; /* Softer Gold */
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 222 47% 18%;
+    --sidebar-ring: 35 85% 70%;
   }
 
   html {
@@ -60,13 +60,13 @@
 
   body {
     @apply bg-background text-foreground;
-    @apply font-body; /* Use Inter for body */
+    @apply font-body; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline; /* Use Syne for headlines */
+    @apply font-headline; 
   }
 
   ::selection {
@@ -75,7 +75,7 @@
   }
 }
 
-/* Custom cursor styles - Black & White */
+/* Custom cursor styles - Adapted to new theme */
 .custom-cursor {
   position: fixed;
   left: 0;
@@ -85,12 +85,12 @@
   transform: translate(-50%, -50%);
   transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out, opacity 0.2s ease-out;
   z-index: 9999;
-  opacity: 0; /* Hidden by default, shown on mouse move in component */
+  opacity: 0; 
 }
 
 @media (hover: hover) and (pointer: fine) {
   .custom-cursor {
-    opacity: 1; /* Show only on devices that support hover */
+    opacity: 1; 
   }
 }
 
@@ -98,27 +98,27 @@
 .custom-cursor-default {
   width: 10px;
   height: 10px;
-  background-color: hsl(var(--foreground)); /* White dot */
+  background-color: hsl(var(--foreground)); 
   border: 1px solid hsl(var(--foreground));
 }
 
 .custom-cursor-pointer {
   width: 28px;
   height: 28px;
-  background-color: hsla(var(--foreground), 0.2); /* Semi-transparent white */
-  border: 1px solid hsl(var(--foreground)); /* White border */
+  background-color: hsla(var(--primary), 0.2); /* Use primary color for pointer hover */
+  border: 1px solid hsl(var(--primary)); 
 }
 
 .custom-cursor-text {
-  width: 2px; /* More like an I-beam */
+  width: 2px; 
   height: 20px;
-  background-color: hsl(var(--foreground)); /* White I-beam */
+  background-color: hsl(var(--foreground)); 
   border-radius: 0px; 
   border: none;
 }
 
 
-/* Preloader styles (Black & White) */
+/* Preloader styles - Adapted to new theme */
 .preloader {
   @apply fixed inset-0 bg-background z-[1000] flex items-center justify-center;
   transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
@@ -130,7 +130,7 @@
 }
 
 .preloader-logo {
-  @apply font-headline text-5xl text-foreground; /* White logo */
+  @apply font-headline text-5xl text-primary; /* Use primary color for preloader logo */
   animation: preloader-pulse 1.5s infinite ease-in-out;
 }
 
@@ -165,10 +165,10 @@
   transform: translateY(0);
 }
 
-/* Form Input Styles for Black & White Theme */
+/* Form Input Styles for New Theme */
 .form-input {
-  @apply bg-transparent border-b border-foreground/30 text-foreground placeholder-foreground/50;
-  @apply focus:border-foreground focus:ring-0 py-3; /* Focus border is white */
+  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground;
+  @apply focus:border-primary focus:ring-0 py-3; /* Focus border uses primary color */
   transition: border-color 0.3s ease;
 }
 
@@ -176,14 +176,14 @@
   @apply relative mb-8; 
 }
 
-.form-label-float { 
-  @apply absolute left-0 text-foreground/50 transition-all duration-300 ease-out pointer-events-none;
+.form-label { /* Renamed from form-label-float for clarity */
+  @apply absolute left-0 text-muted-foreground transition-all duration-300 ease-out pointer-events-none;
   top: 0.75rem; 
 }
 
-.form-input:focus + .form-label-float,
-.form-input:not(:placeholder-shown) + .form-label-float {
-  @apply text-foreground; /* Label turns white on focus/fill */
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+  @apply text-primary; /* Label turns primary color on focus/fill */
   top: -1rem; 
   font-size: 0.75rem; 
 }

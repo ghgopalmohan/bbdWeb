@@ -11,11 +11,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary text-secondary-foreground py-12">
+    <footer className="bg-secondary text-secondary-foreground py-12 border-t border-border">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="flex justify-center md:justify-start">
-            <Link href="#home" className="font-headline text-4xl font-bold text-primary">
+            <Link href="#home" className="font-headline text-4xl font-bold text-primary" data-cursor-type="pointer">
               GM
             </Link>
           </div>
@@ -23,6 +23,9 @@ export default function Footer() {
           <div className="text-center">
             <p className="text-sm">
               &copy; {currentYear} Gopal Mohan. All rights reserved.
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Design & Portfolio
             </p>
           </div>
 
@@ -32,6 +35,7 @@ export default function Footer() {
                 key={item.label}
                 href={item.href}
                 className="text-sm font-medium transition-colors hover:text-primary"
+                data-cursor-type="pointer"
               >
                 {item.label}
               </Link>
