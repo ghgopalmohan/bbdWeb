@@ -1,13 +1,12 @@
 
 "use client";
 
-import { useState } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ZoomIn } from 'lucide-react'; 
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { Button } from '@/components/ui/button';
 
 const portfolioItemsData = [
   { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: 'https://placehold.co/600x450.png', description: 'Modern and professional business card designs that make a statement with premium finishes.', dataAiHint: 'business card design' },
@@ -18,15 +17,8 @@ const portfolioItemsData = [
   { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: 'https://placehold.co/600x450.png', description: 'Creative menu designs tailored specifically for cafes and bistros, balancing aesthetics and readability.', dataAiHint: 'cafe menu board' },
 ];
 
-const categories = ['All', 'cards', 'menus', 'pamphlets', 'brochures'];
-
 export default function PortfolioSection() {
-  const [filter, setFilter] = useState('All');
   const addScrollAnimElement = useScrollAnimation();
-
-  const filteredItems = filter === 'All'
-    ? portfolioItemsData
-    : portfolioItemsData.filter(item => item.category === filter);
 
   return (
     <section id="portfolio" className="py-24 md:py-32 bg-card text-card-foreground">
@@ -36,35 +28,18 @@ export default function PortfolioSection() {
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">My Best Works</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
             A curated selection of projects demonstrating creative solutions and design expertise.
           </p>
         </div>
 
-        <div 
-          ref={addScrollAnimElement}
-          className="scroll-animate delay-1 flex justify-center space-x-3 sm:space-x-4 md:space-x-5 mb-16 md:mb-20 flex-wrap"
-        >
-          {categories.map(category => (
-            <Button
-              key={category}
-              variant={filter === category ? 'default' : 'outline'}
-              onClick={() => setFilter(category)}
-              className="capitalize mb-2 sm:mb-0 text-base md:text-lg px-6 py-3 md:px-8 md:py-4 rounded-lg transition-all duration-300 ease-out hover:shadow-md"
-              data-cursor-type="pointer"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          {filteredItems.map((item, index) => (
+          {portfolioItemsData.map((item, index) => (
             <Dialog key={item.id}>
               <DialogTrigger asChild>
                 <div 
                   ref={addScrollAnimElement} 
-                  className={`scroll-animate delay-${(index % 3) + 2}`} 
+                  className={`scroll-animate delay-${(index % 3) + 1}`} 
                 >
                   <Card className="overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-border hover:border-primary/70 bg-background rounded-xl">
                     <CardContent className="p-0">
@@ -116,14 +91,6 @@ export default function PortfolioSection() {
             </Dialog>
           ))}
         </div>
-         {filteredItems.length === 0 && (
-          <div 
-            ref={addScrollAnimElement}
-            className="scroll-animate delay-2 text-center py-16"
-          >
-            <p className="font-body text-xl text-muted-foreground">No projects found for this category. Please select another filter.</p>
-          </div>
-        )}
       </div>
     </section>
   );

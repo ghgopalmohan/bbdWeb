@@ -61,7 +61,7 @@ const servicesData: Service[] = [
     dataAiHint: 'photo retouching detail',
   },
   {
-    icon: PieChart, // Corrected from TvChart
+    icon: PieChart,
     title: 'Digital Graphics & Assets',
     shortDescription: 'Pixel-perfect for your online presence.',
     detailedDescription: 'Custom graphics for websites, social media, and digital platforms. Optimized for web and designed to align with your online branding for consistent, powerful impact.',
@@ -96,7 +96,7 @@ export default function ServicesSection() {
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">Services I Offer</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
             From intricate print designs to dynamic digital assets, I provide a comprehensive suite of Photoshop services.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function ServicesSection() {
                   "border border-transparent shadow-sm", 
                   activeServiceIndex === index 
                     ? "bg-primary/10 text-primary border-primary/30 shadow-lg ring-1 ring-primary/20" 
-                    : "bg-card hover:bg-muted hover:text-foreground hover:border-border"
+                    : "bg-card hover:bg-secondary hover:text-foreground hover:border-border"
                 )}
                 onMouseEnter={() => setActiveServiceIndex(index)}
                 data-cursor-type="pointer"
