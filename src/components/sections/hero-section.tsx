@@ -99,16 +99,16 @@ export default function HeroSection() {
             </div>
 
             {/* Stats Container */}
-            <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
-              <div className="space-y-5 md:space-y-6">
+            <div className="w-full">
+              <div className="flex flex-row flex-wrap justify-center md:justify-start items-start gap-x-8 sm:gap-x-10 md:gap-x-12 lg:gap-x-16 gap-y-6">
                 {statsData.map((stat, index) => (
                   <AnimatedStat
                     key={index}
                     targetValue={stat.value}
                     suffix={stat.suffix}
                     label={stat.label}
-                    className="text-center md:text-left"
-                    textClassName="text-4xl sm:text-5xl font-bold text-primary block" // block to ensure label is on new line
+                    className="text-center" // Each stat item (number + label) is centered
+                    textClassName="text-4xl sm:text-5xl font-bold text-primary block" // block ensures label is on new line below number
                     labelClassName="text-base text-muted-foreground mt-1"
                     duration={1500 + index * 200} 
                     startDelay={700 + index * 250 + (FULL_TITLE.length * 100)} // Delay after title animation
