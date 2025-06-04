@@ -1,7 +1,6 @@
 import type {Config} from 'tailwindcss';
 
 export default {
-  darkMode: ['class'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,8 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['PT Sans', 'sans-serif'],
-        headline: ['Playfair Display', 'serif'],
+        body: ['Inter', 'sans-serif'], // Lemni uses Inter for body
+        headline: ['Syne', 'serif'], // Lemni uses Syne for headlines
         code: ['monospace'],
       },
       colors: {
@@ -55,7 +54,7 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        sidebar: {
+        sidebar: { // Keep sidebar vars if sidebar component is used, ensure they match the dark theme
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
           primary: 'hsl(var(--sidebar-primary))',
@@ -88,21 +87,29 @@ export default {
             height: '0',
           },
         },
-        'hero-glow': {
-          '0%, 100%': { boxShadow: '0 0 5px hsl(var(--accent))' },
-          '50%': { boxShadow: '0 0 20px hsl(var(--accent)), 0 0 30px hsl(var(--accent))' },
+        'preloader-pulse': { // Added from globals.css for Tailwind JIT
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.7', transform: 'scale(0.95)' },
         },
-        'marquee': { 
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
+         'slide-in-from-bottom': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        'text-reveal': {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0%)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'hero-glow': 'hero-glow 2s ease-in-out infinite alternate',
-        'marquee': 'marquee 20s linear infinite', // Changed duration from 30s to 20s
+        'preloader-pulse': 'preloader-pulse 1.5s infinite ease-in-out', // Added
+        'slide-in-from-bottom': 'slide-in-from-bottom 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards',
+        'text-reveal': 'text-reveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards',
       },
+      transitionTimingFunction: {
+        'custom-ease': 'cubic-bezier(0.25, 1, 0.5, 1)', // Lemni-like easing
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],
