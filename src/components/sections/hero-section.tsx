@@ -20,7 +20,7 @@ export default function HeroSection() {
       const timer = setTimeout(() => {
         setDisplayedTitle((prev) => prev + FULL_TITLE[charIndex]);
         setCharIndex((prev) => prev + 1);
-      }, 100); // Adjust typing speed here (milliseconds)
+      }, 100); 
       return () => clearTimeout(timer);
     }
   }, [charIndex]);
@@ -33,21 +33,27 @@ export default function HeroSection() {
             ref={addScrollAnimElement}
             className="scroll-animate delay-1 md:text-left"
           >
-            <div className="overflow-hidden pb-3 min-h-[100px] sm:min-h-[120px] md:min-h-[150px] lg:min-h-[200px]"> {/* Ensure enough height for text */}
+            <div className="overflow-hidden pb-3 min-h-[100px] sm:min-h-[120px] md:min-h-[150px] lg:min-h-[200px]">
               <h1
                 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-foreground"
               >
                 {displayedTitle.split("Gopal Mohan")[0]}
                 <span className="text-primary">{displayedTitle.includes("Gopal Mohan") ? "Gopal Mohan" : ""}</span>
-                {charIndex < FULL_TITLE.length && <span className="inline-block w-1 h-[calc(1em_*_0.8)] bg-primary animate-pulse ml-1"></span>} {/* Blinking cursor */}
+                {charIndex < FULL_TITLE.length && <span className="inline-block w-1 h-[calc(1em_*_0.8)] bg-primary animate-pulse ml-1"></span>}
               </h1>
             </div>
             <div className="overflow-hidden pb-3">
               <p
                 ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-muted-foreground mb-12 max-w-xl"
+                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-muted-foreground mb-2 max-w-xl" 
               >
-                Professional Photoshop Designer & Visual Artist
+                Professional Photoshop Designer & Creative Genius.
+              </p>
+              <p
+                ref={addScrollAnimElement}
+                className="scroll-animate delay-3 font-body text-lg md:text-xl text-muted-foreground/80 mb-12 max-w-xl"
+              >
+                Crafting Pixels, Inspiring Reality.
               </p>
             </div>
             <div
@@ -86,5 +92,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-    

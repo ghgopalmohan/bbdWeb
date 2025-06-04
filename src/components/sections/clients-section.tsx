@@ -23,7 +23,7 @@ export default function ClientsSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div ref={addScrollAnimElement} className="scroll-animate text-center mb-16 md:mb-20">
            <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
-            Trusted By Visionary Partners
+            Trusted By
           </h2>
           <p className="font-body text-xl md:text-2xl text-secondary-foreground/80 mt-4 max-w-2xl mx-auto">
             Proud to have collaborated with a diverse array of businesses and organizations.
