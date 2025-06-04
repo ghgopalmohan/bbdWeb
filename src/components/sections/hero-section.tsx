@@ -1,3 +1,4 @@
+"use client";
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -71,7 +72,6 @@ export default function HeroSection() {
                 data-ai-hint="profile designer"
                 priority
               />
-              {/* Removed the animate-ping div */}
             </div>
           </div>
         </div>

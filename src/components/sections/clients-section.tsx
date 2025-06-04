@@ -1,3 +1,4 @@
+"use client";
 
 import Image from 'next/image';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
