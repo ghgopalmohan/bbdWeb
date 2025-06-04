@@ -53,7 +53,7 @@ export default function HeroSection() {
                 ref={addScrollAnimElement}
                 className="scroll-animate delay-3 font-body text-lg md:text-xl text-muted-foreground/80 mb-12 max-w-xl"
               >
-                Crafting Pixels, Inspiring Reality.
+                Baatein kam.. Kaam zyaada!
               </p>
             </div>
             <div

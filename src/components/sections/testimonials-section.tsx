@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">
-            Client Acclaim
+            What They Say
           </h2>
           <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
             Discover why clients trust my design expertise to elevate their brands and projects.
