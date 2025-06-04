@@ -1,11 +1,14 @@
 
 "use client";
 
-import { Users, Lightbulb, Palette, MessageSquare, CheckCircle, Rocket } from "lucide-react";
+import { Users, Lightbulb, Palette, MessageSquare, CheckCircle, Rocket, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { cn } from "@/lib/utils";
 import React from "react";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
 
 interface ProcessStep {
   icon: LucideIcon;
@@ -14,9 +17,9 @@ interface ProcessStep {
 }
 
 interface StepPosition {
-  cx: string; // SVG x-coordinate for the marker center
-  cy: string; // SVG y-coordinate for the marker center
-  textIsRight: boolean; // Determines if text block is to the right of the marker
+  cx: string; 
+  cy: string; 
+  textIsRight: boolean; 
 }
 
 const processSteps: ProcessStep[] = [
@@ -47,13 +50,12 @@ const processSteps: ProcessStep[] = [
   }
 ];
 
-// Scaled coordinates for a 960x720 viewBox (original was 800x600, scaled by 1.2)
 const stepPositions: StepPosition[] = [
-  { cx: '120',  cy: '600', textIsRight: true },  // Bottom-left start
-  { cx: '276',  cy: '486', textIsRight: false }, // Mid-left bend
-  { cx: '450',  cy: '354', textIsRight: true },  // Center
-  { cx: '624',  cy: '222', textIsRight: false }, // Mid-right bend
-  { cx: '840',  cy: '60',  textIsRight: true },  // Top-right end
+  { cx: '120',  cy: '600', textIsRight: true },  
+  { cx: '276',  cy: '486', textIsRight: false }, 
+  { cx: '450',  cy: '354', textIsRight: true },  
+  { cx: '624',  cy: '222', textIsRight: false }, 
+  { cx: '840',  cy: '60',  textIsRight: true },  
 ];
 
 
@@ -75,7 +77,7 @@ export default function DesignProcessSection() {
     <section id="design-process" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <div
-          ref={assignRef(0)} // Assign ref for scroll animation
+          ref={assignRef(0)} 
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">How I Work</h2>
@@ -84,42 +86,40 @@ export default function DesignProcessSection() {
           </p>
         </div>
 
-        {/* Desktop Roadmap */}
         <div className="hidden md:block relative min-h-[768px] w-full max-w-4xl mx-auto">
           <svg
             className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 960 720" // Increased viewBox size
+            viewBox="0 0 960 720" 
             preserveAspectRatio="xMidYMid meet"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Scaled S-curve path */}
             <path
               d="M120 600 C 240 600, 180 420, 360 420 S 540 240, 600 240 S 720 60, 840 60"
-              strokeWidth="38" // Increased stroke width
+              strokeWidth="38" 
               className="stroke-muted"
             />
             <path
               d="M120 600 C 240 600, 180 420, 360 420 S 540 240, 600 240 S 720 60, 840 60"
               stroke="hsl(var(--background))"
-              strokeWidth="5" // Increased stroke width
-              strokeDasharray="18 18" // Adjusted dash array
+              strokeWidth="5" 
+              strokeDasharray="18 18" 
             />
           </svg>
 
           {processSteps.map((step, index) => {
             const position = stepPositions[index];
-            const textBlockWidth = "w-48"; // Reduced from w-56
+            const textBlockWidth = "w-48"; 
 
             return (
               <div
                 key={index}
-                ref={assignRef(index + 1)} // Assign ref for scroll animation
+                ref={assignRef(index + 1)} 
                 className={`scroll-animate delay-${index + 1} absolute group`}
                 style={{
                   left: position.cx + 'px',
                   top: position.cy + 'px',
-                  transform: 'translate(-50%, -50%)', // Center the group on cx, cy
+                  transform: 'translate(-50%, -50%)', 
                 }}
               >
                 <div
@@ -128,11 +128,10 @@ export default function DesignProcessSection() {
                     position.textIsRight ? "flex-row" : "flex-row-reverse"
                   )}
                 >
-                  {/* Marker */}
                   <div
                     className={cn(
                       "relative w-14 h-14 bg-card border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300 z-10 shrink-0",
-                      position.textIsRight ? "mr-4" : "ml-4" // Margin between marker and text
+                      position.textIsRight ? "mr-4" : "ml-4" 
                     )}
                     data-cursor-type="pointer"
                   >
@@ -142,7 +141,6 @@ export default function DesignProcessSection() {
                     </span>
                   </div>
 
-                  {/* Text Content */}
                   <div
                     className={cn(
                       textBlockWidth,
@@ -160,12 +158,11 @@ export default function DesignProcessSection() {
           })}
         </div>
 
-        {/* Mobile Stacked Layout */}
         <div className="md:hidden space-y-12">
           {processSteps.map((step, index) => (
             <div
               key={index}
-              ref={assignRef(processSteps.length + index + 1)} // Assign ref for scroll animation
+              ref={assignRef(processSteps.length + index + 1)} 
               className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center`}
             >
               <div className="p-3 bg-primary/10 rounded-full mb-4 inline-block">
@@ -181,16 +178,22 @@ export default function DesignProcessSection() {
             </div>
           ))}
         </div>
-
-        {/* "Ready to Start Your Project?" Section - Transition removed */}
-        <div
-          className="mt-16 text-center"  // Removed ref and scroll-animate class
-        >
+        
+        <div className="mt-16 text-center">
           <Rocket className="h-16 w-16 text-primary mx-auto mb-6" />
           <h3 className="font-headline text-4xl font-semibold mb-4 text-foreground">Ready to Start Your Project?</h3>
-          <p className="font-body text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="font-body text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
             Let's discuss how this process can be tailored to bring your unique vision to life.
           </p>
+          <Link href="#contact" data-cursor-type="pointer">
+            <Button
+              size="lg"
+              className="group relative overflow-hidden transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 hover:ring-primary bg-primary hover:bg-accent text-primary-foreground text-lg md:text-xl px-10 py-4 shadow-md hover:shadow-lg"
+            >
+              <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-background/10 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+              Get Quote <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

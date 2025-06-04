@@ -36,7 +36,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div ref={addScrollAnimElement} className="scroll-animate text-center mb-20 md:mb-24">
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">Let&apos;s Create Together</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
             Have a project in mind, a question, or just want to discuss design? I&apos;m here to help.
           </p>
         </div>
@@ -77,8 +77,8 @@ export default function ContactSection() {
                 <div className="flex items-start">
                   <Phone className="h-7 w-7 text-accent mr-5 mt-1 shrink-0"/>
                   <div>
-                    <h4 className="font-semibold text-xl text-foreground">Phone (Optional)</h4>
-                    <span className="text-muted-foreground text-lg">(Available upon request)</span>
+                    <h4 className="font-semibold text-xl text-foreground">Phone</h4>
+                    <a href="tel:+918309492753" className="text-muted-foreground hover:text-primary transition-colors text-lg" data-cursor-type="pointer">+91 8309492753</a>
                   </div>
                 </div>
                 <div className="flex items-start">
