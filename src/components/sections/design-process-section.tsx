@@ -41,14 +41,12 @@ const processSteps: ProcessStep[] = [
 ];
 
 // Adjusted positions for better alignment on the S-curve and alternating text.
-// Percentages are approximate for a 800x600 SVG viewbox concept.
-// `left` for `markerAlign: 'right'` is an offset from the right edge of the container.
 const stepPositions = [
-  { top: '75%', left: '5%', textAlign: 'left', markerAlign: 'left' },   // Bottom-left of curve, text right
-  { top: '58%', left: '60%', textAlign: 'right', markerAlign: 'right' }, // Mid-curve (around 35-40% from left), text left
-  { top: '40%', left: '40%', textAlign: 'left', markerAlign: 'left' }, // Apex of first curve (around 50-60% from left), text right
-  { top: '22%', left: '35%', textAlign: 'right', markerAlign: 'right' }, // Mid-curve descending (around 60-70% from left), text left
-  { top: '5%', left: '10%', textAlign: 'right', markerAlign: 'right' },  // Top-right of curve, text left
+  { top: '75%', left: '5%', textAlign: 'left', markerAlign: 'left' },   // Step 1
+  { top: '50%', left: '60%', textAlign: 'right', markerAlign: 'right' }, // Step 2 (Moved up from 58%)
+  { top: '40%', left: '40%', textAlign: 'left', markerAlign: 'left' }, // Step 3
+  { top: '22%', left: '35%', textAlign: 'right', markerAlign: 'right' }, // Step 4
+  { top: '5%', left: '10%', textAlign: 'right', markerAlign: 'right' },  // Step 5
 ];
 
 
@@ -104,17 +102,17 @@ export default function DesignProcessSection() {
                 }}
               >
                 <div className={cn(
-                  "flex items-center", // Changed from items-start to items-center
+                  "flex items-center", 
                   position.markerAlign === 'right' ? "flex-row-reverse" : "flex-row"
                 )}>
                   {/* Marker and Icon */}
                   <div className={cn(
                     "flex flex-col items-center z-10",
-                    position.markerAlign === 'left' ? "mr-4" : "ml-4" // Reduced from mr-6/ml-6
+                    position.markerAlign === 'left' ? "mr-4" : "ml-4" 
                   )}>
                     <div className="relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300">
-                      <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" /> {/* Icon size reduced */}
-                      <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background"> {/* Badge size reduced */}
+                      <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" /> 
+                      <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background"> 
                         {index + 1}
                       </span>
                     </div>
@@ -123,12 +121,12 @@ export default function DesignProcessSection() {
                   {/* Text Content */}
                   <div
                     className={cn(
-                      "w-48 p-1", // Width reduced from w-56
+                      "w-48 p-1", 
                       position.markerAlign === 'left' ? "text-left" : "text-right"
                     )}
                   >
-                    <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3> {/* Font size reduced, added Step prefix */}
-                    <p className="font-body text-muted-foreground text-xs leading-relaxed"> {/* Font size reduced */}
+                    <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3> 
+                    <p className="font-body text-muted-foreground text-xs leading-relaxed"> 
                       {step.description}
                     </p>
                   </div>

@@ -114,7 +114,7 @@ export default function ServicesSection() {
                   "shadow-sm",
                   activeServiceIndex === index
                     ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20"
-                    : "bg-card text-muted-foreground hover:bg-secondary hover:text-primary border border-transparent hover:border-border/50"
+                    : "bg-card text-muted-foreground hover:text-primary border border-transparent hover:border-border/50"
                 )}
                 onMouseEnter={() => setActiveServiceIndex(index)}
                 data-cursor-type="pointer"
