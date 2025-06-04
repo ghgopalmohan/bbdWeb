@@ -1,8 +1,9 @@
+
 "use client";
 
 import type { ReactNode } from 'react';
 import Preloader from './common/preloader';
-import { CustomCursor } from './common/CustomCursor';
+import CustomCursor from './common/CustomCursor'; // Ensure this path is correct
 import { useState, useEffect } from 'react';
 
 export default function AppProviders({ children }: { children: ReactNode }) {
@@ -11,7 +12,7 @@ export default function AppProviders({ children }: { children: ReactNode }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500); // Simulate loading time for preloader
+    }, 2000); // Lemni-like preloader time
     return () => clearTimeout(timer);
   }, []);
 
@@ -19,7 +20,7 @@ export default function AppProviders({ children }: { children: ReactNode }) {
     <>
       <CustomCursor />
       {loading && <Preloader />}
-      <div className={loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+      <div className={loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-700 ease-out'}>
         {!loading && children}
       </div>
     </>

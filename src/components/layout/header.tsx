@@ -56,7 +56,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-        </Nav>
+        </nav>
 
         {/* Mobile Navigation Trigger */}
         <div className="flex items-center md:hidden">
