@@ -7,8 +7,16 @@ import Image from 'next/image';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import AnimatedStat from '@/components/common/AnimatedStat';
 
 const FULL_TITLE = "Hi, I'm Gopal Mohan";
+
+const statsData = [
+  { value: 25, suffix: "+", label: "Years of Experience" },
+  { value: 500, suffix: "+", label: "Projects Delivered" },
+  { value: 150, suffix: "+", label: "Satisfied Clients" },
+  { value: 10, suffix: "+", label: "Design Awards" },
+];
 
 export default function HeroSection() {
   const addScrollAnimElement = useScrollAnimation();
@@ -71,20 +79,42 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
+          
+          {/* Right Column: Image and Stats */}
           <div
             ref={addScrollAnimElement}
-            className="scroll-animate delay-2 hidden md:flex justify-center items-center"
+            className="scroll-animate delay-2 flex flex-col items-center mt-12 md:mt-0"
           >
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96 group">
+            {/* Image Container */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:w-80 md:h-80 lg:w-96 lg:h-96 group mb-8 md:mb-12">
               <Image
                 src="https://placehold.co/400x400.png"
                 alt="Gopal Mohan - Professional Designer"
                 width={400}
                 height={400}
-                className="rounded-lg object-cover shadow-2xl border-4 border-card group-hover:border-primary transition-all duration-300"
+                className="rounded-lg object-cover shadow-2xl border-4 border-card group-hover:border-primary transition-all duration-300 w-full h-auto"
                 data-ai-hint="professional designer portrait"
                 priority
               />
+            </div>
+
+            {/* Stats Container */}
+            <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
+              <div className="space-y-5 md:space-y-6">
+                {statsData.map((stat, index) => (
+                  <AnimatedStat
+                    key={index}
+                    targetValue={stat.value}
+                    suffix={stat.suffix}
+                    label={stat.label}
+                    className="text-center md:text-left"
+                    textClassName="text-4xl sm:text-5xl font-bold text-primary block" // block to ensure label is on new line
+                    labelClassName="text-base text-muted-foreground mt-1"
+                    duration={1500 + index * 200} 
+                    startDelay={700 + index * 250 + (FULL_TITLE.length * 100)} // Delay after title animation
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
