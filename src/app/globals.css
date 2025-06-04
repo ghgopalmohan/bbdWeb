@@ -5,53 +5,53 @@
 
 @layer base {
   :root {
-    /* New Sophisticated Dark Theme */
-    --background: 222 47% 11%; /* Dark Slate Blue */
-    --foreground: 210 40% 98%; /* Very Light Grey/Off-white */
+    /* Light Theme with Violet Accents */
+    --background: 0 0% 98%; /* Very Light Grey */
+    --foreground: 240 10% 3.9%; /* Dark Grey / Almost Black */
 
-    --card: 222 47% 15%; /* Slightly Lighter Dark Slate Blue */
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 240 10% 3.9%;
 
-    --popover: 222 47% 10%; /* Darker Popover */
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 45 100% 51%; /* Gold/Amber */
-    --primary-foreground: 222 47% 11%; /* Dark for contrast on gold */
+    --primary: 262 52% 47%; /* Deep Violet (#673AB7) */
+    --primary-foreground: 0 0% 98%; /* Off-white for contrast on violet */
 
-    --secondary: 222 47% 20%; /* Muted Blue for secondary elements/backgrounds */
-    --secondary-foreground: 210 40% 90%;
+    --secondary: 240 4.8% 95.9%; /* Light Grey for secondary elements/backgrounds */
+    --secondary-foreground: 240 10% 3.9%;
 
-    --muted: 222 47% 18%; /* Darker Muted */
-    --muted-foreground: 210 40% 60%; /* Lighter Muted Foreground */
+    --muted: 240 4.8% 90%; /* Lighter Grey for muted backgrounds */
+    --muted-foreground: 240 3.8% 46.1%; /* Darker Grey Muted Foreground */
 
-    --accent: 35 85% 65%; /* Softer Gold/Orange */
-    --accent-foreground: 222 47% 11%;
+    --accent: 279 96% 76%; /* Light Purple (#BB86FC) */
+    --accent-foreground: 240 10% 3.9%; /* Dark for contrast on light purple */
 
-    --destructive: 0 62.8% 30.6%; 
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%; 
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 222 47% 22%; /* Border for cards, inputs */
-    --input: 222 47% 18%; /* Input background */
-    --ring: 35 85% 70%; /* Focus ring, related to accent */
+    --border: 240 5.9% 90%; /* Light Grey Border for cards, inputs */
+    --input: 0 0% 100%; /* White Input background, border will be --border */
+    --ring: 262 52% 55%; /* Focus ring, related to primary (slightly lighter violet) */
 
     --radius: 0.5rem;
 
-    /* Chart colors - Grayscale and Gold accents */
-    --chart-1: 45 100% 60%; /* Brighter Gold */
-    --chart-2: 35 85% 55%; /* Accent Gold */
-    --chart-3: 210 20% 70%; /* Light Grey */
-    --chart-4: 210 20% 50%; /* Medium Grey */
-    --chart-5: 210 20% 30%; /* Dark Grey */
+    /* Chart colors - Violet and Greys */
+    --chart-1: 262 52% 55%; /* Brighter Violet */
+    --chart-2: 279 96% 70%; /* Accent Purple (slightly desaturated/darker for chart) */
+    --chart-3: 240 5% 75%;  /* Medium Grey */
+    --chart-4: 240 5% 55%;  /* Darker Grey */
+    --chart-5: 240 5% 35%;  /* Very Dark Grey */
     
-    /* Sidebar specific vars - adapt to new theme */
-    --sidebar-background: 222 47% 9%; /* Even darker for sidebar */
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 45 100% 51%; /* Gold */
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 35 85% 65%; /* Softer Gold */
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 222 47% 18%;
-    --sidebar-ring: 35 85% 70%;
+    /* Sidebar specific vars - adapt to light theme */
+    --sidebar-background: 0 0% 96%; /* Slightly off-white for sidebar */
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-primary: 262 52% 47%; /* Violet */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 279 96% 76%; /* Light Purple */
+    --sidebar-accent-foreground: 240 10% 3.9%;
+    --sidebar-border: 240 5.9% 85%; /* Slightly darker grey for sidebar border */
+    --sidebar-ring: 262 52% 55%;
   }
 
   html {
@@ -75,7 +75,7 @@
   }
 }
 
-/* Custom cursor styles - Adapted to new theme */
+/* Custom cursor styles - Adapted to light theme */
 .custom-cursor {
   position: fixed;
   left: 0;
@@ -98,27 +98,27 @@
 .custom-cursor-default {
   width: 10px;
   height: 10px;
-  background-color: hsl(var(--foreground)); 
-  border: 1px solid hsl(var(--foreground));
+  background-color: hsl(var(--foreground)); /* Black dot */
+  border: 1px solid hsl(var(--foreground)); /* Black border */
 }
 
 .custom-cursor-pointer {
   width: 28px;
   height: 28px;
-  background-color: hsla(var(--primary), 0.2); /* Use primary color for pointer hover */
-  border: 1px solid hsl(var(--primary)); 
+  background-color: hsla(var(--primary), 0.15); /* Use primary color (Violet) for pointer hover with light opacity */
+  border: 1px solid hsl(var(--primary)); /* Violet border */
 }
 
 .custom-cursor-text {
   width: 2px; 
   height: 20px;
-  background-color: hsl(var(--foreground)); 
+  background-color: hsl(var(--foreground)); /* Black bar */
   border-radius: 0px; 
   border: none;
 }
 
 
-/* Preloader styles - Adapted to new theme */
+/* Preloader styles - Adapted to light theme */
 .preloader {
   @apply fixed inset-0 bg-background z-[1000] flex items-center justify-center;
   transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
@@ -130,7 +130,7 @@
 }
 
 .preloader-logo {
-  @apply font-headline text-5xl text-primary; /* Use primary color for preloader logo */
+  @apply font-headline text-5xl text-primary; /* Use primary color (Violet) for preloader logo */
   animation: preloader-pulse 1.5s infinite ease-in-out;
 }
 
@@ -165,10 +165,10 @@
   transform: translateY(0);
 }
 
-/* Form Input Styles for New Theme */
+/* Form Input Styles for Light Theme */
 .form-input {
-  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground;
-  @apply focus:border-primary focus:ring-0 py-3; /* Focus border uses primary color */
+  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground; /* input bg is white, border is light grey */
+  @apply focus:border-primary focus:ring-0 py-3; /* Focus border uses primary color (Violet) */
   transition: border-color 0.3s ease;
 }
 
@@ -176,14 +176,24 @@
   @apply relative mb-8; 
 }
 
-.form-label { /* Renamed from form-label-float for clarity */
+.form-label {
   @apply absolute left-0 text-muted-foreground transition-all duration-300 ease-out pointer-events-none;
   top: 0.75rem; 
 }
 
 .form-input:focus + .form-label,
 .form-input:not(:placeholder-shown) + .form-label {
-  @apply text-primary; /* Label turns primary color on focus/fill */
+  @apply text-primary; /* Label turns primary color (Violet) on focus/fill */
   top: -1rem; 
   font-size: 0.75rem; 
+}
+
+/* Ensure marquee client logos are visible on light theme */
+.animate-marquee img {
+  filter: none; /* Remove grayscale if background is light */
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.animate-marquee img:hover {
+  opacity: 1;
 }
