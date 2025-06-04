@@ -5,7 +5,7 @@ import { Users, Lightbulb, Palette, MessageSquare, CheckCircle, Rocket } from "l
 import type { LucideIcon } from "lucide-react";
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { cn } from "@/lib/utils";
-import React from "react"; 
+import React from "react";
 
 interface ProcessStep {
   icon: LucideIcon;
@@ -13,10 +13,10 @@ interface ProcessStep {
   description: string;
 }
 
-interface StepMarkerConfig {
-  cx: string; 
-  cy: string; 
-  textSide: 'left' | 'right'; 
+interface StepPosition {
+  cx: string; // SVG x-coordinate for the marker center
+  cy: string; // SVG y-coordinate for the marker center
+  textIsRight: boolean; // Determines if text block is to the right of the marker
 }
 
 const processSteps: ProcessStep[] = [
@@ -47,28 +47,35 @@ const processSteps: ProcessStep[] = [
   }
 ];
 
-const stepMarkers: StepMarkerConfig[] = [
-  { cx: '100', cy: '500', textSide: 'right' }, 
-  { cx: '230', cy: '405', textSide: 'left' },  
-  { cx: '375', cy: '295', textSide: 'right' }, 
-  { cx: '520', cy: '185', textSide: 'left' }, 
-  { cx: '700', cy: '50',  textSide: 'right' }, 
+// Scaled coordinates for a 960x720 viewBox (original was 800x600, scaled by 1.2)
+const stepPositions: StepPosition[] = [
+  { cx: '120',  cy: '600', textIsRight: true },  // Bottom-left start
+  { cx: '276',  cy: '486', textIsRight: false }, // Mid-left bend
+  { cx: '450',  cy: '354', textIsRight: true },  // Center
+  { cx: '624',  cy: '222', textIsRight: false }, // Mid-right bend
+  { cx: '840',  cy: '60',  textIsRight: true },  // Top-right end
 ];
 
 
 export default function DesignProcessSection() {
-  const scrollAnimElements = React.useRef<(HTMLDivElement | null)[]>([]);
   const addScrollAnimElement = useScrollAnimation();
+  const scrollAnimElementsRef = React.useRef<(HTMLDivElement | null)[]>([]);
 
   React.useEffect(() => {
-    scrollAnimElements.current.forEach(el => addScrollAnimElement(el));
+    scrollAnimElementsRef.current.forEach(el => {
+      if (el) addScrollAnimElement(el);
+    });
   }, [addScrollAnimElement]);
+
+  const assignRef = (index: number) => (el: HTMLDivElement | null) => {
+    scrollAnimElementsRef.current[index] = el;
+  };
 
   return (
     <section id="design-process" className="py-24 md:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
         <div
-          ref={addScrollAnimElement} 
+          ref={assignRef(0)} // Assign ref for scroll animation
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">How I Work</h2>
@@ -77,50 +84,57 @@ export default function DesignProcessSection() {
           </p>
         </div>
 
-        <div className="hidden md:block relative min-h-[600px] lg:min-h-[700px] w-full max-w-4xl mx-auto">
+        {/* Desktop Roadmap */}
+        <div className="hidden md:block relative min-h-[768px] w-full max-w-4xl mx-auto">
           <svg
             className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 800 600" 
+            viewBox="0 0 960 720" // Increased viewBox size
             preserveAspectRatio="xMidYMid meet"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
+            {/* Scaled S-curve path */}
             <path
-              d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
-              strokeWidth="24" 
+              d="M120 600 C 240 600, 180 420, 360 420 S 540 240, 600 240 S 720 60, 840 60"
+              strokeWidth="38" // Increased stroke width
               className="stroke-muted"
             />
             <path
-              d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
+              d="M120 600 C 240 600, 180 420, 360 420 S 540 240, 600 240 S 720 60, 840 60"
               stroke="hsl(var(--background))"
-              strokeWidth="4"
-              strokeDasharray="15 15"
+              strokeWidth="5" // Increased stroke width
+              strokeDasharray="18 18" // Adjusted dash array
             />
           </svg>
 
           {processSteps.map((step, index) => {
-            const markerConfig = stepMarkers[index];
+            const position = stepPositions[index];
+            const textBlockWidth = "w-48"; // Reduced from w-56
+
             return (
-              <div 
+              <div
                 key={index}
-                ref={(el) => { scrollAnimElements.current[index] = el; }}
+                ref={assignRef(index + 1)} // Assign ref for scroll animation
                 className={`scroll-animate delay-${index + 1} absolute group`}
                 style={{
-                  left: `${markerConfig.cx}px`,
-                  top: `${markerConfig.cy}px`,
-                  transform: `translate(-50%, -50%)`, 
+                  left: position.cx + 'px',
+                  top: position.cy + 'px',
+                  transform: 'translate(-50%, -50%)', // Center the group on cx, cy
                 }}
               >
-                <div 
+                <div
                   className={cn(
-                    "flex items-center relative",
-                    markerConfig.textSide === 'left' ? "flex-row-reverse" : "flex-row"
+                    "flex items-center",
+                    position.textIsRight ? "flex-row" : "flex-row-reverse"
                   )}
                 >
+                  {/* Marker */}
                   <div
                     className={cn(
-                      "relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300 z-10 shrink-0",
+                      "relative w-14 h-14 bg-card border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300 z-10 shrink-0",
+                      position.textIsRight ? "mr-4" : "ml-4" // Margin between marker and text
                     )}
+                    data-cursor-type="pointer"
                   >
                     <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
                     <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background">
@@ -128,10 +142,11 @@ export default function DesignProcessSection() {
                     </span>
                   </div>
 
+                  {/* Text Content */}
                   <div
                     className={cn(
-                      "p-1 w-64", 
-                      markerConfig.textSide === 'left' ? "text-right mr-4" : "text-left ml-4" 
+                      textBlockWidth,
+                      position.textIsRight ? "text-left" : "text-right"
                     )}
                   >
                     <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3>
@@ -145,12 +160,12 @@ export default function DesignProcessSection() {
           })}
         </div>
 
-
+        {/* Mobile Stacked Layout */}
         <div className="md:hidden space-y-12">
           {processSteps.map((step, index) => (
             <div
               key={index}
-              ref={(el) => { scrollAnimElements.current[processSteps.length + index] = el; }} 
+              ref={assignRef(processSteps.length + index + 1)} // Assign ref for scroll animation
               className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center`}
             >
               <div className="p-3 bg-primary/10 rounded-full mb-4 inline-block">
@@ -167,9 +182,9 @@ export default function DesignProcessSection() {
           ))}
         </div>
 
+        {/* "Ready to Start Your Project?" Section - Transition removed */}
         <div
-          ref={addScrollAnimElement} 
-          className="scroll-animate delay-5 mt-16 text-center" 
+          className="mt-16 text-center"  // Removed ref and scroll-animate class
         >
           <Rocket className="h-16 w-16 text-primary mx-auto mb-6" />
           <h3 className="font-headline text-4xl font-semibold mb-4 text-foreground">Ready to Start Your Project?</h3>
