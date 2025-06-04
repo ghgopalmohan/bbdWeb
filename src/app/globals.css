@@ -5,53 +5,53 @@
 
 @layer base {
   :root {
-    /* Lemni-inspired Dark Theme */
-    --background: 220 40% 5%; /* Very dark, slightly desaturated blue */
-    --foreground: 210 40% 98%; /* Off-white for text */
+    /* Strict Black & White Theme */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 0 0% 100%; /* Pure white */
 
-    --card: 220 30% 10%; /* Darker card background */
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 7%; /* Very dark gray */
+    --card-foreground: 0 0% 100%; /* White */
 
-    --popover: 220 30% 8%; /* Dark popover */
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 5%; /* Very dark gray */
+    --popover-foreground: 0 0% 100%; /* White */
 
-    --primary: 180 100% 50%; /* Cyan for primary actions/accents */
-    --primary-foreground: 220 40% 5%; /* Dark text on primary for contrast */
+    --primary: 0 0% 100%; /* White */
+    --primary-foreground: 0 0% 0%; /* Black (for text on primary buttons) */
 
-    --secondary: 220 20% 15%; /* Slightly lighter dark for secondary elements */
-    --secondary-foreground: 210 30% 80%;
+    --secondary: 0 0% 10%; /* Dark gray */
+    --secondary-foreground: 0 0% 80%; /* Light gray */
 
-    --muted: 220 15% 25%; /* Muted dark */
-    --muted-foreground: 210 20% 65%; /* Lighter muted text */
+    --muted: 0 0% 15%; /* Dark gray */
+    --muted-foreground: 0 0% 65%; /* Medium gray */
 
-    --accent: 180 100% 50%; /* Cyan - same as primary for strong accents */
-    --accent-foreground: 220 40% 5%; /* Dark text on accent */
+    --accent: 0 0% 100%; /* White */
+    --accent-foreground: 0 0% 0%; /* Black (for text on accent elements) */
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62.8% 30.6%; /* Keeping destructive as is, usually red */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 25% 20%; /* Subtle border color for the dark theme */
-    --input: 220 25% 18%; /* Dark input background */
-    --ring: 180 100% 50%; /* Cyan for focus rings */
+    --border: 0 0% 20%; /* Gray */
+    --input: 0 0% 10%; /* Dark gray for input background */
+    --ring: 0 0% 100%; /* White for focus rings */
 
     --radius: 0.5rem;
 
-    /* Chart colors for dark mode (adjust if charts are used) */
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    /* Grayscale Chart colors */
+    --chart-1: 0 0% 80%;
+    --chart-2: 0 0% 60%;
+    --chart-3: 0 0% 40%;
+    --chart-4: 0 0% 70%;
+    --chart-5: 0 0% 50%;
 
-    /* Sidebar specific vars for Lemni style */
-    --sidebar-background: 220 40% 7%;
-    --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 180 100% 50%;
-    --sidebar-primary-foreground: 220 40% 5%;
-    --sidebar-accent: 180 100% 45%;
-    --sidebar-accent-foreground: 220 40% 5%;
-    --sidebar-border: 220 25% 15%;
-    --sidebar-ring: 180 100% 50%;
+    /* Grayscale Sidebar specific vars */
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 90%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 0% 100%;
   }
 
   html {
@@ -75,7 +75,7 @@
   }
 }
 
-/* Custom cursor styles */
+/* Custom cursor styles - Black & White */
 .custom-cursor {
   position: fixed;
   left: 0;
@@ -96,29 +96,29 @@
 
 
 .custom-cursor-default {
-  width: 12px;
-  height: 12px;
-  background-color: hsl(var(--accent));
-  border: 2px solid hsl(var(--accent));
+  width: 10px;
+  height: 10px;
+  background-color: hsl(var(--foreground)); /* White dot */
+  border: 1px solid hsl(var(--foreground));
 }
 
 .custom-cursor-pointer {
-  width: 30px;
-  height: 30px;
-  background-color: hsla(var(--accent) / 0.3);
-  border: 2px solid hsl(var(--accent));
+  width: 28px;
+  height: 28px;
+  background-color: hsla(var(--foreground), 0.2); /* Semi-transparent white */
+  border: 1px solid hsl(var(--foreground)); /* White border */
 }
 
 .custom-cursor-text {
-  width: 8px; /* More like an I-beam */
-  height: 30px;
-  background-color: hsl(var(--foreground));
-  border-radius: 2px; /* Less rounded for I-beam */
+  width: 2px; /* More like an I-beam */
+  height: 20px;
+  background-color: hsl(var(--foreground)); /* White I-beam */
+  border-radius: 0px; 
   border: none;
 }
 
 
-/* Preloader styles (Lemni-inspired) */
+/* Preloader styles (Black & White) */
 .preloader {
   @apply fixed inset-0 bg-background z-[1000] flex items-center justify-center;
   transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
@@ -130,7 +130,7 @@
 }
 
 .preloader-logo {
-  @apply font-headline text-5xl text-primary;
+  @apply font-headline text-5xl text-foreground; /* White logo */
   animation: preloader-pulse 1.5s infinite ease-in-out;
 }
 
@@ -149,7 +149,7 @@
 /* Scroll animations helper */
 .scroll-animate {
   opacity: 0;
-  transform: translateY(30px); /* Slightly increased for Lemni style */
+  transform: translateY(30px); 
   transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -165,26 +165,25 @@
   transform: translateY(0);
 }
 
-/* Form Input Styles for Lemni */
+/* Form Input Styles for Black & White Theme */
 .form-input {
   @apply bg-transparent border-b border-foreground/30 text-foreground placeholder-foreground/50;
-  @apply focus:border-primary focus:ring-0 py-3;
+  @apply focus:border-foreground focus:ring-0 py-3; /* Focus border is white */
   transition: border-color 0.3s ease;
 }
 
-/* For floating labels in contact form */
 .form-group {
   @apply relative mb-8; 
 }
 
 .form-label-float { 
   @apply absolute left-0 text-foreground/50 transition-all duration-300 ease-out pointer-events-none;
-  top: 0.75rem; /* Adjust based on input padding */
+  top: 0.75rem; 
 }
 
 .form-input:focus + .form-label-float,
 .form-input:not(:placeholder-shown) + .form-label-float {
-  @apply text-primary;
-  top: -1rem; /* Move label up */
-  font-size: 0.75rem; /* 12px */
+  @apply text-foreground; /* Label turns white on focus/fill */
+  top: -1rem; 
+  font-size: 0.75rem; 
 }
