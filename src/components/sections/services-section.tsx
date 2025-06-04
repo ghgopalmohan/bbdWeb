@@ -114,17 +114,17 @@ export default function ServicesSection() {
                   "shadow-sm",
                   activeServiceIndex === index
                     ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20"
-                    : "bg-card text-muted-foreground hover:bg-primary hover:text-primary-foreground border border-transparent hover:border-primary/50"
+                    : "bg-card text-muted-foreground hover:text-primary border border-transparent hover:border-primary/50"
                 )}
                 onMouseEnter={() => setActiveServiceIndex(index)}
                 data-cursor-type="pointer"
               >
-                <service.icon className={cn("h-8 w-8 mr-5 shrink-0 transition-colors", activeServiceIndex === index ? "text-primary" : "text-accent group-hover:text-primary-foreground")} />
+                <service.icon className={cn("h-8 w-8 mr-5 shrink-0 transition-colors", activeServiceIndex === index ? "text-primary" : "text-muted-foreground group-hover:text-primary")} />
                 <div>
-                  <h3 className={cn("font-headline text-xl md:text-2xl font-semibold transition-colors", activeServiceIndex === index ? "text-primary" : "text-foreground group-hover:text-primary-foreground")}>{service.title}</h3>
-                  <p className={cn("text-base transition-colors", activeServiceIndex === index ? "text-primary/90" : "text-muted-foreground group-hover:text-primary-foreground/80")}>{service.shortDescription}</p>
+                  <h3 className={cn("font-headline text-xl md:text-2xl font-semibold transition-colors", activeServiceIndex === index ? "text-primary" : "text-foreground group-hover:text-primary")}>{service.title}</h3>
+                  <p className={cn("text-base transition-colors", activeServiceIndex === index ? "text-primary/90" : "text-muted-foreground group-hover:text-primary")}>{service.shortDescription}</p>
                 </div>
-                <ChevronRight className={cn("h-6 w-6 ml-auto shrink-0 transition-all duration-300 ease-out", activeServiceIndex === index ? "opacity-100 translate-x-0 text-primary" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-foreground text-muted-foreground")} />
+                <ChevronRight className={cn("h-6 w-6 ml-auto shrink-0 transition-all duration-300 ease-out", activeServiceIndex === index ? "opacity-100 translate-x-0 text-primary" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary text-muted-foreground")} />
               </Button>
             ))}
           </div>
@@ -137,7 +137,7 @@ export default function ServicesSection() {
               <Card className="h-full flex flex-col overflow-hidden shadow-xl rounded-xl border border-border bg-card">
                 <div className="relative aspect-[16/9] w-full overflow-hidden group">
                   <Image
-                    key={activeService.imageUrl + activeServiceIndex}
+                    key={activeService.imageUrl + activeServiceIndex} // Changed key to ensure image re-renders on activeService change
                     src={activeService.imageUrl}
                     alt={activeService.title}
                     fill
@@ -176,5 +176,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-
-    
