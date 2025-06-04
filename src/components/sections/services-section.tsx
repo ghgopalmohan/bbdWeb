@@ -61,7 +61,7 @@ const servicesData: Service[] = [
     dataAiHint: 'photo retouching detail',
   },
   {
-    icon: PieChart,
+    icon: PieChart, // Changed from TvChart
     title: 'Digital Graphics & Assets',
     shortDescription: 'Pixel-perfect for your online presence.',
     detailedDescription: 'Custom graphics for websites, social media, and digital platforms. Optimized for web and designed to align with your online branding for consistent, powerful impact.',
@@ -112,10 +112,10 @@ export default function ServicesSection() {
                 variant="ghost"
                 className={cn(
                   "w-full justify-start text-left h-auto py-5 px-6 rounded-lg transition-all duration-200 ease-out group",
-                  "border border-transparent shadow-sm", 
+                  "shadow-sm", 
                   activeServiceIndex === index 
-                    ? "bg-primary/10 text-primary border-primary/30 shadow-lg ring-1 ring-primary/20" 
-                    : "bg-card hover:bg-secondary hover:text-foreground hover:border-border"
+                    ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20" 
+                    : "bg-card text-muted-foreground hover:bg-secondary hover:text-primary border border-transparent hover:border-border/50"
                 )}
                 onMouseEnter={() => setActiveServiceIndex(index)}
                 data-cursor-type="pointer"

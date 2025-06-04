@@ -1,7 +1,6 @@
 
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Lightbulb, Palette, MessageSquare, CheckCircle, Rocket } from "lucide-react";
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
@@ -49,29 +48,40 @@ export default function DesignProcessSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="relative">
+          {/* Vertical line through the center */}
+          <div className="hidden md:block absolute top-0 bottom-16 left-1/2 w-0.5 bg-border -translate-x-1/2"></div>
+
           {processSteps.map((step, index) => (
-            <div 
-              key={index} 
-              ref={addScrollAnimElement} 
-              className={`scroll-animate delay-${index + 1} ${(index === processSteps.length -1 && processSteps.length % 2 !== 0 && processSteps.length > 2) ? 'lg:col-span-3 lg:max-w-md lg:mx-auto' : ''} ${ (index === processSteps.length -1 && processSteps.length % 2 === 0 && processSteps.length % 3 !==0 ) ? 'lg:col-start-2' : '' }`}
+            <div
+              key={index}
+              ref={addScrollAnimElement}
+              className={`scroll-animate delay-${index + 1} mb-12 md:mb-16 flex flex-col md:flex-row items-start group`}
             >
-              <Card className="h-full bg-card border-border shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                <CardHeader className="items-center text-center pt-8 pb-4">
-                  <div className="p-4 bg-primary/10 rounded-full mb-4 inline-block">
-                    <step.icon className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle className="font-headline text-3xl text-primary">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center flex-grow pb-8">
-                  <p className="font-body text-muted-foreground text-lg leading-relaxed">
-                    {step.description}
-                  </p>
-                </CardContent>
-              </Card>
+              {/* Desktop: Alternating sides */}
+              <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:order-2 md:text-left'}`}>
+                <div className={`p-4 bg-primary/10 rounded-full mb-3 md:mb-4 inline-block ${index % 2 === 0 ? 'md:float-right' : 'md:float-left'}`}>
+                  <step.icon className="h-8 w-8 md:h-10 md:w-10 text-primary" />
+                </div>
+                <h3 className="font-headline text-3xl md:text-4xl font-semibold mb-3 text-primary">{step.title}</h3>
+                <p className="font-body text-muted-foreground text-lg leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+              
+              {/* Desktop: Timeline Marker */}
+              <div className="hidden md:flex md:w-12 flex-shrink-0 items-center justify-center order-1 md:relative">
+                <div className="absolute top-1/2 -translate-y-1/2 h-5 w-5 rounded-full bg-primary border-4 border-secondary ring-4 ring-border group-hover:ring-primary transition-all duration-300"></div>
+              </div>
+              
+              {/* Mobile: Stacked layout (marker part integrated or simplified) */}
+               <div className="md:hidden w-full mt-4 border-t border-border pt-4">
+                 {/* Mobile doesn't show alternating, simplified view */}
+               </div>
             </div>
           ))}
         </div>
+        
          <div 
           ref={addScrollAnimElement} 
           className="scroll-animate delay-5 mt-20 text-center"
