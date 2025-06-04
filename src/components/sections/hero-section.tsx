@@ -10,15 +10,7 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center py-20 bg-background text-foreground overflow-hidden">
-      <div 
-        ref={addScrollAnimElement}
-        className="scroll-animate absolute inset-0 opacity-[0.02]" // Reduced opacity for subtlety
-        style={{
-          backgroundImage: 'radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px), radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)',
-          backgroundSize: '30px 30px',
-          backgroundPosition: '0 0, 15px 15px',
-        }}
-      ></div>
+      {/* The dotted background div has been removed from here */}
       
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -26,7 +18,6 @@ export default function HeroSection() {
             ref={addScrollAnimElement}
             className="scroll-animate delay-1 md:text-left"
           >
-            {/* Wrapped text elements in a div for staggered animation */}
             <div className="overflow-hidden pb-2">
               <h1 
                 ref={addScrollAnimElement}
