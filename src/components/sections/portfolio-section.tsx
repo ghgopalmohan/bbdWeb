@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -5,88 +6,108 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ZoomIn } from 'lucide-react'; // Added ZoomIn
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const portfolioItemsData = [
-  { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: 'https://placehold.co/600x400.png', description: 'Modern and professional business card designs.', dataAiHint: 'business card' },
-  { id: 2, title: 'Restaurant Menu Design', category: 'menus', imageUrl: 'https://placehold.co/600x400.png', description: 'Visually appealing menu layouts for restaurants.', dataAiHint: 'restaurant menu' },
-  { id: 3, title: 'Promotional Pamphlet', category: 'pamphlets', imageUrl: 'https://placehold.co/600x400.png', description: 'Eye-catching pamphlets for marketing campaigns.', dataAiHint: 'pamphlet design' },
-  { id: 4, title: 'Social Media Banners', category: 'banners', imageUrl: 'https://placehold.co/600x400.png', description: 'Engaging banners for social media platforms.', dataAiHint: 'social media' },
-  { id: 5, title: 'Corporate Brochure', category: 'brochures', imageUrl: 'https://placehold.co/600x400.png', description: 'Informative and stylish corporate brochures.', dataAiHint: 'brochure design' },
-  { id: 6, title: 'Event Banner Design', category: 'banners', imageUrl: 'https://placehold.co/600x400.png', description: 'Large format banners for events and exhibitions.', dataAiHint: 'event banner' },
-  { id: 7, title: 'Luxury Visiting Cards', category: 'cards', imageUrl: 'https://placehold.co/600x400.png', description: 'Premium visiting card designs with unique finishes.', dataAiHint: 'luxury card' },
-  { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: 'https://placehold.co/600x400.png', description: 'Creative menu designs tailored for cafes.', dataAiHint: 'cafe menu' },
+  { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: 'https://placehold.co/600x400.png', description: 'Modern and professional business card designs that make a statement.', dataAiHint: 'business card' },
+  { id: 2, title: 'Restaurant Menu Design', category: 'menus', imageUrl: 'https://placehold.co/600x400.png', description: 'Visually appealing menu layouts that enhance the dining experience.', dataAiHint: 'restaurant menu' },
+  { id: 3, title: 'Promotional Pamphlet', category: 'pamphlets', imageUrl: 'https://placehold.co/600x400.png', description: 'Eye-catching pamphlets designed for effective marketing campaigns.', dataAiHint: 'pamphlet design' },
+  { id: 5, title: 'Corporate Brochure', category: 'brochures', imageUrl: 'https://placehold.co/600x400.png', description: 'Informative and stylish corporate brochures for brand representation.', dataAiHint: 'brochure design' },
+  { id: 7, title: 'Luxury Visiting Cards', category: 'cards', imageUrl: 'https://placehold.co/600x400.png', description: 'Premium visiting card designs with unique finishes and materials.', dataAiHint: 'luxury card' },
+  { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: 'https://placehold.co/600x400.png', description: 'Creative menu designs tailored specifically for cafes and bistros.', dataAiHint: 'cafe menu' },
 ];
 
-const categories = ['All', 'cards', 'menus', 'pamphlets', 'banners', 'brochures'];
+const categories = ['All', 'cards', 'menus', 'pamphlets', 'brochures']; // Removed 'banners'
 
 export default function PortfolioSection() {
   const [filter, setFilter] = useState('All');
+  const addScrollAnimElement = useScrollAnimation();
 
   const filteredItems = filter === 'All'
     ? portfolioItemsData
     : portfolioItemsData.filter(item => item.category === filter);
 
   return (
-    <section id="portfolio" className="py-20 bg-secondary">
+    <section id="portfolio" className="py-20 bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4">My Work</h2>
-          <p className="font-body text-lg text-foreground/70 max-w-2xl mx-auto">
-            A selection of projects that showcase my skills and creativity in Photoshop design.
+        <div 
+          ref={addScrollAnimElement}
+          className="scroll-animate text-center mb-16"
+        >
+          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4 text-primary">My Best Works</h2>
+          <p className="font-body text-lg text-secondary-foreground/80 max-w-2xl mx-auto">
+            A curated selection of projects showcasing creativity and design expertise.
           </p>
         </div>
 
-        <div className="flex justify-center space-x-2 sm:space-x-4 mb-12 flex-wrap">
+        <div 
+          ref={addScrollAnimElement}
+          className="scroll-animate delay-1 flex justify-center space-x-2 sm:space-x-3 md:space-x-4 mb-12 flex-wrap"
+        >
           {categories.map(category => (
             <Button
               key={category}
               variant={filter === category ? 'default' : 'outline'}
               onClick={() => setFilter(category)}
-              className="capitalize mb-2 sm:mb-0"
+              className="capitalize mb-2 sm:mb-0 text-sm md:text-base px-4 py-2 md:px-6 md:py-3 rounded-lg transition-all duration-300 ease-out"
+              data-cursor-type="pointer"
             >
               {category}
             </Button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredItems.map(item => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8"> {/* Adjusted to 3 columns for wider cards */}
+          {filteredItems.map((item, index) => (
             <Dialog key={item.id}>
               <DialogTrigger asChild>
-                <Card className="overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                  <CardContent className="p-0">
-                    <div className="aspect-w-4 aspect-h-3 overflow-hidden">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.title}
-                        width={600}
-                        height={400}
-                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
-                        data-ai-hint={item.dataAiHint}
-                      />
-                    </div>
-                    <div className="p-4 bg-background">
-                      <h3 className="font-headline text-xl font-semibold mb-1">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground capitalize">{item.category}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div 
+                  ref={addScrollAnimElement} 
+                  className={`scroll-animate delay-${(index % 3) + 2}`} // Stagger animation
+                >
+                  <Card className="overflow-hidden group cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-border hover:border-primary/70 bg-card rounded-xl">
+                    <CardContent className="p-0">
+                      <div className="aspect-[4/3] overflow-hidden relative"> {/* Maintained 4/3 aspect ratio */}
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          width={600}
+                          height={450} // Adjusted height for 4/3
+                          className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-110"
+                          data-ai-hint={item.dataAiHint}
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                          <ZoomIn className="h-12 w-12 text-white/80 transform scale-75 group-hover:scale-100 transition-transform duration-300" />
+                        </div>
+                      </div>
+                      <div className="p-5 bg-card">
+                        <h3 className="font-headline text-xl lg:text-2xl font-semibold mb-1 text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground capitalize font-body">{item.category}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[600px] bg-background p-0">
-                <DialogHeader className="p-6 pb-0">
-                  <DialogTitle className="font-headline text-2xl">{item.title}</DialogTitle>
-                  <DialogDescription className="font-body">{item.description}</DialogDescription>
+              <DialogContent className="sm:max-w-2xl md:max-w-3xl bg-background p-0 rounded-xl border-primary/50 shadow-2xl">
+                <DialogHeader className="p-6 pb-2">
+                  <DialogTitle className="font-headline text-3xl text-primary">{item.title}</DialogTitle>
+                  <DialogDescription className="font-body text-foreground/80 pt-1">{item.description}</DialogDescription>
                 </DialogHeader>
                 <div className="p-1">
                   <Image
-                    src={item.imageUrl}
+                    src={item.imageUrl} // Using a slightly larger placeholder for modal
                     alt={item.title}
                     width={800}
                     height={600}
-                    className="w-full h-auto rounded-b-lg object-contain max-h-[70vh]"
+                    className="w-full h-auto rounded-b-lg object-contain max-h-[75vh]"
                     data-ai-hint={item.dataAiHint}
                   />
+                </div>
+                 <div className="p-6 pt-4 flex justify-end">
+                    <Button variant="outline" onClick={() => { /* Could close dialog or navigate */ }} data-cursor-type="pointer">
+                        Close Preview
+                    </Button>
                 </div>
               </DialogContent>
             </Dialog>

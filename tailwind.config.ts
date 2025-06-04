@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -9,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'], // Lemni uses Inter for body
-        headline: ['Syne', 'serif'], // Lemni uses Syne for headlines
+        body: ['Inter', 'sans-serif'], 
+        headline: ['Syne', 'serif'], 
         code: ['monospace'],
       },
       colors: {
@@ -54,7 +55,7 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        sidebar: { // Keep sidebar vars if sidebar component is used, ensure they match the dark theme
+        sidebar: { 
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
           primary: 'hsl(var(--sidebar-primary))',
@@ -87,7 +88,7 @@ export default {
             height: '0',
           },
         },
-        'preloader-pulse': { // Added from globals.css for Tailwind JIT
+        'preloader-pulse': { 
           '0%, 100%': { opacity: '1', transform: 'scale(1)' },
           '50%': { opacity: '0.7', transform: 'scale(0.95)' },
         },
@@ -98,17 +99,22 @@ export default {
         'text-reveal': {
           '0%': { transform: 'translateY(100%)' },
           '100%': { transform: 'translateY(0%)' },
-        }
+        },
+        'marquee': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' }, // Adjusted for duplicated content
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'preloader-pulse': 'preloader-pulse 1.5s infinite ease-in-out', // Added
+        'preloader-pulse': 'preloader-pulse 1.5s infinite ease-in-out',
         'slide-in-from-bottom': 'slide-in-from-bottom 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards',
         'text-reveal': 'text-reveal 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards',
+        'marquee': 'marquee 30s linear infinite', // Increased duration for smoother scroll
       },
       transitionTimingFunction: {
-        'custom-ease': 'cubic-bezier(0.25, 1, 0.5, 1)', // Lemni-like easing
+        'custom-ease': 'cubic-bezier(0.25, 1, 0.5, 1)', 
       }
     },
   },

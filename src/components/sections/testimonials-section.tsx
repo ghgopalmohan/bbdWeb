@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useScrollAnimation } from '@/hooks/use-scroll-animation'; // For scroll animations
+import { useScrollAnimation } from '@/hooks/use-scroll-animation'; 
 
 interface Testimonial {
   name: string;
@@ -100,9 +100,9 @@ export default function TestimonialsSection() {
           >
             <CarouselContent className="-ml-4">
               {testimonialsData.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2"> {/* Adjusted basis for responsiveness */}
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/2">
                   <div className="p-1 h-full">
-                    <Card className="h-full flex flex-col justify-between bg-card border border-border hover:border-primary transition-colors duration-300 shadow-xl rounded-xl">
+                    <Card className="h-full flex flex-col justify-between bg-card border border-border hover:border-primary/50 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group">
                       <CardHeader className="pb-4 px-6 pt-6">
                         <div className="flex items-start mb-4">
                           <Avatar className="h-14 w-14 mr-5 border-2 border-primary rounded-full">
@@ -110,7 +110,7 @@ export default function TestimonialsSection() {
                             <AvatarFallback className="bg-muted text-foreground text-lg">{testimonial.avatarFallback}</AvatarFallback>
                           </Avatar>
                           <div>
-                            <CardTitle className="font-headline text-2xl text-foreground">{testimonial.name}</CardTitle>
+                            <CardTitle className="font-headline text-2xl text-foreground group-hover:text-primary transition-colors">{testimonial.name}</CardTitle>
                             <p className="text-sm text-foreground/60 font-body">{testimonial.title}</p>
                           </div>
                         </div>
@@ -118,7 +118,7 @@ export default function TestimonialsSection() {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`h-5 w-5 ${i < testimonial.stars ? 'text-foreground fill-foreground' : 'text-muted-foreground/50'}`}
+                              className={`h-5 w-5 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/50'}`}
                             />
                           ))}
                         </div>
@@ -144,4 +144,3 @@ export default function TestimonialsSection() {
     </section>
   );
 }
-
