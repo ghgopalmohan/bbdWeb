@@ -9,14 +9,14 @@ export default function AboutSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-20 md:mb-24">
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">About Me</h2>
-          <p className="font-body text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto"> {/* Increased max-w */}
+          <p className="font-body text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto">
             A seasoned Photoshop designer dedicated to crafting compelling visual narratives and high-impact designs.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-lg blur-xl opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-lg blur-xl opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
             <Image
               src="https://placehold.co/600x750.png" 
               alt="Gopal Mohan at work"
@@ -36,13 +36,13 @@ export default function AboutSection() {
               I specialize in transforming concepts into tangible, high-quality visual assets for both print and digital mediums. My approach is rooted in collaboration and a meticulous attention to detail, ensuring every project aligns perfectly with client objectives and brand identity.
             </p>
             <Card className="bg-card border-border shadow-lg">
-              <CardHeader className="pb-4"> {/* Adjusted padding */}
+              <CardHeader className="pb-4">
                 <CardTitle className="text-3xl text-primary flex items-center">
                   <Award className="mr-4 h-10 w-10 text-accent" /> 
                   <span>Over 25 Years of Design Excellence</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-2"> {/* Adjusted padding */}
+              <CardContent className="pt-2">
                 <p className="font-body text-muted-foreground text-base">
                   Leveraging a quarter-century of hands-on experience to deliver innovative and effective Photoshop solutions. My expertise is your asset in achieving outstanding visual communication.
                 </p>
