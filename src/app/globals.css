@@ -5,53 +5,53 @@
 
 @layer base {
   :root {
-    /* Light Theme with Violet Accents */
-    --background: 0 0% 98%; /* Very Light Grey */
-    --foreground: 240 10% 3.9%; /* Dark Grey / Almost Black */
+    /* Strict Black & White Theme */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 0%; /* Black */
 
     --card: 0 0% 100%; /* White */
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 0%; /* Black */
 
     --popover: 0 0% 100%; /* White */
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 0%; /* Black */
 
-    --primary: 262 52% 47%; /* Deep Violet (#673AB7) */
-    --primary-foreground: 0 0% 98%; /* Off-white for contrast on violet */
+    --primary: 0 0% 0%; /* Black */
+    --primary-foreground: 0 0% 100%; /* White */
 
-    --secondary: 240 4.8% 95.9%; /* Light Grey for secondary elements/backgrounds */
-    --secondary-foreground: 240 10% 3.9%;
+    --secondary: 0 0% 96%; /* Light Grey for secondary elements/backgrounds */
+    --secondary-foreground: 0 0% 0%; /* Black */
 
-    --muted: 240 4.8% 90%; /* Lighter Grey for muted backgrounds */
-    --muted-foreground: 240 3.8% 46.1%; /* Darker Grey Muted Foreground */
+    --muted: 0 0% 90%; /* Lighter Grey for muted backgrounds */
+    --muted-foreground: 0 0% 30%; /* Darker Grey Muted Foreground */
 
-    --accent: 279 96% 76%; /* Light Purple (#BB86FC) */
-    --accent-foreground: 240 10% 3.9%; /* Dark for contrast on light purple */
+    --accent: 0 0% 15%; /* Dark Grey for hover/accent */
+    --accent-foreground: 0 0% 100%; /* White */
 
-    --destructive: 0 84.2% 60.2%; 
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%; /* Default red - can be changed to grey if needed */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5.9% 90%; /* Light Grey Border for cards, inputs */
-    --input: 0 0% 100%; /* White Input background, border will be --border */
-    --ring: 262 52% 55%; /* Focus ring, related to primary (slightly lighter violet) */
+    --border: 0 0% 85%; /* Light Grey Border for cards, inputs */
+    --input: 0 0% 100%; /* White Input background */
+    --ring: 0 0% 0%; /* Black Focus ring */
 
     --radius: 0.5rem;
 
-    /* Chart colors - Violet and Greys */
-    --chart-1: 262 52% 55%; /* Brighter Violet */
-    --chart-2: 279 96% 70%; /* Accent Purple (slightly desaturated/darker for chart) */
-    --chart-3: 240 5% 75%;  /* Medium Grey */
-    --chart-4: 240 5% 55%;  /* Darker Grey */
-    --chart-5: 240 5% 35%;  /* Very Dark Grey */
+    /* Chart colors - Grayscale */
+    --chart-1: 0 0% 20%; /* Darkest Grey */
+    --chart-2: 0 0% 40%;
+    --chart-3: 0 0% 60%;
+    --chart-4: 0 0% 75%;
+    --chart-5: 0 0% 85%;  /* Lightest Grey */
     
-    /* Sidebar specific vars - adapt to light theme */
-    --sidebar-background: 0 0% 96%; /* Slightly off-white for sidebar */
-    --sidebar-foreground: 240 10% 3.9%;
-    --sidebar-primary: 262 52% 47%; /* Violet */
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 279 96% 76%; /* Light Purple */
-    --sidebar-accent-foreground: 240 10% 3.9%;
-    --sidebar-border: 240 5.9% 85%; /* Slightly darker grey for sidebar border */
-    --sidebar-ring: 262 52% 55%;
+    /* Sidebar specific vars - adapt to B&W light theme */
+    --sidebar-background: 0 0% 98%; /* Very Light Grey for sidebar */
+    --sidebar-foreground: 0 0% 0%; /* Black */
+    --sidebar-primary: 0 0% 0%; /* Black */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 0 0% 20%; /* Dark Grey */
+    --sidebar-accent-foreground: 0 0% 100%; /* White */
+    --sidebar-border: 0 0% 80%; /* Grey for sidebar border */
+    --sidebar-ring: 0 0% 0%; /* Black */
   }
 
   html {
@@ -60,13 +60,15 @@
 
   body {
     @apply bg-background text-foreground;
-    @apply font-body; 
+    @apply font-body;
+    font-size: 1.125rem; /* Increased base font size to 18px */
+    line-height: 1.7; /* Adjusted line height for better readability */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline; 
+    @apply font-headline text-foreground; 
   }
 
   ::selection {
@@ -75,7 +77,7 @@
   }
 }
 
-/* Custom cursor styles - Adapted to light theme */
+/* Custom cursor styles - B&W Theme */
 .custom-cursor {
   position: fixed;
   left: 0;
@@ -94,31 +96,29 @@
   }
 }
 
-
 .custom-cursor-default {
   width: 10px;
   height: 10px;
   background-color: hsl(var(--foreground)); /* Black dot */
-  border: 1px solid hsl(var(--foreground)); /* Black border */
+  border: 1px solid hsl(var(--foreground));
 }
 
 .custom-cursor-pointer {
   width: 28px;
   height: 28px;
-  background-color: hsla(var(--primary), 0.15); /* Use primary color (Violet) for pointer hover with light opacity */
-  border: 1px solid hsl(var(--primary)); /* Violet border */
+  background-color: hsla(var(--foreground), 0.15); /* Light black/grey circle */
+  border: 1px solid hsl(var(--foreground)); /* Black border */
 }
 
 .custom-cursor-text {
   width: 2px; 
-  height: 20px;
+  height: 24px; /* Slightly taller for larger fonts */
   background-color: hsl(var(--foreground)); /* Black bar */
   border-radius: 0px; 
   border: none;
 }
 
-
-/* Preloader styles - Adapted to light theme */
+/* Preloader styles - B&W Theme */
 .preloader {
   @apply fixed inset-0 bg-background z-[1000] flex items-center justify-center;
   transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
@@ -130,7 +130,7 @@
 }
 
 .preloader-logo {
-  @apply font-headline text-5xl text-primary; /* Use primary color (Violet) for preloader logo */
+  @apply font-headline text-6xl text-foreground; /* Black preloader logo, larger */
   animation: preloader-pulse 1.5s infinite ease-in-out;
 }
 
@@ -145,55 +145,54 @@
   }
 }
 
-
 /* Scroll animations helper */
 .scroll-animate {
   opacity: 0;
   transform: translateY(30px); 
   transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-
 .scroll-animate.delay-1 { transition-delay: 0.1s; }
 .scroll-animate.delay-2 { transition-delay: 0.2s; }
 .scroll-animate.delay-3 { transition-delay: 0.3s; }
 .scroll-animate.delay-4 { transition-delay: 0.4s; }
 .scroll-animate.delay-5 { transition-delay: 0.5s; }
 
-
 .scroll-animate-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Form Input Styles for Light Theme */
+/* Form Input Styles for B&W Theme */
 .form-input {
-  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground; /* input bg is white, border is light grey */
-  @apply focus:border-primary focus:ring-0 py-3; /* Focus border uses primary color (Violet) */
+  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground;
+  @apply focus:border-primary focus:ring-0 py-3 text-lg; /* Larger font in inputs */
   transition: border-color 0.3s ease;
 }
 
 .form-group {
-  @apply relative mb-8; 
+  @apply relative mb-10; /* Increased margin */
 }
 
 .form-label {
   @apply absolute left-0 text-muted-foreground transition-all duration-300 ease-out pointer-events-none;
-  top: 0.75rem; 
+  top: 0.85rem; /* Adjusted for larger input text */
+  font-size: 1rem; /* Slightly larger label */
 }
 
 .form-input:focus + .form-label,
 .form-input:not(:placeholder-shown) + .form-label {
-  @apply text-primary; /* Label turns primary color (Violet) on focus/fill */
-  top: -1rem; 
-  font-size: 0.75rem; 
+  @apply text-primary; /* Label turns black on focus/fill */
+  top: -1.15rem; 
+  font-size: 0.875rem; 
 }
 
 /* Ensure marquee client logos are visible on light theme */
 .animate-marquee img {
-  filter: none; /* Remove grayscale if background is light */
-  opacity: 0.8;
-  transition: opacity 0.3s;
+  filter: grayscale(100%) contrast(0%) brightness(0%); /* Black logos */
+  opacity: 0.7;
+  transition: opacity 0.3s, filter 0.3s;
 }
 .animate-marquee img:hover {
   opacity: 1;
+  filter: grayscale(0%) contrast(100%) brightness(100%); /* Original color on hover if any, or just less dim */
 }

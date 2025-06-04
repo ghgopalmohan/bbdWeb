@@ -1,8 +1,9 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Star, QuoteIcon } from 'lucide-react'; // Using official QuoteIcon
+import { Star, QuoteIcon } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -47,7 +48,7 @@ const testimonialsData: Testimonial[] = [
     title: 'Founder, Bloom Events Co.',
     quote: 'Working with Gopal was a seamless experience. He delivered breathtaking event banners under a tight deadline, showcasing both professionalism and incredible creativity. Highly recommend!',
     avatarUrl: 'https://placehold.co/100x100.png',
-    stars: 5, // Updated to 5 for consistency
+    stars: 5,
     avatarFallback: 'AB',
     dataAiHint: 'event planner happy'
   },
@@ -66,16 +67,16 @@ export default function TestimonialsSection() {
   const addScrollAnimElement = useScrollAnimation();
 
   return (
-    <section id="testimonials" className="py-20 md:py-28 bg-secondary text-secondary-foreground">
+    <section id="testimonials" className="py-24 md:py-32 bg-secondary text-secondary-foreground">
       <div className="container mx-auto px-4 md:px-6">
         <div 
           ref={addScrollAnimElement} 
-          className="scroll-animate text-center mb-16 md:mb-20"
+          className="scroll-animate text-center mb-20 md:mb-24"
         >
-          <h2 className="font-headline text-4xl sm:text-5xl md:text-5xl font-bold mb-4 text-primary">
+          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">
             Client Acclaim
           </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
             Discover why clients trust my design expertise to elevate their brands and projects.
           </p>
         </div>
@@ -96,36 +97,36 @@ export default function TestimonialsSection() {
                 stopOnMouseEnter: true,
               }),
             ]}
-            className="w-full max-w-5xl mx-auto"
+            className="w-full max-w-6xl mx-auto" 
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-5">
               {testimonialsData.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2"> {/* Ensure two items are visible on md and up */}
+                <CarouselItem key={index} className="pl-5 md:basis-1/2">
                   <div className="p-1 h-full">
-                    <Card className="h-full flex flex-col justify-between bg-card border border-border hover:border-primary/40 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group p-6 md:p-8">
-                      <CardHeader className="pb-4 px-0 pt-0">
-                        <div className="flex items-center mb-4">
-                          <Avatar className="h-16 w-16 mr-5 border-2 border-primary rounded-full shadow-sm">
+                    <Card className="h-full flex flex-col justify-between bg-card border border-border hover:border-primary/40 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group p-8 md:p-10">
+                      <CardHeader className="pb-6 px-0 pt-0">
+                        <div className="flex items-center mb-5">
+                          <Avatar className="h-20 w-20 mr-6 border-2 border-primary rounded-full shadow-sm">
                             <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.dataAiHint} />
-                            <AvatarFallback className="bg-muted text-foreground text-xl font-medium">{testimonial.avatarFallback}</AvatarFallback>
+                            <AvatarFallback className="bg-muted text-foreground text-2xl font-medium">{testimonial.avatarFallback}</AvatarFallback>
                           </Avatar>
                           <div>
-                            <CardTitle className="font-headline text-xl md:text-2xl text-foreground group-hover:text-primary transition-colors">{testimonial.name}</CardTitle>
-                            <p className="text-sm text-muted-foreground font-body">{testimonial.title}</p>
+                            <CardTitle className="font-headline text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors">{testimonial.name}</CardTitle>
+                            <p className="text-base text-muted-foreground font-body">{testimonial.title}</p>
                           </div>
                         </div>
-                        <div className="flex items-center mb-3">
+                        <div className="flex items-center mb-4">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`h-5 w-5 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/40'}`}
+                              className={`h-6 w-6 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30 fill-muted-foreground/30'}`} // Golden stars
                             />
                           ))}
                         </div>
                       </CardHeader>
                       <CardContent className="flex-grow px-0 pb-0 relative">
-                        <QuoteIcon className="absolute top-0 left-0 h-12 w-12 text-primary/20 transform -translate-x-3 -translate-y-2" />
-                        <p className="font-body text-base md:text-lg text-foreground/85 italic leading-relaxed pl-8 relative z-10">
+                        <QuoteIcon className="absolute top-0 left-0 h-16 w-16 text-primary/10 transform -translate-x-4 -translate-y-3" />
+                        <p className="font-body text-lg md:text-xl text-foreground/85 italic leading-relaxed pl-10 relative z-10">
                           {testimonial.quote}
                         </p>
                       </CardContent>
@@ -134,9 +135,9 @@ export default function TestimonialsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="hidden sm:block mt-8">
-              <CarouselPrevious className="absolute left-[-20px] md:left-[-60px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-10 h-10 md:w-12 md:h-12" />
-              <CarouselNext className="absolute right-[-20px] md:right-[-60px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-10 h-10 md:w-12 md:h-12" />
+            <div className="hidden sm:block mt-10"> {/* Increased margin for buttons */}
+              <CarouselPrevious className="absolute left-[-25px] md:left-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
+              <CarouselNext className="absolute right-[-25px] md:right-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
             </div>
           </Carousel>
         </div>
