@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Rocket, ArrowRight, QuoteIcon } from "lucide-react";
+import { Rocket, ArrowRight, Award, ShieldCheck } from "lucide-react";
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -10,21 +10,24 @@ import React from "react";
 interface Principle {
   id: number;
   text: string;
-  icon?: React.ElementType; // Optional icon for future use
+  icon: React.ElementType;
 }
 
 const corePrinciples: Principle[] = [
   {
     id: 1,
     text: "Fastest in market",
+    icon: Rocket,
   },
   {
     id: 2,
     text: "Low cost with Best quality",
+    icon: Award,
   },
   {
     id: 3,
     text: "Integrity and trust",
+    icon: ShieldCheck,
   },
 ];
 
@@ -49,19 +52,18 @@ export default function DesignProcessSection() {
             <div
               key={principle.id}
               ref={addScrollAnimElement}
-              className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center p-8 md:p-10 bg-card rounded-xl shadow-xl border border-border hover:shadow-2xl transition-shadow duration-300`}
+              className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center p-6 md:p-8`}
               data-cursor-type="pointer"
             >
-              <QuoteIcon className="h-12 w-12 md:h-16 md:w-16 text-primary/30 mb-6" />
-              <p className="font-headline text-3xl md:text-4xl font-bold text-primary mb-3 leading-tight">
+              <principle.icon className="h-20 w-20 md:h-24 md:w-24 text-primary mb-8" />
+              <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary mb-3 leading-tight">
                 {principle.text}
-              </p>
-              {/* Optional: Add a small descriptive text or leave as is */}
+              </h3>
             </div>
           ))}
         </div>
         
-        <div className="mt-16 text-center"> {/* This div was not scroll animated before, so keeping it that way unless specified */}
+        <div className="mt-16 text-center">
           <Rocket className="h-16 w-16 text-primary mx-auto mb-6" />
           <h3 className="font-headline text-4xl font-semibold mb-4 text-foreground">Ready to Start Your Project?</h3>
           <p className="font-body text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
