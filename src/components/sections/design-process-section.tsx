@@ -12,12 +12,12 @@ interface ProcessStep {
   description: string;
 }
 
-interface StepPositionConfig {
-  top: string;
-  alignBlock: 'left' | 'right'; // Which side of the road the content block is on
-  blockOffset: string; // Percentage offset for left/right positioning of the block
-  textAlign: 'left' | 'right'; // Text alignment within the content block
-  markerIsLeft: boolean; // True if marker is to the left of text, false if to the right
+interface StepMarkerConfig {
+  cx: string; // X-coordinate for the center of the marker on the SVG
+  cy: string; // Y-coordinate for the center of the marker on the SVG
+  textSide: 'left' | 'right'; // Which side of the marker the text block appears
+  textXOffset?: string; // Horizontal offset for text block from marker center
+  textYOffset?: string; // Vertical offset for text block from marker center (for fine-tuning)
 }
 
 const processSteps: ProcessStep[] = [
@@ -48,17 +48,14 @@ const processSteps: ProcessStep[] = [
   }
 ];
 
-const stepPositions: StepPositionConfig[] = [
-  // Step 1: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
-  { top: '75%', alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
-  // Step 2: Content block on the LEFT of the road. Marker is to the RIGHT of text. Text aligns right.
-  { top: '58%', alignBlock: 'left',  blockOffset: '52%', textAlign: 'right', markerIsLeft: false },
-  // Step 3: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
-  { top: '40%', alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
-  // Step 4: Content block on the LEFT of the road. Marker is to the RIGHT of text. Text aligns right.
-  { top: '22%', alignBlock: 'left',  blockOffset: '52%', textAlign: 'right', markerIsLeft: false },
-  // Step 5: Content block on the RIGHT of the road. Marker is to the LEFT of text. Text aligns left.
-  { top: '5%',  alignBlock: 'right', blockOffset: '52%', textAlign: 'left', markerIsLeft: true },
+// Approximate coordinates along the S-curve (viewBox="0 0 800 600")
+// Path: M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50
+const stepMarkers: StepMarkerConfig[] = [
+  { cx: '100', cy: '500', textSide: 'right', textXOffset: '50px' }, // Start of curve, text to the right
+  { cx: '240', cy: '400', textSide: 'left', textXOffset: '-50px' },  // First bend, text to the left
+  { cx: '380', cy: '300', textSide: 'right', textXOffset: '50px' }, // Mid-point, text to the right
+  { cx: '520', cy: '200', textSide: 'left', textXOffset: '-50px' },  // Second bend, text to the left
+  { cx: '700', cy: '50',  textSide: 'right', textXOffset: '50px' }, // End of curve, text to the right
 ];
 
 
@@ -82,71 +79,78 @@ export default function DesignProcessSection() {
         <div className="hidden md:block relative min-h-[600px] lg:min-h-[700px] w-full max-w-4xl mx-auto">
           <svg
             className="absolute top-0 left-0 w-full h-full"
-            viewBox="0 0 800 600" 
+            viewBox="0 0 800 600"
             preserveAspectRatio="xMidYMid meet"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
+            {/* Thicker road base */}
             <path
               d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
-              strokeWidth="20"
-              className="stroke-muted" 
+              strokeWidth="24" 
+              className="stroke-muted"
             />
+            {/* Dashed center line */}
             <path
               d="M100 500 C 200 500, 150 350, 300 350 S 450 200, 500 200 S 600 50, 700 50"
               stroke="hsl(var(--background))"
               strokeWidth="4"
-              strokeDasharray="15 15" 
+              strokeDasharray="15 15"
             />
           </svg>
 
           {processSteps.map((step, index) => {
-            const position = stepPositions[index];
+            const markerConfig = stepMarkers[index];
+            const textXPosition = markerConfig.textSide === 'left' 
+              ? `calc(${markerConfig.cx}px - ${markerConfig.textXOffset || '0px'} - 8rem)` // 8rem is approx half width of text block (w-64 / 2)
+              : `calc(${markerConfig.cx}px + ${markerConfig.textXOffset || '0px'})`;
+            
+            const textYPosition = `calc(${markerConfig.cy}px - 2.5rem)`; // Adjust to vertically center text block with marker (marker height 2.5rem)
+
+
             return (
               <div
                 key={index}
                 ref={addScrollAnimElement}
                 className={`scroll-animate delay-${index + 1} absolute`}
                 style={{
-                  top: position.top,
-                  left: position.alignBlock === 'right' ? position.blockOffset : undefined,
-                  right: position.alignBlock === 'left' ? position.blockOffset : undefined,
+                  // Marker positioning
+                  left: `calc(${markerConfig.cx}px - 1.75rem)`, // 1.75rem is half of marker width (w-14)
+                  top: `calc(${markerConfig.cy}px - 1.75rem)`, // 1.75rem is half of marker height (h-14)
                 }}
               >
+                {/* Marker and Icon */}
                 <div className={cn(
-                  "flex items-center", 
-                  position.markerIsLeft ? "flex-row" : "flex-row-reverse" // if markerIsLeft, [Marker, Text]. Else [Text, Marker]
+                  "relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300 z-10"
                 )}>
-                  {/* Marker and Icon */}
-                  <div className={cn(
-                    "flex flex-col items-center z-10",
-                     position.markerIsLeft ? "mr-4" : "ml-4" // If marker is on left of text, it needs margin-right.
-                  )}>
-                    <div className="relative w-14 h-14 bg-background border-2 border-primary rounded-full flex items-center justify-center shadow-lg group-hover:border-accent transition-colors duration-300">
-                      <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" /> 
-                      <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background"> 
-                        {index + 1}
-                      </span>
-                    </div>
-                  </div>
+                  <step.icon className="h-6 w-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background">
+                    {index + 1}
+                  </span>
+                </div>
 
-                  {/* Text Content */}
-                  <div
-                    className={cn(
-                      "w-48 p-1", 
-                      position.textAlign === 'left' ? "text-left" : "text-right"
-                    )}
-                  >
-                    <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3> 
-                    <p className="font-body text-muted-foreground text-xs leading-relaxed"> 
-                      {step.description}
-                    </p>
-                  </div>
+                {/* Text Content positioned relative to the SVG canvas */}
+                <div
+                  className={cn(
+                    "absolute p-1 w-64", // Increased width for text
+                    markerConfig.textSide === 'left' ? "text-right" : "text-left"
+                  )}
+                  style={{
+                    top: `calc(1.75rem - 50%)`, // Vertically align text block center with marker center
+                    left: markerConfig.textSide === 'left' ? `calc(-100% - 1rem - 1.75rem)` : `calc(100% + 1rem + 1.75rem)`, // Position text left/right of marker
+                    transform: markerConfig.textSide === 'left' ? 'translateX(-100%)' : 'none',
+                  }}
+                >
+                  <h3 className="font-headline text-lg font-semibold mb-1 text-primary">Step {index + 1}: {step.title}</h3>
+                  <p className="font-body text-muted-foreground text-xs leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               </div>
             );
           })}
         </div>
+
 
         {/* Mobile Stacked Layout */}
         <div className="md:hidden space-y-12">
@@ -164,7 +168,7 @@ export default function DesignProcessSection() {
                 {step.description}
               </p>
               {index < processSteps.length - 1 && (
-                <div className="w-0.5 h-12 bg-border my-6"></div> 
+                <div className="w-0.5 h-12 bg-border my-6"></div>
               )}
             </div>
           ))}
@@ -184,3 +188,5 @@ export default function DesignProcessSection() {
     </section>
   );
 }
+
+    
