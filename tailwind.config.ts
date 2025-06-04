@@ -10,7 +10,6 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Updated fonts to Montserrat and Lato
         body: ['Lato', 'sans-serif'], 
         headline: ['Montserrat', 'sans-serif'], 
         code: ['monospace'],
@@ -107,7 +106,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'preloader-pulse': 'preloader-pulse 1.5s infinite ease-in-out',
         'slide-in-from-bottom': 'slide-in-from-bottom 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards',
-        'marquee': 'marquee 40s linear infinite', 
+        'marquee': 'marquee 20s linear infinite', 
       },
       transitionTimingFunction: {
         'custom-ease': 'cubic-bezier(0.25, 1, 0.5, 1)', 
