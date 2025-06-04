@@ -61,7 +61,7 @@ const servicesData: Service[] = [
     dataAiHint: 'photo retouching detail',
   },
   {
-    icon: PieChart, // Changed from TvChart
+    icon: PieChart,
     title: 'Digital Graphics & Assets',
     shortDescription: 'Pixel-perfect for your online presence.',
     detailedDescription: 'Custom graphics for websites, social media, and digital platforms. Optimized for web and designed to align with your online branding for consistent, powerful impact.',
@@ -70,7 +70,6 @@ const servicesData: Service[] = [
   },
 ];
 
-// Helper icon for the "Discuss Your Project" button
 const ArrowUpRight = ({className}: {className?: string}) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cn("h-5 w-5", className)}>
     <path d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19 5 17.59z"/>
@@ -79,9 +78,9 @@ const ArrowUpRight = ({className}: {className?: string}) => (
 
 
 export default function ServicesSection() {
-  const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0); 
+  const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
   const addScrollAnimElement = useScrollAnimation();
-  
+
   useEffect(() => {
     // Default active service is already 0
   }, []);
@@ -91,7 +90,7 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <div 
+        <div
           ref={addScrollAnimElement}
           className="scroll-animate text-center mb-20 md:mb-24"
         >
@@ -102,7 +101,7 @@ export default function ServicesSection() {
         </div>
 
         <div className="grid md:grid-cols-12 gap-10 md:gap-16 min-h-[600px] md:min-h-[700px]">
-          <div 
+          <div
             ref={addScrollAnimElement}
             className="scroll-animate delay-1 md:col-span-5 space-y-4 md:space-y-5"
           >
@@ -112,9 +111,9 @@ export default function ServicesSection() {
                 variant="ghost"
                 className={cn(
                   "w-full justify-start text-left h-auto py-5 px-6 rounded-lg transition-all duration-200 ease-out group",
-                  "shadow-sm", 
-                  activeServiceIndex === index 
-                    ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20" 
+                  "shadow-sm",
+                  activeServiceIndex === index
+                    ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20"
                     : "bg-card text-muted-foreground hover:bg-secondary hover:text-primary border border-transparent hover:border-border/50"
                 )}
                 onMouseEnter={() => setActiveServiceIndex(index)}
@@ -130,7 +129,7 @@ export default function ServicesSection() {
             ))}
           </div>
 
-          <div 
+          <div
             ref={addScrollAnimElement}
             className="scroll-animate delay-2 md:col-span-7"
           >
