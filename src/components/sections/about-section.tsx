@@ -9,7 +9,7 @@ export default function AboutSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-20 md:mb-24">
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">About Me</h2>
-          <p className="font-body text-xl md:text-2xl text-foreground/80 max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-foreground/80 max-w-4xl mx-auto"> {/* Increased max-w */}
             A seasoned Photoshop designer dedicated to crafting compelling visual narratives and high-impact designs.
           </p>
         </div>
@@ -36,13 +36,13 @@ export default function AboutSection() {
               I specialize in transforming concepts into tangible, high-quality visual assets for both print and digital mediums. My approach is rooted in collaboration and a meticulous attention to detail, ensuring every project aligns perfectly with client objectives and brand identity.
             </p>
             <Card className="bg-card border-border shadow-lg">
-              <CardHeader>
+              <CardHeader className="pb-4"> {/* Adjusted padding */}
                 <CardTitle className="text-3xl text-primary flex items-center">
                   <Award className="mr-4 h-10 w-10 text-accent" /> 
                   <span>Over 25 Years of Design Excellence</span>
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="pt-2"> {/* Adjusted padding */}
                 <p className="font-body text-muted-foreground text-base">
                   Leveraging a quarter-century of hands-on experience to deliver innovative and effective Photoshop solutions. My expertise is your asset in achieving outstanding visual communication.
                 </p>

@@ -10,8 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'], 
-        headline: ['Syne', 'serif'], 
+        // Updated fonts to Montserrat and Lato
+        body: ['Lato', 'sans-serif'], 
+        headline: ['Montserrat', 'sans-serif'], 
         code: ['monospace'],
       },
       colors: {

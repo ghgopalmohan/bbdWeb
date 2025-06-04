@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">
             Client Acclaim
           </h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
             Discover why clients trust my design expertise to elevate their brands and projects.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`h-6 w-6 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30 fill-muted-foreground/30'}`} // Golden stars
+                              className={`h-6 w-6 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30 fill-muted-foreground/30'}`}
                             />
                           ))}
                         </div>
@@ -135,7 +135,7 @@ export default function TestimonialsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="hidden sm:block mt-10"> {/* Increased margin for buttons */}
+            <div className="hidden sm:block mt-10"> 
               <CarouselPrevious className="absolute left-[-25px] md:left-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
               <CarouselNext className="absolute right-[-25px] md:right-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
             </div>

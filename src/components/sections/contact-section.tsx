@@ -36,7 +36,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div ref={addScrollAnimElement} className="scroll-animate text-center mb-20 md:mb-24">
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">Let&apos;s Create Together</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
             Have a project in mind, a question, or just want to discuss design? I&apos;m here to help.
           </p>
         </div>

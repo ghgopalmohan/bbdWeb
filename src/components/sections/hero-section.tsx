@@ -13,7 +13,7 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center py-24 md:py-32 bg-background text-foreground overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div 
             ref={addScrollAnimElement}
             className="scroll-animate delay-1 md:text-left"
@@ -29,7 +29,7 @@ export default function HeroSection() {
             <div className="overflow-hidden pb-3">
               <p 
                 ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-muted-foreground mb-12"
+                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-muted-foreground mb-12 max-w-xl" 
               >
                 Professional Photoshop Designer & Visual Artist
               </p>

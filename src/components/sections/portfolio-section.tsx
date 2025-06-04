@@ -36,7 +36,7 @@ export default function PortfolioSection() {
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">My Best Works</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
             A curated selection of projects demonstrating creative solutions and design expertise.
           </p>
         </div>

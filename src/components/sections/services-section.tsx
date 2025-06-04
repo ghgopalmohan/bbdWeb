@@ -61,7 +61,7 @@ const servicesData: Service[] = [
     dataAiHint: 'photo retouching detail',
   },
   {
-    icon: PieChart,
+    icon: PieChart, // Corrected from TvChart
     title: 'Digital Graphics & Assets',
     shortDescription: 'Pixel-perfect for your online presence.',
     detailedDescription: 'Custom graphics for websites, social media, and digital platforms. Optimized for web and designed to align with your online branding for consistent, powerful impact.',
@@ -69,6 +69,14 @@ const servicesData: Service[] = [
     dataAiHint: 'social media ad design',
   },
 ];
+
+// Helper icon for the "Discuss Your Project" button
+const ArrowUpRight = ({className}: {className?: string}) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cn("h-5 w-5", className)}>
+    <path d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19 5 17.59z"/>
+  </svg>
+);
+
 
 export default function ServicesSection() {
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0); 
@@ -88,7 +96,7 @@ export default function ServicesSection() {
           className="scroll-animate text-center mb-20 md:mb-24"
         >
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">Services I Offer</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
             From intricate print designs to dynamic digital assets, I provide a comprehensive suite of Photoshop services.
           </p>
         </div>
@@ -169,10 +177,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-
-// Helper icon
-const ArrowUpRight = ({className}: {className?: string}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cn("h-5 w-5", className)}>
-    <path d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19 5 17.59z"/>
-  </svg>
-);
