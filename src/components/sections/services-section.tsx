@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Palette, PieChart, PencilRuler } from 'lucide-react';
+import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Palette, PieChart } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
@@ -50,7 +50,7 @@ const servicesData: Service[] = [
     shortDescription: 'Informative and engaging print collateral.',
     detailedDescription: 'Informative and engaging brochures and flyers for marketing and communication. Structured layouts that deliver key information clearly, persuasively, and memorably.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'corporate brochure premium',
+    dataAiHint: 'food pamphlet design',
   },
   {
     icon: Palette,
@@ -137,7 +137,7 @@ export default function ServicesSection() {
               <Card className="h-full flex flex-col overflow-hidden shadow-xl rounded-xl border border-border bg-card">
                 <div className="relative aspect-[16/9] w-full overflow-hidden group">
                   <Image
-                    key={activeService.imageUrl + activeServiceIndex} // Changed key to ensure image re-renders on activeService change
+                    key={activeService.imageUrl + activeServiceIndex} 
                     src={activeService.imageUrl}
                     alt={activeService.title}
                     fill
@@ -166,7 +166,7 @@ export default function ServicesSection() {
               </Card>
             ) : (
               <div className="flex flex-col items-center justify-center h-full bg-muted rounded-lg p-10 text-center">
-                <PencilRuler className="h-20 w-20 text-primary/30 mb-6" />
+                <Palette className="h-20 w-20 text-primary/30 mb-6" />
                 <p className="text-muted-foreground font-body text-xl">Select a service to view details.</p>
               </div>
             )}
