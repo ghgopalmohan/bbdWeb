@@ -9,12 +9,12 @@ import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Button } from '@/components/ui/button';
 
 const portfolioItemsData = [
-  { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: 'https://placehold.co/600x450.png', description: 'Modern and professional business card designs that make a statement with premium finishes.', dataAiHint: 'business card design' },
-  { id: 2, title: 'Restaurant Menu Design', category: 'menus', imageUrl: 'https://placehold.co/600x450.png', description: 'Visually appealing menu layouts that enhance the dining experience and reflect brand identity.', dataAiHint: 'restaurant menu layout' },
-  { id: 3, title: 'Sattvik Meal Box Ad', category: 'advertisement', imageUrl: 'https://placehold.co/600x450.png', description: 'Promotional design for Hare Krishna Sattvik Meal Box, highlighting delicious, nutritious, and soul-enriching meals.', dataAiHint: 'hare krishna sattvik meal box' },
-  { id: 5, title: 'Corporate Brochure', category: 'brochures', imageUrl: 'https://placehold.co/600x450.png', description: 'Informative and stylish corporate brochures for impactful brand representation and storytelling.', dataAiHint: 'corporate brochure' },
-  { id: 7, title: 'Luxury Visiting Cards', category: 'cards', imageUrl: 'https://placehold.co/600x450.png', description: 'Premium visiting card designs with unique finishes, materials, and sophisticated typography.', dataAiHint: 'luxury visiting card' },
-  { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: 'https://placehold.co/600x450.png', description: 'Creative menu designs tailored specifically for cafes and bistros, balancing aesthetics and readability.', dataAiHint: 'cafe menu board' },
+  { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: '/elegant-business-cards.png', description: 'Modern and professional business card designs that make a statement with premium finishes.', dataAiHint: 'business card design' },
+  { id: 2, title: 'Restaurant Menu Design', category: 'menus', imageUrl: '/restaurant-menu.png', description: 'Visually appealing menu layouts that enhance the dining experience and reflect brand identity.', dataAiHint: 'restaurant menu layout' },
+  { id: 3, title: 'Sattvik Meal Box Ad', category: 'advertisement', imageUrl: '/sattvik-meal-box-ad.png', description: 'Promotional design for Hare Krishna Sattvik Meal Box, highlighting delicious, nutritious, and soul-enriching meals.', dataAiHint: 'hare krishna sattvik meal box' },
+  { id: 5, title: 'Corporate Brochure', category: 'brochures', imageUrl: '/corporate-brochure.png', description: 'Informative and stylish corporate brochures for impactful brand representation and storytelling.', dataAiHint: 'corporate brochure' },
+  { id: 7, title: 'Luxury Visiting Cards', category: 'cards', imageUrl: '/luxury-visiting-cards.png', description: 'Premium visiting card designs with unique finishes, materials, and sophisticated typography.', dataAiHint: 'luxury visiting card' },
+  { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: '/cafe-menu.png', description: 'Creative menu designs tailored specifically for cafes and bistros, balancing aesthetics and readability.', dataAiHint: 'cafe menu board' },
 ];
 
 export default function PortfolioSection() {
