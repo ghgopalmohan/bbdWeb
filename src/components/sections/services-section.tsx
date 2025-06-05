@@ -50,7 +50,7 @@ const servicesData: Service[] = [
     shortDescription: 'Informative and engaging print collateral.',
     detailedDescription: 'Informative and engaging brochures and flyers for marketing and communication. Structured layouts that deliver key information clearly, persuasively, and memorably.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'food pamphlet design',
+    dataAiHint: 'sattvik food pamphlet',
   },
   {
     icon: Palette,
