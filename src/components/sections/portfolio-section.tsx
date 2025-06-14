@@ -9,12 +9,86 @@ import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Button } from '@/components/ui/button';
 
 const portfolioItemsData = [
-  { id: 1, title: 'Elegant Business Cards', category: 'cards', imageUrl: '/elegant-business-cards.png', description: 'Modern and professional business card designs that make a statement with premium finishes.', dataAiHint: 'business card design' },
-  { id: 2, title: 'Restaurant Menu Design', category: 'menus', imageUrl: '/restaurant-menu.png', description: 'Visually appealing menu layouts that enhance the dining experience and reflect brand identity.', dataAiHint: 'restaurant menu layout' },
-  { id: 3, title: 'Company Brochures', category: 'advertisement', imageUrl: '/company-brochures.png', description: 'Promotional design for Hare Krishna Sattvik Meal Box, highlighting delicious, nutritious, and soul-enriching meals.', dataAiHint: 'hare krishna sattvik meal box' },
-  { id: 5, title: 'Corporate Brochure', category: 'brochures', imageUrl: '/corporate-brochure.png', description: 'Informative and stylish corporate brochures for impactful brand representation and storytelling.', dataAiHint: 'corporate brochure' },
-  { id: 7, title: 'Luxury Visiting Cards', category: 'cards', imageUrl: '/luxury-visiting-cards.png', description: 'Premium visiting card designs with unique finishes, materials, and sophisticated typography.', dataAiHint: 'luxury visiting card' },
-  { id: 8, title: 'Cafe Menu Layout', category: 'menus', imageUrl: '/cafe-menu.png', description: 'Creative menu designs tailored specifically for cafes and bistros, balancing aesthetics and readability.', dataAiHint: 'cafe menu board' },
+  { 
+    id: 1, 
+    title: 'Business Cards', 
+    category: 'cards', 
+    imageUrl: '/business-cards.png', 
+    description: 'Professional and impactful business card designs tailored to your brand identity and communication needs.', 
+    dataAiHint: 'business cards' 
+  },
+  { 
+    id: 2, 
+    title: 'Logos', 
+    category: 'logos', 
+    imageUrl: '/logos.png', 
+    description: 'Memorable and versatile logo designs that effectively define and represent your brand identity.', 
+    dataAiHint: 'brand logos' 
+  },
+  { 
+    id: 3, 
+    title: 'Menus', 
+    category: 'menus', 
+    imageUrl: '/menus.png', 
+    description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and other food service businesses.', 
+    dataAiHint: 'restaurant menus' 
+  },
+  { 
+    id: 4, 
+    title: 'Catalogs', 
+    category: 'catalogs', 
+    imageUrl: '/catalogs.png', 
+    description: 'Comprehensive and engaging catalog layouts designed to showcase your products or services effectively.', 
+    dataAiHint: 'product catalogs' 
+  },
+  { 
+    id: 5, 
+    title: 'Banners', 
+    category: 'banners', 
+    imageUrl: '/banners.png', 
+    description: 'Eye-catching banner designs for online promotions, advertisements, and print marketing materials.', 
+    dataAiHint: 'advertising banners' 
+  },
+  { 
+    id: 6, 
+    title: 'Posters', 
+    category: 'posters', 
+    imageUrl: '/posters.png', 
+    description: 'Creative and informative poster designs suitable for events, promotions, and public announcements.', 
+    dataAiHint: 'event posters' 
+  },
+  { 
+    id: 7, 
+    title: 'Brochures', 
+    category: 'brochures', 
+    imageUrl: '/brochures.png', 
+    description: 'Informative and stylish brochure designs that provide impactful brand representation and detailed information.', 
+    dataAiHint: 'corporate brochures' 
+  },
+  { 
+    id: 8, 
+    title: 'Flyers', 
+    category: 'flyers', 
+    imageUrl: '/flyers.png', 
+    description: 'Compelling flyer designs to effectively promote your services, events, special offers, or products.', 
+    dataAiHint: 'promotional flyers' 
+  },
+  { 
+    id: 9, 
+    title: 'Hotel Stationery Printing', 
+    category: 'stationery', 
+    imageUrl: '/hotel-stationery.png', 
+    description: 'Elegant and branded hotel stationery designs, including letterheads, envelopes, notepads, and guest cards.', 
+    dataAiHint: 'hotel stationery' 
+  },
+  { 
+    id: 10, 
+    title: 'Vehicle Branding', 
+    category: 'branding', 
+    imageUrl: '/vehicle-branding.png', 
+    description: 'Impactful vehicle wrap and branding designs to transform your vehicles into mobile advertisements.', 
+    dataAiHint: 'vehicle branding' 
+  },
 ];
 
 export default function PortfolioSection() {
