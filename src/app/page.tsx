@@ -2,11 +2,11 @@
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import HeroSection from '@/components/sections/hero-section';
-import ClientsSection from '@/components/sections/clients-section';
 import AboutSection from '@/components/sections/about-section';
-import DesignProcessSection from '@/components/sections/design-process-section';
-import PortfolioSection from '@/components/sections/portfolio-section';
 import ServicesSection from '@/components/sections/services-section';
+import PortfolioSection from '@/components/sections/portfolio-section';
+import TestimonialsSection from '@/components/sections/testimonials-section';
+import ClientsSection from '@/components/sections/clients-section';
 import ContactSection from '@/components/sections/contact-section';
 
 export default function HomePage() {
@@ -15,10 +15,10 @@ export default function HomePage() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+        <AboutSection />
         <ServicesSection />
         <PortfolioSection />
-        <DesignProcessSection />
-        <AboutSection />
+        <TestimonialsSection />
         <ClientsSection /> 
         <ContactSection />
       </main>

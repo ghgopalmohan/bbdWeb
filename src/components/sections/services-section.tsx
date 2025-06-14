@@ -1,7 +1,7 @@
 
 "use client";
 
-import { CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck, CheckCircle } from 'lucide-react';
+import { CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck, Palette, Star } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
@@ -18,37 +18,37 @@ const servicesData: Service[] = [
     id: 1,
     icon: CreditCard,
     title: 'Business Cards & Logos',
-    description: 'Crafting memorable brand identities and impactful first impressions with unique card and logo designs.',
+    description: 'Crafting memorable brand identities with unique card and logo designs.',
   },
   {
     id: 2,
-    icon: BookOpenText,
-    title: 'Menus & Catalogs',
-    description: 'Designing visually appealing and easy-to-navigate menus and product catalogs that engage customers.',
+    icon: Palette, // Changed from BookOpenText for broader appeal
+    title: 'Print Design',
+    description: 'Menus, catalogs, brochures, and flyers designed to engage and inform.',
   },
   {
     id: 3,
     icon: Megaphone,
-    title: 'Banners & Posters',
-    description: 'Creating eye-catching banners and posters for events, promotions, and advertising campaigns.',
+    title: 'Advertising Materials',
+    description: 'Eye-catching banners, posters, and hoardings for impactful campaigns.',
   },
   {
     id: 4,
-    icon: FileText,
-    title: 'Brochures & Flyers',
-    description: 'Developing informative and stylish brochures and flyers for effective marketing communication.',
+    icon: Printer,
+    title: 'Stationery & Branding',
+    description: 'Corporate and hotel stationery ensuring brand consistency and professionalism.',
   },
   {
     id: 5,
-    icon: Printer,
-    title: 'Hotel Stationery Printing',
-    description: 'Providing high-quality design and print solutions for all hotel stationery needs, ensuring brand consistency.',
+    icon: Truck,
+    title: 'Vehicle Branding',
+    description: 'Transforming vehicles into mobile advertisements with creative designs.',
   },
   {
     id: 6,
-    icon: Truck,
-    title: 'Vehicle Branding',
-    description: 'Transforming vehicles into mobile advertisements with creative and impactful branding designs.',
+    icon: Star, // Represents custom/premium solutions
+    title: 'Custom Visual Solutions',
+    description: 'Tailored graphic design services to meet unique project requirements.',
   },
 ];
 
@@ -70,34 +70,34 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-secondary">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className={cn("text-center mb-16 md:mb-20 transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}>
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
-            What I Do
+    <section id="services" className="section-padding bg-background">
+      <div className="container-custom">
+        <div className={cn("text-center mb-12 md:mb-16 transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-3 text-foreground">
+            Services Offered
           </h2>
           <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            I specialize in a wide range of Photoshop design services to bring your vision to life.
+            I specialize in a wide range of Photoshop design services to bring your vision to life with creativity and precision.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, index) => (
             <div
               key={service.id}
               className={cn(
-                "bg-card p-8 rounded-xl shadow-lg border border-border transition-all duration-500 ease-out hover:shadow-primary/20 hover:border-primary/50 transform hover:-translate-y-1",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                "bg-card p-6 rounded-lg shadow-lg border border-transparent transition-all duration-300 ease-out hover:shadow-xl hover:border-primary/50 hover:scale-[1.03]",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${isVisible ? index * 100 : 0}ms` }}
             >
-              <div className="flex items-center mb-5">
-                <div className="bg-primary/10 p-3 rounded-lg mr-5">
-                  <service.icon className="h-8 w-8 text-primary" />
+              <div className="flex items-center mb-4">
+                <div className="bg-primary/10 p-3 rounded-lg mr-4 inline-flex">
+                  <service.icon className="h-7 w-7 text-primary" />
                 </div>
-                <h3 className="font-headline text-2xl font-semibold text-foreground">{service.title}</h3>
+                <h3 className="font-headline text-xl font-semibold text-foreground">{service.title}</h3>
               </div>
-              <p className="font-body text-base text-muted-foreground leading-relaxed">
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
                 {service.description}
               </p>
             </div>
