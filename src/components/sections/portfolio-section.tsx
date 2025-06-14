@@ -34,14 +34,6 @@ const portfolioItemsData = [
     dataAiHint: 'restaurant menus' 
   },
   { 
-    id: 4, 
-    title: 'Catalogs', 
-    category: 'catalogs', 
-    imageUrl: '/catalogs.png', 
-    description: 'Comprehensive and engaging catalog layouts designed to showcase your products or services effectively.', 
-    dataAiHint: 'product catalogs' 
-  },
-  { 
     id: 5, 
     title: 'Banners', 
     category: 'banners', 
