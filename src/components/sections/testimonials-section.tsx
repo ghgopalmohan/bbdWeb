@@ -27,7 +27,7 @@ interface Testimonial {
 const testimonialsData: Testimonial[] = [
   {
     name: 'Vilasa Vigraha Dasa',
-    title: 'Vice President, Iskcon AP',
+    title: 'Vice President, Hare Krishna Gokula Kshetram',
     quote: 'Gopal\'s designs are simply outstanding. He has a unique ability to capture the essence of a brand and translate it into compelling visuals. Our engagement metrics soared after his redesign!',
     avatarUrl: 'https://placehold.co/100x100.png',
     stars: 5,
@@ -42,6 +42,15 @@ const testimonialsData: Testimonial[] = [
     stars: 5,
     avatarFallback: 'VD',
     dataAiHint: 'organization headshot'
+  },
+  {
+    name: 'G.H Vijay Raghava',
+    title: 'Acharya, Babaji Kriya Yoga',
+    quote: "Gopal's designs possess a remarkable clarity and depth, perfectly capturing the essence of our message. His dedication and skill are truly commendable.",
+    avatarUrl: 'https://placehold.co/100x100.png',
+    stars: 5,
+    avatarFallback: 'GVR',
+    dataAiHint: 'yoga acharya portrait'
   },
   {
     name: 'Alice Brown',
@@ -101,7 +110,7 @@ export default function TestimonialsSection() {
           >
             <CarouselContent className="-ml-5">
               {testimonialsData.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-5 md:basis-1/2">
+                <CarouselItem key={index} className="pl-5 md:basis-1/2 lg:basis-1/3"> {/* Adjusted basis for more items */}
                   <div className="p-1 h-full">
                     <Card className="h-full flex flex-col justify-between bg-zinc-800 border border-zinc-700 hover:border-purple-500/60 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group p-8 md:p-10"> {/* Darker card for dark theme */}
                       <CardHeader className="pb-6 px-0 pt-0">
