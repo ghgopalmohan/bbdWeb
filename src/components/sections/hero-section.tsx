@@ -12,10 +12,10 @@ import AnimatedStat from '@/components/common/AnimatedStat';
 const FULL_TITLE = "Hi, I'm Gopal Mohan";
 
 const statsData = [
-  { value: 25, suffix: "+", label: "Years of Experience" },
-  { value: 500, suffix: "+", label: "Projects Delivered" },
-  { value: 150, suffix: "+", label: "Satisfied Clients" },
-  { value: 10, suffix: "+", label: "Design Awards" },
+  { value: 31, suffix: "+", label: "Years of Experience" },
+  { value: 2000, suffix: "+", label: "Projects Delivered" },
+  { value: 500, suffix: "+", label: "Clients" },
+  // { value: 2, suffix: "+", label: "Design Awards" },
 ];
 
 export default function HeroSection() {
@@ -100,7 +100,7 @@ export default function HeroSection() {
 
             {/* Stats Container */}
             <div className="w-full">
-              <div className="flex flex-row flex-wrap justify-center md:justify-start items-start gap-x-8 sm:gap-x-10 md:gap-x-12 lg:gap-x-16 gap-y-6">
+              <div className="flex flex-row flex-wrap justify-center items-start gap-x-8 sm:gap-x-10 md:gap-x-12 lg:gap-x-16 gap-y-6">
                 {statsData.map((stat, index) => (
                   <AnimatedStat
                     key={index}
