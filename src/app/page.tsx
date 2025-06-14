@@ -7,7 +7,6 @@ import AboutSection from '@/components/sections/about-section';
 import DesignProcessSection from '@/components/sections/design-process-section';
 import PortfolioSection from '@/components/sections/portfolio-section';
 import ServicesSection from '@/components/sections/services-section';
-import TestimonialsSection from '@/components/sections/testimonials-section';
 import ContactSection from '@/components/sections/contact-section';
 
 export default function HomePage() {
@@ -21,7 +20,6 @@ export default function HomePage() {
         <ServicesSection />
         <PortfolioSection />
         <ClientsSection /> 
-        <TestimonialsSection />
         <ContactSection />
       </main>
       <Footer />
