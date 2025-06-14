@@ -3,122 +3,79 @@
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { ArrowRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import AnimatedStat from '@/components/common/AnimatedStat';
-
-const FULL_TITLE = "Hi, I'm Gopal Mohan";
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils'; // Added this import
 
 const statsData = [
-  { value: 31, suffix: "+", label: "Years of Experience" },
-  { value: 2000, suffix: "+", label: "Projects Delivered" },
-  { value: 500, suffix: "+", label: "Clients" },
-  // { value: 2, suffix: "+", label: "Design Awards" },
+  { value: 31, suffix: "+", label: "Years Experience" },
+  { value: 2000, suffix: "+", label: "Projects Done" },
+  { value: 500, suffix: "+", label: "Happy Clients" },
 ];
 
 export default function HeroSection() {
-  const addScrollAnimElement = useScrollAnimation();
-  const [displayedTitle, setDisplayedTitle] = useState('');
-  const [charIndex, setCharIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (charIndex < FULL_TITLE.length) {
-      const timer = setTimeout(() => {
-        setDisplayedTitle((prev) => prev + FULL_TITLE[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 100); 
-      return () => clearTimeout(timer);
-    }
-  }, [charIndex]);
+    // Trigger animation after a short delay for better visual effect
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center py-24 md:py-32 bg-black text-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div
-            ref={addScrollAnimElement}
-            className="scroll-animate delay-1 md:text-left"
-          >
-            <div className="overflow-hidden pb-3 min-h-[100px] sm:min-h-[120px] md:min-h-[150px] lg:min-h-[200px]">
-              <h1
-                className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-white"
-              >
-                {displayedTitle.split("Gopal Mohan")[0]}
-                <span className="text-gray-300">{displayedTitle.includes("Gopal Mohan") ? "Gopal Mohan" : ""}</span>
-                {charIndex < FULL_TITLE.length && <span className="inline-block w-1 h-[calc(1em_*_0.8)] bg-white animate-pulse ml-1"></span>}
-              </h1>
-            </div>
-            <div className="overflow-hidden pb-3">
-              <p
-                ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-gray-400 mb-2 max-w-xl" 
-              >
-                Professional Photoshop Designer & Creative Genius.
-              </p>
-              <p
-                ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-lg md:text-xl text-gray-500 mb-12 max-w-xl"
-              >
-                Baatein kam.. Kaam zyaada!
-              </p>
-            </div>
-            <div
-              ref={addScrollAnimElement}
-              className="scroll-animate delay-4"
-            >
-              <Link href="#contact" data-cursor-type="pointer">
-                <Button
-                  size="lg"
-                  className="group relative overflow-hidden transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 hover:ring-white bg-white hover:bg-gray-200 text-black text-lg md:text-xl px-10 py-4"
-                >
-                  <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-black/10 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                  Get Quote <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-          
-          {/* Right Column: Image and Stats */}
-          <div
-            ref={addScrollAnimElement}
-            className="scroll-animate delay-2 flex flex-col items-center mt-12 md:mt-0"
-          >
-            {/* Image Container */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:w-80 md:h-80 lg:w-96 lg:h-96 group mb-8 md:mb-12">
-              <Image
-                src="https://placehold.co/400x400.png"
-                alt="Gopal Mohan - Professional Designer"
-                width={400}
-                height={400}
-                className="rounded-lg object-cover shadow-2xl border-4 border-gray-800 group-hover:border-gray-400 transition-all duration-300 w-full h-auto"
-                data-ai-hint="professional designer portrait"
-                priority
-              />
-            </div>
+    <section 
+      id="home" 
+      className="relative min-h-screen flex flex-col items-center justify-center py-20 md:py-32 bg-background text-foreground overflow-hidden"
+    >
+      <div 
+        className={cn(
+          "container mx-auto px-4 md:px-6 text-center z-10 transition-all duration-1000 ease-out",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}
+      >
+        <h1
+          className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
+        >
+          Gopal Mohan
+        </h1>
+        <p
+          className="font-body text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 max-w-3xl mx-auto"
+        >
+          Freelance Photoshop Designer & Creative Expert.
+          Crafting high-impact visuals that elevate your brand.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+          <Button asChild size="lg" className="btn btn-primary text-lg px-10 py-4 rounded-xl shadow-lg hover:shadow-primary/30 w-full sm:w-auto">
+            <Link href="#portfolio" data-cursor-type="pointer">
+              View My Work <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10 hover:text-primary text-lg px-10 py-4 rounded-xl w-full sm:w-auto">
+            <Link href="#contact" data-cursor-type="pointer">
+              Get In Touch
+            </Link>
+          </Button>
+        </div>
 
-            {/* Stats Container */}
-            <div className="w-full">
-              <div className="flex flex-row flex-wrap justify-center items-start gap-x-8 sm:gap-x-10 md:gap-x-12 lg:gap-x-16 gap-y-6">
-                {statsData.map((stat, index) => (
-                  <AnimatedStat
-                    key={index}
-                    targetValue={stat.value}
-                    suffix={stat.suffix}
-                    label={stat.label}
-                    className="text-center" 
-                    textClassName="text-4xl sm:text-5xl font-bold text-gray-100 block" 
-                    labelClassName="text-base text-gray-400 mt-1"
-                    duration={1500 + index * 200} 
-                    startDelay={700 + index * 250 + (FULL_TITLE.length * 100)} 
-                  />
-                ))}
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
+          {statsData.map((stat, index) => (
+            <div 
+              key={index} 
+              className={cn(
+                "transition-all duration-700 ease-out",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+              )}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
+            >
+              <p className="text-4xl md:text-5xl font-bold text-primary">{stat.value}{stat.suffix}</p>
+              <p className="text-sm md:text-base text-muted-foreground mt-1">{stat.label}</p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
+      {/* Optional: Subtle background pattern or gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-secondary/20 opacity-30 z-0"></div>
     </section>
   );
 }

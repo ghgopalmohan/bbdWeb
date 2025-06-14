@@ -1,178 +1,107 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck } from 'lucide-react';
+import { CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck, CheckCircle } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { useEffect, useState } from 'react';
 
 interface Service {
+  id: number;
   icon: LucideIcon;
   title: string;
-  shortDescription: string;
-  detailedDescription: string;
-  imageUrl: string;
-  dataAiHint: string;
+  description: string;
 }
 
 const servicesData: Service[] = [
   {
+    id: 1,
     icon: CreditCard,
     title: 'Business Cards & Logos',
-    shortDescription: 'Crafting memorable identities and first impressions.',
-    detailedDescription: 'Creative and professional business card and logo designs that leave a lasting impression. Tailored to your brand identity, ensuring you stand out with sophistication and impact.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'business card logo',
+    description: 'Crafting memorable brand identities and impactful first impressions with unique card and logo designs.',
   },
   {
+    id: 2,
     icon: BookOpenText,
     title: 'Menus & Catalogs',
-    shortDescription: 'Appetizing and informative layouts.',
-    detailedDescription: 'Beautifully designed menus and catalogs that showcase your offerings in style. Clear typography and appealing visuals to engage customers and enhance brand perception effectively.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'luxury menu design',
+    description: 'Designing visually appealing and easy-to-navigate menus and product catalogs that engage customers.',
   },
   {
+    id: 3,
     icon: Megaphone,
     title: 'Banners & Posters',
-    shortDescription: 'Bold statements for maximum impact.',
-    detailedDescription: 'Eye-catching banners and posters for events, promotions, and advertising. Designed to grab attention, convey your message effectively, and drive significant engagement.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'event poster creative',
+    description: 'Creating eye-catching banners and posters for events, promotions, and advertising campaigns.',
   },
   {
+    id: 4,
     icon: FileText,
     title: 'Brochures & Flyers',
-    shortDescription: 'Informative and engaging print collateral.',
-    detailedDescription: 'Informative and engaging brochures and flyers for marketing and communication. Structured layouts that deliver key information clearly, persuasively, and memorably.',
-    imageUrl: '/sattvik-food-pamphlet.png',
-    dataAiHint: 'sattvik food pamphlet',
+    description: 'Developing informative and stylish brochures and flyers for effective marketing communication.',
   },
   {
+    id: 5,
     icon: Printer,
     title: 'Hotel Stationery Printing',
-    shortDescription: 'Premium printed materials for hospitality.',
-    detailedDescription: 'High-quality printing solutions for hotel stationery, including letterheads, envelopes, notepads, and guest amenity cards. Ensuring a consistent and luxurious brand experience.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'hotel stationery print',
+    description: 'Providing high-quality design and print solutions for all hotel stationery needs, ensuring brand consistency.',
   },
   {
+    id: 6,
     icon: Truck,
     title: 'Vehicle Branding',
-    shortDescription: 'Mobile billboards that drive attention.',
-    detailedDescription: 'Transform your vehicles into moving advertisements with impactful branding. Custom designs for cars, vans, and trucks to maximize visibility and brand reach on the go.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'vehicle wrap design',
+    description: 'Transforming vehicles into mobile advertisements with creative and impactful branding designs.',
   },
 ];
 
-const ArrowUpRight = ({className}: {className?: string}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={cn("h-5 w-5", className)}>
-    <path d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19 5 17.59z"/>
-  </svg>
-);
-
-
 export default function ServicesSection() {
-  const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
-  const addScrollAnimElement = useScrollAnimation();
-
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
-    // Default active service is already 0
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entries[0].target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    const element = document.getElementById('services');
+    if (element) observer.observe(element);
+    return () => { if (element) observer.unobserve(element); };
   }, []);
 
-  const activeService = servicesData[activeServiceIndex];
-
   return (
-    <section id="services" className="py-24 md:py-32 bg-background">
+    <section id="services" className="py-20 md:py-32 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
-        <div
-          ref={addScrollAnimElement}
-          className="scroll-animate text-center mb-20 md:mb-24"
-        >
-          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">Services I Offer</h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
-            From intricate print designs to dynamic digital assets, I provide a comprehensive suite of Photoshop services.
+        <div className={cn("text-center mb-16 md:mb-20 transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}>
+          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+            What I Do
+          </h2>
+          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            I specialize in a wide range of Photoshop design services to bring your vision to life.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16 min-h-[600px] md:min-h-[700px]">
-          <div
-            ref={addScrollAnimElement}
-            className="scroll-animate delay-1 md:col-span-5 space-y-4 md:space-y-5"
-          >
-            {servicesData.map((service, index) => (
-              <Button
-                key={index}
-                variant="ghost"
-                className={cn(
-                  "w-full justify-start text-left h-auto py-5 px-6 rounded-lg transition-all duration-200 ease-out group",
-                  "shadow-sm",
-                  activeServiceIndex === index
-                    ? "bg-primary/10 text-primary border border-primary/30 shadow-lg ring-1 ring-primary/20"
-                    : "bg-card text-muted-foreground hover:text-primary border border-transparent hover:border-primary/50"
-                )}
-                onMouseEnter={() => setActiveServiceIndex(index)}
-                data-cursor-type="pointer"
-              >
-                <service.icon className={cn("h-8 w-8 mr-5 shrink-0 transition-colors", activeServiceIndex === index ? "text-primary" : "text-muted-foreground group-hover:text-primary")} />
-                <div>
-                  <h3 className={cn("font-headline text-xl md:text-2xl font-semibold transition-colors", activeServiceIndex === index ? "text-primary" : "text-foreground group-hover:text-primary")}>{service.title}</h3>
-                  <p className={cn("text-base transition-colors", activeServiceIndex === index ? "text-primary/90" : "text-muted-foreground group-hover:text-primary")}>{service.shortDescription}</p>
-                </div>
-                <ChevronRight className={cn("h-6 w-6 ml-auto shrink-0 transition-all duration-300 ease-out", activeServiceIndex === index ? "opacity-100 translate-x-0 text-primary" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary text-muted-foreground")} />
-              </Button>
-            ))}
-          </div>
-
-          <div
-            ref={addScrollAnimElement}
-            className="scroll-animate delay-2 md:col-span-7"
-          >
-            <div key={activeService ? activeService.title : 'placeholder_service_view'} className="animate-fade-in-up-content h-full">
-              {activeService ? (
-                <Card className="h-full flex flex-col overflow-hidden shadow-xl rounded-xl border border-border bg-card">
-                  <div className="relative aspect-[16/9] w-full overflow-hidden group">
-                    <Image
-                      key={activeService.imageUrl + activeServiceIndex} 
-                      src={activeService.imageUrl}
-                      alt={activeService.title}
-                      fill
-                      className="object-cover transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-105"
-                      data-ai-hint={activeService.dataAiHint}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent"></div>
-                  </div>
-                  <CardHeader className="relative z-10 -mt-16 px-8 pt-0 md:-mt-20">
-                    <CardTitle className="font-headline text-3xl md:text-4xl text-primary drop-shadow-md">{activeService.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="relative z-10 px-8 pb-8 flex-grow">
-                    <p className="font-body text-foreground/90 leading-relaxed text-lg md:text-xl">
-                      {activeService.detailedDescription}
-                    </p>
-                    <Button variant="link" className="text-primary hover:text-accent p-0 mt-6 font-semibold text-lg" data-cursor-type="pointer" onClick={() => {
-                      const contactSection = document.getElementById('contact');
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}>
-                      Discuss Your Project <ArrowUpRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full bg-muted rounded-lg p-10 text-center">
-                  <Truck className="h-20 w-20 text-primary/30 mb-6" />
-                  <p className="text-muted-foreground font-body text-xl">Select a service to view details.</p>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {servicesData.map((service, index) => (
+            <div
+              key={service.id}
+              className={cn(
+                "bg-card p-8 rounded-xl shadow-lg border border-border transition-all duration-500 ease-out hover:shadow-primary/20 hover:border-primary/50 transform hover:-translate-y-1",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
+              style={{ transitionDelay: `${isVisible ? index * 100 : 0}ms` }}
+            >
+              <div className="flex items-center mb-5">
+                <div className="bg-primary/10 p-3 rounded-lg mr-5">
+                  <service.icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="font-headline text-2xl font-semibold text-foreground">{service.title}</h3>
+              </div>
+              <p className="font-body text-base text-muted-foreground leading-relaxed">
+                {service.description}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

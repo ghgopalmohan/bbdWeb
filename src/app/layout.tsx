@@ -1,11 +1,11 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import AppProviders from '@/components/app-providers';
 
 export const metadata: Metadata = {
-  title: 'Gopal Mohan – Freelance Designer',
-  description: 'Portfolio of Gopal Mohan, showcasing 25+ years of design skills and experience in Photoshop for print and digital media.',
+  title: 'Gopal Mohan – Freelance Designer & Creative Expert',
+  description: 'Portfolio of Gopal Mohan, a seasoned Photoshop designer crafting compelling visual narratives and high-impact designs.',
 };
 
 export default function RootLayout({
@@ -18,15 +18,12 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Updated fonts to Montserrat and Lato */}
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background text-foreground">
-        <AppProviders>
-          {children}
-          <Toaster />
-        </AppProviders>
+        {children}
+        <Toaster />
       </body>
     </html>
   );

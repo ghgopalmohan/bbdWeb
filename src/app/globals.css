@@ -5,53 +5,53 @@
 
 @layer base {
   :root {
-    /* Strict Black & White Theme */
-    --background: 0 0% 100%; /* White */
-    --foreground: 0 0% 0%; /* Black */
+    /* Refit-inspired Dark Theme */
+    --background: 220 13% 8%; /* Near black #121417 */
+    --foreground: 0 0% 98%; /* Almost white #FAFAFA */
 
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 0 0% 0%; /* Black */
+    --card: 220 13% 10%; /* Slightly lighter dark #17191C */
+    --card-foreground: 0 0% 95%; /* Light gray #F2F2F2 */
 
-    --popover: 0 0% 100%; /* White */
-    --popover-foreground: 0 0% 0%; /* Black */
+    --popover: 220 13% 6%; /* Darker for popovers #0F1012 */
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 0%; /* Black */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 35 100% 50%; /* Bright Orange #FF9900 */
+    --primary-foreground: 220 13% 8%; /* Dark text for orange buttons */
 
-    --secondary: 0 0% 96%; /* Light Grey for secondary elements/backgrounds */
-    --secondary-foreground: 0 0% 0%; /* Black */
+    --secondary: 220 10% 15%; /* Darker gray for secondary elements #212429 */
+    --secondary-foreground: 0 0% 80%; /* Lighter gray #CCCCCC */
 
-    --muted: 0 0% 90%; /* Lighter Grey for muted backgrounds */
-    --muted-foreground: 0 0% 30%; /* Darker Grey Muted Foreground */
+    --muted: 220 10% 25%; /* Muted dark gray #3B3F47 */
+    --muted-foreground: 0 0% 65%; /* Muted light gray #A6A6A6 */
 
-    --accent: 0 0% 15%; /* Dark Grey for hover/accent */
-    --accent-foreground: 0 0% 100%; /* White */
+    --accent: 35 100% 50%; /* Orange as accent */
+    --accent-foreground: 220 13% 8%;
 
-    --destructive: 0 84.2% 60.2%; /* Default red - can be changed to grey if needed */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%; /* Red #D92D20 */
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 85%; /* Light Grey Border for cards, inputs */
-    --input: 0 0% 100%; /* White Input background */
-    --ring: 0 0% 0%; /* Black Focus ring */
+    --border: 220 10% 20%; /* Subtle dark border #2E3138 */
+    --input: 220 10% 12%; /* Dark input background #1A1C21 */
+    --ring: 35 100% 50%; /* Orange focus ring */
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* Slightly larger radius */
 
-    /* Chart colors - Grayscale */
-    --chart-1: 0 0% 20%; /* Darkest Grey */
-    --chart-2: 0 0% 40%;
-    --chart-3: 0 0% 60%;
-    --chart-4: 0 0% 75%;
-    --chart-5: 0 0% 85%;  /* Lightest Grey */
-    
-    /* Sidebar specific vars - adapt to B&W light theme */
-    --sidebar-background: 0 0% 98%; /* Very Light Grey for sidebar */
-    --sidebar-foreground: 0 0% 0%; /* Black */
-    --sidebar-primary: 0 0% 0%; /* Black */
-    --sidebar-primary-foreground: 0 0% 100%; /* White */
-    --sidebar-accent: 0 0% 20%; /* Dark Grey */
-    --sidebar-accent-foreground: 0 0% 100%; /* White */
-    --sidebar-border: 0 0% 80%; /* Grey for sidebar border */
-    --sidebar-ring: 0 0% 0%; /* Black */
+    /* Chart colors (less emphasis in new design, but kept for compatibility) */
+    --chart-1: 35 90% 60%;
+    --chart-2: 210 80% 60%;
+    --chart-3: 150 70% 50%;
+    --chart-4: 280 75% 65%;
+    --chart-5: 0 0% 70%;
+
+    /* Sidebar specific vars - adapt to new dark theme */
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 35 100% 50%;
+    --sidebar-primary-foreground: 220 13% 8%;
+    --sidebar-accent: 35 100% 55%;
+    --sidebar-accent-foreground: 220 13% 8%;
+    --sidebar-border: 220 10% 18%;
+    --sidebar-ring: 35 100% 50%;
   }
 
   html {
@@ -61,14 +61,14 @@
   body {
     @apply bg-background text-foreground;
     @apply font-body;
-    font-size: 1.125rem; /* Increased base font size to 18px */
-    line-height: 1.7; /* Adjusted line height for better readability */
+    font-size: 16px; /* Base font size */
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline text-foreground; 
+    @apply font-headline text-foreground;
   }
 
   ::selection {
@@ -77,133 +77,36 @@
   }
 }
 
-/* Custom cursor styles - B&W Theme */
-.custom-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out, opacity 0.2s ease-out;
-  z-index: 9999;
-  opacity: 0; 
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor {
-    opacity: 1; 
-  }
-}
-
-.custom-cursor-default {
-  width: 10px;
-  height: 10px;
-  background-color: hsl(var(--foreground)); /* Black dot */
-  border: 1px solid hsl(var(--foreground));
-}
-
-.custom-cursor-pointer {
-  width: 28px;
-  height: 28px;
-  background-color: hsla(var(--foreground), 0.15); /* Light black/grey circle */
-  border: 1px solid hsl(var(--foreground)); /* Black border */
-}
-
-.custom-cursor-text {
-  width: 2px; 
-  height: 24px; /* Slightly taller for larger fonts */
-  background-color: hsl(var(--foreground)); /* Black bar */
-  border-radius: 0px; 
-  border: none;
-}
-
-/* Preloader styles - B&W Theme */
-.preloader {
-  @apply fixed inset-0 bg-background z-[1000] flex items-center justify-center;
-  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-}
-
-.preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.preloader-logo {
-  @apply font-headline text-6xl text-foreground; /* Black preloader logo, larger */
-  animation: preloader-pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes preloader-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(0.95);
-  }
-}
-
-/* Scroll animations helper */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px); 
-  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-.scroll-animate.delay-1 { transition-delay: 0.1s; }
-.scroll-animate.delay-2 { transition-delay: 0.2s; }
-.scroll-animate.delay-3 { transition-delay: 0.3s; }
-.scroll-animate.delay-4 { transition-delay: 0.4s; }
-.scroll-animate.delay-5 { transition-delay: 0.5s; }
-
-.scroll-animate-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* New animation for content transitions */
-@keyframes fade-in-up-content {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.animate-fade-in-up-content {
-  animation: fade-in-up-content 0.5s ease-out forwards;
-}
-
-
-/* Form Input Styles for B&W Theme */
+/* Form Input Styles for new Dark Theme */
 .form-input {
-  @apply bg-input border-b border-border text-foreground placeholder-muted-foreground;
-  @apply focus:border-primary focus:ring-0 py-3 text-lg; /* Larger font in inputs */
-  transition: border-color 0.3s ease;
+  @apply bg-input border border-border text-foreground placeholder-muted-foreground rounded-md;
+  @apply focus:border-primary focus:ring-1 focus:ring-primary py-3 px-4 text-base;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-group {
-  @apply relative mb-10; /* Increased margin */
+  @apply relative mb-6;
 }
 
 .form-label {
-  @apply absolute left-0 text-muted-foreground transition-all duration-300 ease-out pointer-events-none;
-  top: 0.85rem; /* Adjusted for larger input text */
-  font-size: 1rem; /* Slightly larger label */
+  @apply text-muted-foreground mb-2 block text-sm font-medium;
 }
 
-.form-input:focus + .form-label,
-.form-input:not(:placeholder-shown) + .form-label {
-  @apply text-primary; /* Label turns black on focus/fill */
-  top: -1.15rem; 
-  font-size: 0.875rem; 
+/* Button variants ( supplementing ShadCN ) */
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-medium transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background;
+}
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary;
+}
+.btn-outline-primary {
+  @apply border border-primary text-primary hover:bg-primary/10 focus:ring-primary;
+}
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-secondary;
 }
 
-/* Ensure marquee client logos are visible on light theme */
-.animate-marquee img {
-  filter: grayscale(100%) contrast(0%) brightness(0%); /* Black logos */
-  opacity: 0.7;
-  transition: opacity 0.3s, filter 0.3s;
-}
-.animate-marquee img:hover {
-  opacity: 1;
-  filter: grayscale(0%) contrast(100%) brightness(100%); /* Original color on hover if any, or just less dim */
+/* Global container styling */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
