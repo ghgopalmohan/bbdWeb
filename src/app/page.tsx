@@ -6,8 +6,9 @@ import AboutSection from '@/components/sections/about-section';
 import ServicesSection from '@/components/sections/services-section';
 import PortfolioSection from '@/components/sections/portfolio-section';
 import TestimonialsSection from '@/components/sections/testimonials-section';
-import ClientsSection from '@/components/sections/clients-section';
-import ContactSection from '@/components/sections/contact-section';
+// ClientsSection removed as logos are integrated into Hero
+import ContactSection from '@/components/sections/contact-section'; // This is the "Let's Connect There" CTA
+import ExperienceSection from '@/components/sections/experience-section'; // New section
 
 export default function HomePage() {
   return (
@@ -17,10 +18,10 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
+        <ExperienceSection /> 
         <PortfolioSection />
         <TestimonialsSection />
-        <ClientsSection /> 
-        <ContactSection />
+        <ContactSection /> {/* This is the "Let's Connect There" CTA */}
       </main>
       <Footer />
     </div>

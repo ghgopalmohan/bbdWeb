@@ -1,53 +1,90 @@
 
 "use client";
 
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import { Briefcase, Building, Zap, Droplets, Slack } from 'lucide-react'; // Example icons
+
+const clientLogos = [
+  { name: 'Coinbase', icon: Briefcase, href: '#' },
+  { name: 'Spotify', icon: Zap, href: '#' },
+  { name: 'Zoom', icon: Building, href: '#' },
+  { name: 'Slack', icon: Slack, href: '#' },
+  { name: 'Dropbox', icon: Droplets, href: '#' },
+  { name: 'Zoro', icon: Briefcase, href: '#' },
+];
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex flex-col items-center justify-center section-padding bg-background text-foreground overflow-hidden"
+      ref={sectionRef}
+      className="relative min-h-[calc(100vh-5rem)] md:min-h-screen flex flex-col justify-center section-padding bg-background text-foreground overflow-hidden pt-28 md:pt-32" // Added padding top for header
     >
-      <div 
-        className={cn(
-          "container-custom text-center z-10 transition-all duration-1000 ease-out",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}
-      >
-        <h1
-          className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
-        >
-          Gopal Mohan
-        </h1>
-        <p
-          className="font-body text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto"
-        >
-          Freelance Designer & Creative Expert, specializing in crafting compelling visual narratives and high-impact designs.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full text-lg px-10 py-7 shadow-lg hover:shadow-primary/30 w-full sm:w-auto">
-            <Link href="#portfolio">
-              See My Work <ArrowDown className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+      <div className="container-custom">
+        <div className="grid md:grid-cols-12 gap-8 items-center">
+          <div className={cn("md:col-span-7 lg:col-span-8 text-left", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '100ms' }}>
+            <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 !leading-tight text-foreground">
+              Product Designer
+            </h1>
+          </div>
+          <div className={cn("md:col-span-5 lg:col-span-4 flex flex-col items-start md:items-end", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '300ms' }}>
+            <div className="relative w-32 h-40 md:w-40 md:h-52 rounded-lg overflow-hidden shadow-subtle mb-3">
+              <Image
+                src="https://placehold.co/300x400.png"
+                alt="Designer Portrait"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+                data-ai-hint="designer portrait subway"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground text-left md:text-right max-w-[200px]">
+              GM / Duwy Designer Creating Intuitive Digital Experiences.
+            </p>
+          </div>
+        </div>
+
+        <div className={cn("mt-12 md:mt-20", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '500ms' }}>
+          <div className="flex flex-wrap gap-3 md:gap-4 items-center justify-start">
+            {clientLogos.map((client, index) => (
+              <Link key={client.name} href={client.href} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-muted rounded-md text-sm text-foreground/80 hover:text-foreground transition-colors">
+                <client.icon className="w-4 h-4" />
+                <span>{client.name}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-      
-      {/* Optional: Subtle background elements if needed later, e.g. gradients or patterns */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-primary/5 opacity-30 z-0"></div> */}
     </section>
   );
 }

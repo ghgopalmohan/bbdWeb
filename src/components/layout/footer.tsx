@@ -1,68 +1,90 @@
 
 import Link from 'next/link';
-import { Linkedin, Instagram, Mail } from 'lucide-react';
+import { Linkedin, Instagram, Twitter, Github, Dribbble, Mail } from 'lucide-react';
 
-const footerNavItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+const footerNavLinks = [
+  { label: 'Templates', href: '#' },
+  { label: 'Tools', href: '#' },
+  { label: 'Features', href: '#' },
+  { label: 'About Us', href: '#' },
 ];
 
 const socialLinks = [
+  { Icon: Twitter, href: '#', label: 'Twitter' },
+  { Icon: Dribbble, href: '#', label: 'Dribbble' },
   { Icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { Icon: Instagram, href: '#', label: 'Instagram' },
-  { Icon: Mail, href: 'mailto:gopal.mohan.design@example.com', label: 'Email' },
+  { Icon: Github, href: '#', label: 'Github' },
 ];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background text-muted-foreground py-12 border-t">
+    <footer className="bg-footer-dark text-gray-400 py-16">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8 text-center md:text-left">
-          <div>
-            <Link href="#home" className="font-headline text-3xl font-bold text-primary hover:opacity-80 transition-opacity inline-block">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+          <div className="md:col-span-4">
+            <Link href="#home" className="font-headline text-3xl font-bold text-white hover:opacity-80 transition-opacity inline-block mb-3">
               GM
             </Link>
+            <p className="text-sm max-w-xs leading-relaxed">
+              Sales Product design ares creative Media for Creatina Product Experiences.
+            </p>
+            <div className="flex space-x-4 mt-6">
+              {socialLinks.map((social) => (
+                <Link 
+                  key={social.label} 
+                  href={social.href} 
+                  aria-label={social.label} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-white transition-colors p-1"
+                >
+                  <social.Icon className="h-5 w-5" />
+                </Link>
+              ))}
+            </div>
           </div>
           
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-x-8">
-            {footerNavItems.map((item) => (
+          <div className="md:col-span-2">
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Address</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="#" className="hover:text-white transition-colors">Moonshine St. 14/05 Light City,</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">London, United Kingdom</Link></li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Email Address</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="mailto:info@email.com" className="hover:text-white transition-colors">info@email.com</Link></li>
+              <li><Link href="mailto:careers@email.com" className="hover:text-white transition-colors">careers@email.com</Link></li>
+            </ul>
+          </div>
+          
+          <div className="md:col-span-3">
+             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Phone Number</h4>
+             <ul className="space-y-2 text-sm">
+                <li><Link href="tel:00088888888" className="hover:text-white transition-colors">(000) 888 - 88888</Link></li>
+             </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm">
+          <p className="mb-4 sm:mb-0">
+            &copy; {currentYear} GM. All rights reserved.
+          </p>
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            {footerNavLinks.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className="transition-colors hover:text-white"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-
-          <div className="flex justify-center md:justify-end space-x-4">
-            {socialLinks.map((social) => (
-              <Link 
-                key={social.label} 
-                href={social.href} 
-                aria-label={social.label} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-muted-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-accent/10"
-              >
-                <social.Icon className="h-5 w-5" />
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="text-center border-t pt-8">
-          <p className="text-sm">
-            &copy; {currentYear} Gopal Mohan. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground/70 mt-1">
-            Freelance Designer & Creative Expert
-          </p>
         </div>
       </div>
     </footer>

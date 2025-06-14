@@ -1,105 +1,124 @@
 
 "use client";
 
-import { CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck, Palette, Star } from 'lucide-react';
+import { ArrowRight, PencilRuler, SearchCode, TrendingUp, ShoppingBag } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface Service {
   id: number;
   icon: LucideIcon;
   title: string;
   description: string;
+  isDark?: boolean;
 }
 
 const servicesData: Service[] = [
   {
     id: 1,
-    icon: CreditCard,
-    title: 'Business Cards & Logos',
-    description: 'Crafting memorable brand identities with unique card and logo designs.',
+    icon: PencilRuler, // Placeholder for Social Ads
+    title: 'Social Ads',
+    description: 'Strategic and creative social media advertising to boost engagement and conversions.',
+    isDark: false,
   },
   {
     id: 2,
-    icon: Palette, // Changed from BookOpenText for broader appeal
-    title: 'Print Design',
-    description: 'Menus, catalogs, brochures, and flyers designed to engage and inform.',
+    icon: SearchCode, 
+    title: 'Search Engineer', // Assuming SEO or SEM related
+    description: 'Optimize your online visibility and ranking with effective search strategies.',
+    isDark: false,
   },
   {
     id: 3,
-    icon: Megaphone,
-    title: 'Advertising Materials',
-    description: 'Eye-catching banners, posters, and hoardings for impactful campaigns.',
+    icon: TrendingUp,
+    title: 'Content Marketing',
+    description: 'Increase engagement and build authority with a data-driven content marketing strategy.',
+    isDark: true, // Dark card as per image
   },
   {
     id: 4,
-    icon: Printer,
-    title: 'Stationery & Branding',
-    description: 'Corporate and hotel stationery ensuring brand consistency and professionalism.',
-  },
-  {
-    id: 5,
-    icon: Truck,
-    title: 'Vehicle Branding',
-    description: 'Transforming vehicles into mobile advertisements with creative designs.',
-  },
-  {
-    id: 6,
-    icon: Star, // Represents custom/premium solutions
-    title: 'Custom Visual Solutions',
-    description: 'Tailored graphic design services to meet unique project requirements.',
+    icon: ShoppingBag, // Placeholder for Saas Marketing
+    title: 'SaaS Marketing',
+    description: 'We help your SaaS product reach the right audience with a tailored marketing strategy.',
+    isDark: false,
   },
 ];
 
 export default function ServicesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
+      ([entry]) => {
+        if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entries[0].target);
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1 }
     );
-    const element = document.getElementById('services');
-    if (element) observer.observe(element);
-    return () => { if (element) observer.unobserve(element); };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
   return (
-    <section id="services" className="section-padding bg-background">
+    <section id="services" ref={sectionRef} className="section-padding bg-secondary">
       <div className="container-custom">
-        <div className={cn("text-center mb-12 md:mb-16 transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-3 text-foreground">
-            Services Offered
-          </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            I specialize in a wide range of Photoshop design services to bring your vision to life with creativity and precision.
-          </p>
+        <div className="grid md:grid-cols-12 gap-8 items-end mb-12 md:mb-16">
+            <div 
+                className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+                style={{transitionDelay: '100ms'}}
+            >
+                <p className="text-xs font-medium text-foreground/60 uppercase tracking-wider mb-2">Services</p>
+                <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-foreground">
+                    A Comprehensive look at what we offer and how we deliver
+                </h2>
+            </div>
+            <div 
+                className={cn("md:col-span-5 md:text-right", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+                style={{transitionDelay: '200ms'}}
+            >
+                 <p className="text-sm text-muted-foreground mb-4 md:ml-auto max-w-xs">
+                    A comprehensive look at our services and how we deliver them.
+                </p>
+                <Button asChild variant="default" size="lg" className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 text-base group">
+                    <Link href="#contact">
+                    Sign In <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                </Button>
+            </div>
         </div>
+        
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
           {servicesData.map((service, index) => (
             <div
               key={service.id}
               className={cn(
-                "bg-card p-6 rounded-lg shadow-lg border border-transparent transition-all duration-300 ease-out hover:shadow-xl hover:border-primary/50 hover:scale-[1.03]",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                "p-6 md:p-8 rounded-xl shadow-card transition-all duration-300 ease-out relative overflow-hidden group",
+                service.isDark ? "bg-gray-800 text-white" : "bg-card text-foreground border",
+                isVisible ? "fade-in-up is-visible" : "fade-in-up"
               )}
-              style={{ transitionDelay: `${isVisible ? index * 100 : 0}ms` }}
+              style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
             >
-              <div className="flex items-center mb-4">
-                <div className="bg-primary/10 p-3 rounded-lg mr-4 inline-flex">
-                  <service.icon className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="font-headline text-xl font-semibold text-foreground">{service.title}</h3>
-              </div>
-              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+              {/* <service.icon className={cn("h-8 w-8 mb-4", service.isDark ? "text-primary-foreground/70" : "text-primary")} /> */}
+              <h3 className="font-headline text-xl md:text-2xl font-semibold mb-2">{service.title}</h3>
+              <p className={cn("text-sm leading-relaxed mb-4", service.isDark ? "text-gray-300" : "text-muted-foreground")}>
                 {service.description}
               </p>
+              <ArrowRight 
+                className={cn(
+                    "absolute bottom-6 right-6 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1",
+                    service.isDark ? "text-gray-400 group-hover:text-white" : "text-muted-foreground group-hover:text-primary"
+                )} 
+              />
+               {service.isDark && (
+                <div className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-white/5 opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out"></div>
+              )}
             </div>
           ))}
         </div>

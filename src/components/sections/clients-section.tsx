@@ -1,6 +1,9 @@
 
 "use client";
 
+// This file is kept for now but its content is integrated into HeroSection.
+// It can be deleted if no longer needed as a separate component.
+
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
@@ -15,19 +18,8 @@ const clientLogosLight = [
   { id: 7, src: 'https://placehold.co/150x60/000000/FFFFFF?text=Client7&font=sans-serif', alt: 'Client Logo 7', dataAiHint: 'global partner' },
 ];
 
-const clientLogosDark = [
-  { id: 1, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client1&font=sans-serif', alt: 'Client Logo 1', dataAiHint: 'company logo dark' },
-  { id: 2, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client2&font=sans-serif', alt: 'Client Logo 2', dataAiHint: 'brand tech dark' },
-  { id: 3, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client3&font=sans-serif', alt: 'Client Logo 3', dataAiHint: 'startup icon dark' },
-  { id: 4, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client4&font=sans-serif', alt: 'Client Logo 4', dataAiHint: 'business mark dark' },
-  { id: 5, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client5&font=sans-serif', alt: 'Client Logo 5', dataAiHint: 'corporate brand dark' },
-  { id: 6, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client6&font=sans-serif', alt: 'Client Logo 6', dataAiHint: 'tech solution dark' },
-  { id: 7, src: 'https://placehold.co/150x60/FFFFFF/000000?text=Client7&font=sans-serif', alt: 'Client Logo 7', dataAiHint: 'global partner dark' },
-];
-
 
 const extendedClientLogosLight = [...clientLogosLight, ...clientLogosLight, ...clientLogosLight]; 
-const extendedClientLogosDark = [...clientLogosDark, ...clientLogosDark, ...clientLogosDark]; 
 
 
 export default function ClientsSection() {
@@ -47,6 +39,11 @@ export default function ClientsSection() {
     return () => { if (element) observer.unobserve(element); };
   }, []);
 
+  // Return null or minimal content as this section's visual is part of HeroSection
+  return null;
+
+  /*
+  // Original marquee code if needed elsewhere
   return (
     <section id="clients" className="section-padding bg-secondary text-foreground">
       <div className="container-custom">
@@ -65,21 +62,7 @@ export default function ClientsSection() {
             isVisible ? "opacity-100" : "opacity-0"
           )}
         >
-          <div className="hidden dark:flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
-            {extendedClientLogosDark.map((logo, index) => (
-              <div key={`dark-${index}`} className="flex-shrink-0 w-auto mx-8 sm:mx-10 md:mx-12 flex items-center justify-center h-20"> 
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={150} 
-                  height={60} 
-                  className="object-contain max-h-12 sm:max-h-14"
-                  data-ai-hint={logo.dataAiHint}
-                />
-              </div>
-            ))}
-          </div>
-           <div className="flex dark:hidden animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
+           <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
             {extendedClientLogosLight.map((logo, index) => (
               <div key={`light-${index}`} className="flex-shrink-0 w-auto mx-8 sm:mx-10 md:mx-12 flex items-center justify-center h-20"> 
                 <Image
@@ -99,4 +82,6 @@ export default function ClientsSection() {
       </div>
     </section>
   );
+  */
 }
+

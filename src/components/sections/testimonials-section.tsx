@@ -1,144 +1,58 @@
 
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from "embla-carousel-autoplay";
+import React, { useEffect, useState, useRef } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-interface Testimonial {
-  id: number;
-  name: string;
-  title: string;
-  quote: string;
-  avatarSrc?: string;
-  avatarFallback: string;
-  rating: number;
-  dataAiHint?: string;
-}
-
-const testimonialsData: Testimonial[] = [
-  {
-    id: 1,
-    name: "Vilasa Vigraha Dasa",
-    title: "Vice President, Hare Krishna Gokula Kshetram",
-    quote: "Gopal's design work is exceptional. He has a keen eye for detail and consistently delivers high-quality visuals that elevate our materials. A true professional.",
-    avatarFallback: "VD",
-    rating: 5,
-    avatarSrc: "https://placehold.co/100x100.png",
-    dataAiHint: "person spiritual leader"
-  },
-  {
-    id: 2,
-    name: "Vamsidhara Dasa",
-    title: "President, AkshayaPatra",
-    quote: "Working with Gopal has been a pleasure. His creativity and dedication to our projects have been invaluable. Highly recommended for any design needs.",
-    avatarFallback: "VD",
-    rating: 5,
-    avatarSrc: "https://placehold.co/100x100.png",
-    dataAiHint: "person executive"
-  },
-  {
-    id: 3,
-    name: "G.H Vijay Raghava",
-    title: "Acharya, Babaji Kriya Yoga",
-    quote: "The designs provided were thoughtful and perfectly captured the essence of our message. Gopal is a talented and reliable designer.",
-    avatarFallback: "VR",
-    rating: 5,
-    avatarSrc: "https://placehold.co/100x100.png",
-    dataAiHint: "person yoga teacher"
-  },
-  {
-    id: 4,
-    name: "Aditya V.",
-    title: "Startup Founder",
-    quote: "Needed a complete branding package and Gopal delivered beyond expectations. From logo to marketing materials, everything was top-notch!",
-    avatarFallback: "AV",
-    rating: 5,
-    avatarSrc: "https://placehold.co/100x100.png",
-    dataAiHint: "person entrepreneur"
-  }
-];
+import Image from 'next/image';
 
 export default function TestimonialsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
+      ([entry]) => {
+        if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entries[0].target);
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.1 }
     );
-    const element = document.getElementById('testimonials');
-    if (element) observer.observe(element);
-    return () => { if (element) observer.unobserve(element); };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
-  const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
-  );
-
   return (
-    <section id="testimonials" className="section-padding bg-background">
+    <section id="testimonials" ref={sectionRef} className="section-padding bg-secondary text-foreground">
       <div className="container-custom">
-        <div className={cn("text-center mb-12 md:mb-16 transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-3 text-foreground">
-            Client Testimonials
-          </h2>
-          <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Hear what my clients have to say about my work and dedication.
-          </p>
-        </div>
-
-        <Carousel
-          plugins={[plugin.current]}
-          className={cn("w-full max-w-4xl mx-auto transition-opacity duration-1000", isVisible ? "opacity-100" : "opacity-0")}
-          style={{transitionDelay: '200ms'}}
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
+        <div 
+            className={cn(
+                "max-w-3xl mx-auto text-center relative", 
+                isVisible ? "fade-in-up is-visible" : "fade-in-up"
+            )}
+            style={{transitionDelay: '100ms'}}
         >
-          <CarouselContent>
-            {testimonialsData.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 h-full">
-                  <Card className="h-full flex flex-col justify-between bg-card shadow-lg border border-border rounded-lg overflow-hidden hover:shadow-primary/10 transition-shadow">
-                    <CardContent className="p-6 flex flex-col items-center text-center flex-grow">
-                      <Avatar className="w-20 h-20 mb-4 border-2 border-primary/50">
-                        <AvatarImage src={testimonial.avatarSrc} alt={testimonial.name} data-ai-hint={testimonial.dataAiHint} />
-                        <AvatarFallback className="text-2xl bg-primary/20 text-primary font-semibold">{testimonial.avatarFallback}</AvatarFallback>
-                      </Avatar>
-                      <h3 className="font-headline text-xl font-semibold text-foreground">{testimonial.name}</h3>
-                      <p className="text-xs text-muted-foreground mb-3">{testimonial.title}</p>
-                      <div className="flex justify-center mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                        ))}
-                        {[...Array(5 - testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 text-yellow-400/30" />
-                        ))}
-                      </div>
-                      <p className="font-body text-sm text-muted-foreground leading-relaxed italic flex-grow">
-                        &ldquo;{testimonial.quote}&rdquo;
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-[-16px] md:left-[-20px] top-1/2 -translate-y-1/2 bg-card text-primary hover:bg-primary/10 border-primary/30 hover:border-primary" />
-          <CarouselNext className="absolute right-[-16px] md:right-[-20px] top-1/2 -translate-y-1/2 bg-card text-primary hover:bg-primary/10 border-primary/30 hover:border-primary" />
-        </Carousel>
+          <div className="absolute -top-8 -left-8 md:-top-12 md:-left-12 w-16 h-16 md:w-24 md:h-24 text-foreground/5 opacity-50" style={{ lineHeight: '0.5' }}>
+            <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <text x="-10" y="80" fontSize="150" fill="currentColor" >“</text>
+            </svg>
+          </div>
+          <p className="font-headline text-xl md:text-2xl lg:text-3xl !leading-relaxed text-foreground/90 mb-8">
+            &ldquo;Without Journey Commerce, we would never had been able to implement the system ourselves. Being a small team we don&apos;t have enough hours in the day. The team at Journey Commerce researched our brand, planned the content and provided weekly feedback to improve the performance. The results have been amazing and we couldn&apos;t ask for a better partner.&rdquo;
+          </p>
+          <div className="flex items-center justify-center">
+            <Avatar className="w-12 h-12 mr-4 border-2 border-border">
+              <AvatarImage src="https://placehold.co/100x100.png" alt="Dhanvea Rajwaker" data-ai-hint="person founder tech" />
+              <AvatarFallback className="text-lg bg-muted text-foreground">DR</AvatarFallback>
+            </Avatar>
+            <div>
+              <h4 className="font-semibold text-md text-foreground">Dhanvea Rajwaker</h4>
+              <p className="text-sm text-muted-foreground">Founder Techdots</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

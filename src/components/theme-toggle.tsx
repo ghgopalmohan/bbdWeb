@@ -1,6 +1,9 @@
 
 "use client"
 
+// This file is intentionally kept for ShadCN compatibility but won't be used if theme toggling is removed.
+// If you decide to re-add theme toggling, this component can be used.
+
 import * as React from "react"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -10,6 +13,12 @@ import { Button } from "@/components/ui/button"
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme()
 
+  // Return null if you don't want to show the toggle, or style it as needed.
+  // For the current "Duwy" design, we are removing it from the header.
+  return null; 
+
+  // Example of how it could be used if needed:
+  /*
   return (
     <Button
       variant="ghost"
@@ -23,4 +32,5 @@ export function ThemeToggle() {
       <span className="sr-only">Toggle theme</span>
     </Button>
   )
+  */
 }
