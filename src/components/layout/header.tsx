@@ -3,17 +3,19 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from '@/components/theme-toggle'; // Re-added for PRD
 
 const navItems = [
-  { label: 'Personal', href: '#personal' }, // Updated
-  { label: 'Business', href: '#business' }, // Updated
-  { label: 'Former', href: '#former' },     // Updated
-  { label: 'About Us', href: '#about' },    // Updated (maps to About section)
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Testimonials', href: '#testimonials' },
 ];
 
 export default function Header() {
@@ -26,12 +28,12 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    setIsMobileMenuOpen(false); 
+    setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -40,49 +42,49 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-300 ease-in-out",
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-background" // Always white background, shadow on scroll
+        isScrolled ? "bg-background/90 backdrop-blur-sm shadow-md dark:bg-slate-900/90" : "bg-transparent dark:bg-transparent"
       )}
     >
       <div className="container-custom flex h-20 items-center justify-between">
-        <Link href="#home" className="font-headline text-2xl font-bold text-foreground hover:opacity-80 transition-opacity">
+        <Link href="#home" className="font-headline text-3xl font-bold text-primary dark:text-primary-dark hover:opacity-80 transition-opacity">
           GM
         </Link>
-        
+
         <nav className="hidden items-center space-x-8 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="font-body text-sm font-medium text-foreground/70 transition-colors hover:text-foreground"
+              className="font-body text-base font-medium text-foreground/80 transition-colors hover:text-primary dark:text-foreground-dark/80 dark:hover:text-primary-dark"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="hidden md:block">
-            <Button asChild variant="outline" size="default" className="rounded-md bg-muted hover:bg-border text-foreground px-5 py-2.5 text-sm">
-              <Link href="#contact">Sign In</Link> 
+            <Button asChild variant="default" size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 dark:text-accent-foreground rounded-full px-6 py-3">
+              <Link href="#contact">Get Quote</Link>
             </Button>
           </div>
-          {/* ThemeToggle removed */}
+          <ThemeToggle />
           <div className="flex items-center md:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Open menu" className="text-foreground hover:text-primary">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" aria-label="Open menu" className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark">
+                  <Menu className="h-7 w-7" />
                 </Button>
               </SheetTrigger>
-              <SheetContent 
-                side="right" 
-                className="w-full max-w-xs bg-background p-6 flex flex-col text-foreground border-l"
+              <SheetContent
+                side="right"
+                className="w-full max-w-xs bg-background dark:bg-slate-900 p-6 flex flex-col text-foreground dark:text-foreground-dark border-l dark:border-slate-700"
               >
                 <div className="mb-8 flex justify-between items-center">
-                   <Link href="#home" className="font-headline text-xl font-bold text-foreground" onClick={closeMobileMenu}>
+                   <Link href="#home" className="font-headline text-2xl font-bold text-primary dark:text-primary-dark" onClick={closeMobileMenu}>
                       GM
                     </Link>
-                    <Button variant="ghost" size="icon" onClick={closeMobileMenu} aria-label="Close menu" className="text-foreground hover:text-primary">
+                    <Button variant="ghost" size="icon" onClick={closeMobileMenu} aria-label="Close menu" className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark">
                       <X className="h-6 w-6" />
                     </Button>
                 </div>
@@ -91,18 +93,21 @@ export default function Header() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="font-body text-lg text-foreground/80 transition-colors hover:text-foreground text-left py-2"
+                      className="font-body text-lg text-foreground/80 dark:text-foreground-dark/80 transition-colors hover:text-primary dark:hover:text-primary-dark text-left py-2"
                       onClick={closeMobileMenu}
                     >
                       {item.label}
                     </Link>
                   ))}
-                   <Button asChild variant="outline" size="lg" className="bg-muted hover:bg-border text-foreground rounded-md mt-6 w-full py-3">
-                      <Link href="#contact" onClick={closeMobileMenu}>Sign In</Link>
+                   <Button asChild variant="default" size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 dark:text-accent-foreground rounded-full mt-6 w-full py-3">
+                      <Link href="#contact" onClick={closeMobileMenu}>Get Quote</Link>
                   </Button>
                 </nav>
-                <div className="mt-auto text-center">
-                  <p className="text-xs text-muted-foreground">GM © {new Date().getFullYear()}</p>
+                <div className="mt-auto pt-6 border-t dark:border-slate-700">
+                    <ThemeToggle />
+                </div>
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-muted-foreground dark:text-slate-500">GM © {new Date().getFullYear()}</p>
                 </div>
               </SheetContent>
             </Sheet>

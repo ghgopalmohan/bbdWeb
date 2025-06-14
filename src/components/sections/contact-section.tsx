@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Linkedin, Instagram, Mail, Phone, MapPin, Send } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,24 +34,24 @@ interface ContactInfoItemProps {
 }
 
 const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ icon: Icon, title, value, href, delay, isVisible }) => (
-  <div 
+  <div
     className={cn(
-      "flex items-start space-x-4 p-4 rounded-lg transition-all duration-500 ease-out hover:bg-primary/5 dark:hover:bg-primary/10",
-      isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+      "flex items-start space-x-4 p-4 rounded-lg transition-all duration-500 ease-out hover:bg-primary/5 dark:hover:bg-primary-dark/10",
+      isVisible ? "fade-in-up is-visible" : "opacity-0"
     )}
-    style={{ transitionDelay: isVisible ? delay : '0ms' }}
+    style={{ animationDelay: isVisible ? delay : '0ms' }}
   >
     <div className="flex-shrink-0">
-      <Icon className="w-7 h-7 text-primary" />
+      <Icon className="w-7 h-7 text-primary dark:text-primary-dark" />
     </div>
     <div>
-      <h4 className="font-headline text-lg font-semibold text-foreground mb-1">{title}</h4>
+      <h4 className="font-headline text-lg font-semibold text-foreground dark:text-foreground-dark mb-1">{title}</h4>
       {href ? (
-        <Link href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors break-all">
+        <Link href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground dark:text-slate-400 hover:text-primary dark:hover:text-primary-dark transition-colors break-all">
           {value}
         </Link>
       ) : (
-        <p className="text-sm text-muted-foreground break-all">{value}</p>
+        <p className="text-sm text-muted-foreground dark:text-slate-400 break-all">{value}</p>
       )}
     </div>
   </div>
@@ -77,11 +77,14 @@ export default function ContactSection() {
       { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     console.log(data);
     toast({
@@ -91,7 +94,7 @@ export default function ContactSection() {
     });
     reset();
   };
-  
+
   const contactDetails = [
     { icon: Mail, title: "Email Address", value: "gopal.mohan.design@example.com", href: "mailto:gopal.mohan.design@example.com", delay: "300ms"},
     { icon: Phone, title: "Phone Number", value: "+91 98765 43210", href: "tel:+919876543210", delay: "400ms"},
@@ -104,19 +107,19 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="section-padding bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
+    <section id="contact" ref={sectionRef} className="section-padding bg-background dark:bg-slate-900 text-foreground dark:text-foreground-dark">
       <div className="container-custom">
-        <div 
+        <div
           className={cn(
             "text-center mb-12 md:mb-16",
-            isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+            isVisible ? "fade-in-up is-visible" : "opacity-0"
           )}
-          style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
+          style={{ animationDelay: isVisible ? '100ms' : '0ms' }}
         >
-          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-3">
-            Let&apos;s Connect
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary dark:text-primary-dark mb-3">
+            Contact Me
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground dark:text-slate-400 max-w-2xl mx-auto">
             Have a project in mind or just want to say hi? Fill out the form or reach out through my social channels.
           </p>
         </div>
@@ -126,16 +129,16 @@ export default function ContactSection() {
             {contactDetails.map((item) => (
               <ContactInfoItem key={item.title} {...item} isVisible={isVisible} />
             ))}
-            <div 
+            <div
                 className={cn(
                     "flex space-x-4 pt-4",
-                    isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                    isVisible ? "fade-in-up is-visible" : "opacity-0"
                 )}
-                style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}
+                style={{ animationDelay: isVisible ? '600ms' : '0ms' }}
             >
                 {socialLinks.map(social => (
                     <Link key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}
-                        className="p-3 bg-secondary dark:bg-secondary-dark rounded-full text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 group">
+                        className="p-3 bg-secondary dark:bg-slate-800 rounded-full text-primary dark:text-primary-dark hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition-all duration-300 group">
                         <social.icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
                     </Link>
                 ))}
@@ -143,74 +146,74 @@ export default function ContactSection() {
           </div>
 
           <div className="md:col-span-7 lg:col-span-8">
-            <Card 
+            <Card
                 className={cn(
-                    "bg-secondary/50 dark:bg-secondary-dark/30 border-border dark:border-border-dark shadow-lg",
-                    isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                    "bg-secondary/50 dark:bg-slate-800/70 border-border dark:border-slate-700 shadow-xl rounded-xl",
+                    isVisible ? "fade-in-up is-visible" : "opacity-0"
                 )}
-                style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
+                style={{ animationDelay: isVisible ? '200ms' : '0ms' }}
             >
               <CardHeader>
                 <CardTitle className="font-headline text-2xl text-foreground dark:text-foreground-dark">Send Me a Message</CardTitle>
-                <CardDescription className="text-muted-foreground">I&apos;m excited to hear about your project!</CardDescription>
+                <CardDescription className="text-muted-foreground dark:text-slate-400">I&apos;m excited to hear about your project!</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <Label htmlFor="name" className="form-label dark:text-foreground-dark">Full Name</Label>
-                      <Input 
-                        id="name" 
-                        {...register('name')} 
-                        placeholder="e.g. John Doe" 
-                        className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.name ? 'border-destructive' : '')}
+                      <Label htmlFor="name" className="form-label dark:text-slate-300">Full Name</Label>
+                      <Input
+                        id="name"
+                        {...register('name')}
+                        placeholder="e.g. Gopal Mohan"
+                        className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.name ? 'border-destructive dark:border-red-500' : '')}
                         aria-invalid={errors.name ? "true" : "false"}
                       />
-                      {errors.name && <p className="text-destructive text-xs mt-1">{errors.name.message}</p>}
+                      {errors.name && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.name.message}</p>}
                     </div>
                     <div>
-                      <Label htmlFor="email" className="form-label dark:text-foreground-dark">Email Address</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        {...register('email')} 
-                        placeholder="e.g. john.doe@example.com"
-                        className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.email ? 'border-destructive' : '')}
+                      <Label htmlFor="email" className="form-label dark:text-slate-300">Email Address</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        {...register('email')}
+                        placeholder="e.g. gopal@example.com"
+                        className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.email ? 'border-destructive dark:border-red-500' : '')}
                         aria-invalid={errors.email ? "true" : "false"}
                       />
-                      {errors.email && <p className="text-destructive text-xs mt-1">{errors.email.message}</p>}
+                      {errors.email && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.email.message}</p>}
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="subject" className="form-label dark:text-foreground-dark">Subject</Label>
-                    <Input 
-                      id="subject" 
-                      {...register('subject')} 
-                      placeholder="e.g. Collaboration Inquiry"
-                      className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.subject ? 'border-destructive' : '')}
+                    <Label htmlFor="subject" className="form-label dark:text-slate-300">Subject</Label>
+                    <Input
+                      id="subject"
+                      {...register('subject')}
+                      placeholder="e.g. Brochure Design Inquiry"
+                      className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.subject ? 'border-destructive dark:border-red-500' : '')}
                       aria-invalid={errors.subject ? "true" : "false"}
                     />
-                    {errors.subject && <p className="text-destructive text-xs mt-1">{errors.subject.message}</p>}
+                    {errors.subject && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.subject.message}</p>}
                   </div>
                   <div>
-                    <Label htmlFor="message" className="form-label dark:text-foreground-dark">Your Message</Label>
-                    <Textarea 
-                      id="message" 
-                      {...register('message')} 
-                      rows={5} 
+                    <Label htmlFor="message" className="form-label dark:text-slate-300">Your Message</Label>
+                    <Textarea
+                      id="message"
+                      {...register('message')}
+                      rows={5}
                       placeholder="Tell me about your project or query..."
-                      className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.message ? 'border-destructive' : '')}
+                      className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.message ? 'border-destructive dark:border-red-500' : '')}
                       aria-invalid={errors.message ? "true" : "false"}
                     />
-                    {errors.message && <p className="text-destructive text-xs mt-1">{errors.message.message}</p>}
+                    {errors.message && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.message.message}</p>}
                   </div>
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting} 
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
                     size="lg"
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary dark:bg-primary-dark dark:text-primary-dark-foreground dark:hover:bg-primary-dark/90 dark:focus:ring-primary-dark transition-all group"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 focus:ring-primary dark:focus:ring-accent transition-all group rounded-md"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Sending...' : "Let's Talk"}
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
@@ -222,4 +225,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

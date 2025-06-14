@@ -51,7 +51,7 @@ export default function HeroSection() {
               style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
             >
               <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold !leading-none mb-6">
-                JANICE
+                Gopal Mohan
               </h1>
               <p className="text-xl md:text-2xl lg:text-3xl font-medium text-janice-text-light/90 mb-4 !leading-tight">
                 Digital Designer &amp; Creative Expert
@@ -67,7 +67,7 @@ export default function HeroSection() {
                   asChild
                 >
                   <Link href="#contact">
-                    Let&apos;s Talk <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+ Get Quote <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
                 <Button 
