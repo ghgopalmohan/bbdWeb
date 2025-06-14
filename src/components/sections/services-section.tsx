@@ -1,55 +1,51 @@
 
 "use client";
 
-import { ArrowRight, PencilRuler, SearchCode, TrendingUp, ShoppingBag } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ArrowRight, Palette, Smartphone, Film, Briefcase, MessageSquare, TrendingUp } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { cn } from '@/lib/utils';
 
-interface Service {
-  id: number;
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  isDark?: boolean;
-}
-
-const servicesData: Service[] = [
+const serviceTabsData = [
   {
-    id: 1,
-    icon: PencilRuler, // Placeholder for Social Ads
-    title: 'Social Ads',
-    description: 'Strategic and creative social media advertising to boost engagement and conversions.',
-    isDark: false,
+    value: 'webflow',
+    title: 'Webflow Designer',
+    icon: Palette,
+    description: 'Crafting pixel-perfect, responsive websites with Webflow that engage users and drive results. Expertise in creating custom interactions and animations.',
+    content: 'From initial concept to final launch, I specialize in Webflow development that combines aesthetic appeal with seamless functionality. My process involves understanding your brand, designing a user-centric interface, and building a website that is both beautiful and easy to manage.',
+    imageUrl: 'https://placehold.co/800x600.png',
+    imageAlt: 'Webflow design process',
+    dataAiHint: 'web design webflow',
   },
   {
-    id: 2,
-    icon: SearchCode, 
-    title: 'Search Engineer', // Assuming SEO or SEM related
-    description: 'Optimize your online visibility and ranking with effective search strategies.',
-    isDark: false,
+    value: 'ui-ux',
+    title: 'UI-UX Design',
+    icon: Smartphone,
+    description: 'Designing intuitive and engaging user interfaces that enhance user experience and meet business goals. Focus on usability and accessibility.',
+    content: 'My UI/UX design philosophy centers on creating interfaces that are not only visually stunning but also incredibly user-friendly. I conduct thorough research, create wireframes and prototypes, and iterate based on user feedback to deliver optimal digital experiences.',
+    imageUrl: 'https://placehold.co/800x600.png',
+    imageAlt: 'UI/UX design mockups',
+    dataAiHint: 'ui ux mobile app',
   },
   {
-    id: 3,
-    icon: TrendingUp,
-    title: 'Content Marketing',
-    description: 'Increase engagement and build authority with a data-driven content marketing strategy.',
-    isDark: true, // Dark card as per image
-  },
-  {
-    id: 4,
-    icon: ShoppingBag, // Placeholder for Saas Marketing
-    title: 'SaaS Marketing',
-    description: 'We help your SaaS product reach the right audience with a tailored marketing strategy.',
-    isDark: false,
+    value: 'motion',
+    title: 'Motion Graphics',
+    icon: Film,
+    description: 'Bringing brands to life with captivating motion graphics and animations for web, social media, and presentations.',
+    content: 'I create dynamic motion graphics that tell your story and capture attention. Whether it\'s for explainer videos, logo animations, or social media content, my animations are designed to be impactful and memorable, enhancing your brand\'s digital presence.',
+    imageUrl: 'https://placehold.co/800x600.png',
+    imageAlt: 'Motion graphics example',
+    dataAiHint: 'motion graphics animation',
   },
 ];
 
 export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState(serviceTabsData[0].value);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,67 +57,96 @@ export default function ServicesSection() {
       },
       { threshold: 0.1 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-padding bg-secondary">
+    <section id="services" ref={sectionRef} className="py-20 md:py-28 bg-janice-main-bg text-janice-text-light">
       <div className="container-custom">
-        <div className="grid md:grid-cols-12 gap-8 items-end mb-12 md:mb-16">
-            <div 
-                className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-                style={{transitionDelay: '100ms'}}
-            >
-                <p className="text-xs font-medium text-foreground/60 uppercase tracking-wider mb-2">Services</p>
-                <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-foreground">
-                    A Comprehensive look at what we offer and how we deliver
-                </h2>
-            </div>
-            <div 
-                className={cn("md:col-span-5 md:text-right", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-                style={{transitionDelay: '200ms'}}
-            >
-                 <p className="text-sm text-muted-foreground mb-4 md:ml-auto max-w-xs">
-                    A comprehensive look at our services and how we deliver them.
-                </p>
-                <Button asChild variant="default" size="lg" className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 text-base group">
-                    <Link href="#contact">
-                    Sign In <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                </Button>
-            </div>
+        <div className="grid md:grid-cols-12 gap-8 items-center mb-12 md:mb-16">
+          <div
+            className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
+          >
+            <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-4 !leading-tight">
+              My Service
+            </h2>
+            <p className="text-lg md:text-xl text-janice-text-light/80 max-w-xl">
+              Offering tailored design solutions to elevate your brand's visual identity and user engagement.
+            </p>
+          </div>
+          <div
+            className={cn("md:col-span-5 md:text-right", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
+          >
+            <Button asChild variant="janicePrimary" size="lg" className="rounded-lg group">
+              <Link href="#contact">
+                Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
-        
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-          {servicesData.map((service, index) => (
-            <div
-              key={service.id}
+        <Tabs defaultValue={serviceTabsData[0].value} onValueChange={setActiveTab} className="w-full">
+          <TabsList 
+            className={cn(
+              "grid w-full grid-cols-1 sm:grid-cols-3 gap-2 bg-janice-dark/30 p-2 rounded-xl mb-10",
+              isVisible ? "fade-in-up is-visible" : "fade-in-up"
+            )}
+            style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
+          >
+            {serviceTabsData.map((tab) => (
+              <TabsTrigger
+                key={tab.value}
+                value={tab.value}
+                className="font-medium text-base text-janice-text-light/70 data-[state=active]:bg-janice-accent data-[state=active]:text-janice-dark data-[state=active]:shadow-lg rounded-lg px-4 py-3 transition-all duration-300"
+              >
+                <tab.icon className="mr-2 h-5 w-5" />
+                {tab.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {serviceTabsData.map((tab, index) => (
+            <TabsContent
+              key={tab.value}
+              value={tab.value}
               className={cn(
-                "p-6 md:p-8 rounded-xl shadow-card transition-all duration-300 ease-out relative overflow-hidden group",
-                service.isDark ? "bg-gray-800 text-white" : "bg-card text-foreground border",
+                "transition-opacity duration-500 ease-in-out",
+                activeTab === tab.value ? "opacity-100" : "opacity-0",
                 isVisible ? "fade-in-up is-visible" : "fade-in-up"
               )}
-              style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
+              style={{ transitionDelay: `${isVisible ? 400 + index * 50 : 0}ms` }} // Staggered delay for content
             >
-              {/* <service.icon className={cn("h-8 w-8 mb-4", service.isDark ? "text-primary-foreground/70" : "text-primary")} /> */}
-              <h3 className="font-headline text-xl md:text-2xl font-semibold mb-2">{service.title}</h3>
-              <p className={cn("text-sm leading-relaxed mb-4", service.isDark ? "text-gray-300" : "text-muted-foreground")}>
-                {service.description}
-              </p>
-              <ArrowRight 
-                className={cn(
-                    "absolute bottom-6 right-6 h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1",
-                    service.isDark ? "text-gray-400 group-hover:text-white" : "text-muted-foreground group-hover:text-primary"
-                )} 
-              />
-               {service.isDark && (
-                <div className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-white/5 opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out"></div>
-              )}
-            </div>
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-janice-dark/20 p-6 md:p-10 rounded-xl shadow-xl">
+                <div className="order-2 md:order-1">
+                  <h3 className="font-headline text-3xl md:text-4xl font-semibold text-janice-accent mb-3">{tab.title}</h3>
+                  <p className="text-md text-janice-text-light/80 mb-4">{tab.description}</p>
+                  <p className="text-sm text-janice-text-light/60 leading-relaxed">{tab.content}</p>
+                </div>
+                <div className="order-1 md:order-2 aspect-[4/3] md:aspect-square rounded-lg overflow-hidden">
+                  <Image
+                    src={tab.imageUrl}
+                    alt={tab.imageAlt}
+                    width={800}
+                    height={600}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    data-ai-hint={tab.dataAiHint}
+                  />
+                </div>
+              </div>
+            </TabsContent>
           ))}
-        </div>
+        </Tabs>
       </div>
     </section>
   );
