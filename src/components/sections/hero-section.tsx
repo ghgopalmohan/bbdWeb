@@ -34,7 +34,7 @@ export default function HeroSection() {
   }, [charIndex]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center py-24 md:py-32 bg-background text-foreground overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center py-24 md:py-32 bg-black text-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div
@@ -43,23 +43,23 @@ export default function HeroSection() {
           >
             <div className="overflow-hidden pb-3 min-h-[100px] sm:min-h-[120px] md:min-h-[150px] lg:min-h-[200px]">
               <h1
-                className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-foreground"
+                className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight text-white"
               >
                 {displayedTitle.split("Gopal Mohan")[0]}
-                <span className="text-primary">{displayedTitle.includes("Gopal Mohan") ? "Gopal Mohan" : ""}</span>
-                {charIndex < FULL_TITLE.length && <span className="inline-block w-1 h-[calc(1em_*_0.8)] bg-primary animate-pulse ml-1"></span>}
+                <span className="text-gray-300">{displayedTitle.includes("Gopal Mohan") ? "Gopal Mohan" : ""}</span>
+                {charIndex < FULL_TITLE.length && <span className="inline-block w-1 h-[calc(1em_*_0.8)] bg-white animate-pulse ml-1"></span>}
               </h1>
             </div>
             <div className="overflow-hidden pb-3">
               <p
                 ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-muted-foreground mb-2 max-w-xl" 
+                className="scroll-animate delay-3 font-body text-2xl md:text-3xl text-gray-400 mb-2 max-w-xl" 
               >
                 Professional Photoshop Designer & Creative Genius.
               </p>
               <p
                 ref={addScrollAnimElement}
-                className="scroll-animate delay-3 font-body text-lg md:text-xl text-muted-foreground/80 mb-12 max-w-xl"
+                className="scroll-animate delay-3 font-body text-lg md:text-xl text-gray-500 mb-12 max-w-xl"
               >
                 Baatein kam.. Kaam zyaada!
               </p>
@@ -71,9 +71,9 @@ export default function HeroSection() {
               <Link href="#contact" data-cursor-type="pointer">
                 <Button
                   size="lg"
-                  className="group relative overflow-hidden transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 hover:ring-primary bg-primary hover:bg-accent text-primary-foreground text-lg md:text-xl px-10 py-4"
+                  className="group relative overflow-hidden transition-all duration-300 ease-out hover:ring-2 hover:ring-offset-2 hover:ring-white bg-white hover:bg-gray-200 text-black text-lg md:text-xl px-10 py-4"
                 >
-                  <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-background/10 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                  <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-black/10 opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                   Get Quote <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 alt="Gopal Mohan - Professional Designer"
                 width={400}
                 height={400}
-                className="rounded-lg object-cover shadow-2xl border-4 border-card group-hover:border-primary transition-all duration-300 w-full h-auto"
+                className="rounded-lg object-cover shadow-2xl border-4 border-gray-800 group-hover:border-gray-400 transition-all duration-300 w-full h-auto"
                 data-ai-hint="professional designer portrait"
                 priority
               />
@@ -107,11 +107,11 @@ export default function HeroSection() {
                     targetValue={stat.value}
                     suffix={stat.suffix}
                     label={stat.label}
-                    className="text-center" // Each stat item (number + label) is centered
-                    textClassName="text-4xl sm:text-5xl font-bold text-primary block" // block ensures label is on new line below number
-                    labelClassName="text-base text-muted-foreground mt-1"
+                    className="text-center" 
+                    textClassName="text-4xl sm:text-5xl font-bold text-gray-100 block" 
+                    labelClassName="text-base text-gray-400 mt-1"
                     duration={1500 + index * 200} 
-                    startDelay={700 + index * 250 + (FULL_TITLE.length * 100)} // Delay after title animation
+                    startDelay={700 + index * 250 + (FULL_TITLE.length * 100)} 
                   />
                 ))}
               </div>
