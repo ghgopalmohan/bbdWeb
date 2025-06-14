@@ -26,7 +26,7 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
-    setIsMobileMenuOpen(false);
+    setIsMobileMenuOpen(false); // Close mobile menu on route change
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
@@ -36,11 +36,11 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 z-50 w-full transition-all duration-300 ease-out",
-        isScrolled ? "bg-background/90 backdrop-blur-md shadow-lg border-b border-border" : "bg-transparent py-4"
+        isScrolled ? "bg-black/90 backdrop-blur-md shadow-lg border-b border-gray-700" : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto flex h-20 sm:h-24 items-center justify-between px-4 md:px-6">
-        <Link href="#home" className="font-headline text-4xl font-bold text-primary" data-cursor-type="pointer">
+        <Link href="#home" className="font-headline text-4xl font-bold text-white" data-cursor-type="pointer">
           GM
         </Link>
         
@@ -49,7 +49,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="font-body text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+              className="font-body text-lg font-medium text-gray-300 transition-colors hover:text-white"
               data-cursor-type="pointer"
             >
               {item.label}
@@ -61,19 +61,19 @@ export default function Header() {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu" data-cursor-type="pointer">
-                <Menu className="h-7 w-7 text-foreground" />
+                <Menu className="h-7 w-7 text-white" />
               </Button>
             </SheetTrigger>
             <SheetContent 
               side="right" 
-              className="w-full max-w-xs bg-background p-6 flex flex-col"
+              className="w-full max-w-xs bg-black p-6 flex flex-col text-white border-l border-gray-700"
             >
               <div className="mb-10 flex justify-between items-center">
-                 <Link href="#home" className="font-headline text-3xl font-bold text-primary" onClick={closeMobileMenu} data-cursor-type="pointer">
+                 <Link href="#home" className="font-headline text-3xl font-bold text-white" onClick={closeMobileMenu} data-cursor-type="pointer">
                     GM
                   </Link>
                   <Button variant="ghost" size="icon" onClick={closeMobileMenu} aria-label="Close menu" data-cursor-type="pointer">
-                    <X className="h-7 w-7 text-foreground" />
+                    <X className="h-7 w-7 text-white" />
                   </Button>
               </div>
               <nav className="flex flex-col space-y-8">
@@ -81,7 +81,7 @@ export default function Header() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="font-headline text-3xl text-foreground/90 transition-colors hover:text-primary text-center"
+                    className="font-headline text-3xl text-gray-200 transition-colors hover:text-white text-center"
                     onClick={closeMobileMenu}
                     data-cursor-type="pointer"
                   >
@@ -90,7 +90,7 @@ export default function Header() {
                 ))}
               </nav>
               <div className="mt-auto text-center">
-                <p className="text-sm text-muted-foreground">Gopal Mohan © {new Date().getFullYear()}</p>
+                <p className="text-sm text-gray-400">Gopal Mohan © {new Date().getFullYear()}</p>
               </div>
             </SheetContent>
           </Sheet>
