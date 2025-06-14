@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Palette, PieChart } from 'lucide-react';
+import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck } from 'lucide-react'; // Added Printer, Truck
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
@@ -22,11 +22,11 @@ interface Service {
 const servicesData: Service[] = [
   {
     icon: CreditCard,
-    title: 'Business Card Design',
-    shortDescription: 'Crafting memorable first impressions.',
-    detailedDescription: 'Creative and professional business card designs that leave a lasting impression. Tailored to your brand identity, ensuring you stand out with sophistication and impact.',
+    title: 'Business Cards & Logos',
+    shortDescription: 'Crafting memorable identities and first impressions.',
+    detailedDescription: 'Creative and professional business card and logo designs that leave a lasting impression. Tailored to your brand identity, ensuring you stand out with sophistication and impact.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'modern business card',
+    dataAiHint: 'business card logo',
   },
   {
     icon: BookOpenText,
@@ -50,23 +50,23 @@ const servicesData: Service[] = [
     shortDescription: 'Informative and engaging print collateral.',
     detailedDescription: 'Informative and engaging brochures and flyers for marketing and communication. Structured layouts that deliver key information clearly, persuasively, and memorably.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'hare krishna food pamphlet design',
+    dataAiHint: 'sattvik food pamphlet', 
   },
   {
-    icon: Palette,
-    title: 'Advanced Image Retouching',
-    shortDescription: 'Perfecting your visuals with finesse.',
-    detailedDescription: 'Professional photo editing and retouching services to enhance your images. From color correction to complex manipulations, ensuring pixel-perfect, stunning results every time.',
+    icon: Printer,
+    title: 'Hotel Stationery Printing',
+    shortDescription: 'Premium printed materials for hospitality.',
+    detailedDescription: 'High-quality printing solutions for hotel stationery, including letterheads, envelopes, notepads, and guest amenity cards. Ensuring a consistent and luxurious brand experience.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'photo retouching detail',
+    dataAiHint: 'hotel stationery print',
   },
   {
-    icon: PieChart,
-    title: 'Digital Graphics & Assets',
-    shortDescription: 'Pixel-perfect for your online presence.',
-    detailedDescription: 'Custom graphics for websites, social media, and digital platforms. Optimized for web and designed to align with your online branding for consistent, powerful impact.',
+    icon: Truck,
+    title: 'Vehicle Branding',
+    shortDescription: 'Mobile billboards that drive attention.',
+    detailedDescription: 'Transform your vehicles into moving advertisements with impactful branding. Custom designs for cars, vans, and trucks to maximize visibility and brand reach on the go.',
     imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'social media ad design',
+    dataAiHint: 'vehicle wrap design',
   },
 ];
 
@@ -166,7 +166,7 @@ export default function ServicesSection() {
               </Card>
             ) : (
               <div className="flex flex-col items-center justify-center h-full bg-muted rounded-lg p-10 text-center">
-                <Palette className="h-20 w-20 text-primary/30 mb-6" />
+                <Truck className="h-20 w-20 text-primary/30 mb-6" /> {/* Changed icon to Truck as a generic placeholder */}
                 <p className="text-muted-foreground font-body text-xl">Select a service to view details.</p>
               </div>
             )}
