@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck } from 'lucide-react'; // Added Printer, Truck
+import { ChevronRight, CreditCard, BookOpenText, Megaphone, FileText, Printer, Truck } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
@@ -49,8 +49,8 @@ const servicesData: Service[] = [
     title: 'Brochures & Flyers',
     shortDescription: 'Informative and engaging print collateral.',
     detailedDescription: 'Informative and engaging brochures and flyers for marketing and communication. Structured layouts that deliver key information clearly, persuasively, and memorably.',
-    imageUrl: 'https://placehold.co/800x600.png',
-    dataAiHint: 'sattvik food pamphlet', 
+    imageUrl: '/sattvik-food-pamphlet.png',
+    dataAiHint: 'sattvik food pamphlet',
   },
   {
     icon: Printer,
@@ -133,43 +133,45 @@ export default function ServicesSection() {
             ref={addScrollAnimElement}
             className="scroll-animate delay-2 md:col-span-7"
           >
-            {activeService ? (
-              <Card className="h-full flex flex-col overflow-hidden shadow-xl rounded-xl border border-border bg-card">
-                <div className="relative aspect-[16/9] w-full overflow-hidden group">
-                  <Image
-                    key={activeService.imageUrl + activeServiceIndex} 
-                    src={activeService.imageUrl}
-                    alt={activeService.title}
-                    fill
-                    className="object-cover transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-105"
-                    data-ai-hint={activeService.dataAiHint}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent"></div>
+            <div key={activeService ? activeService.title : 'placeholder_service_view'} className="animate-fade-in-up-content h-full">
+              {activeService ? (
+                <Card className="h-full flex flex-col overflow-hidden shadow-xl rounded-xl border border-border bg-card">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden group">
+                    <Image
+                      key={activeService.imageUrl + activeServiceIndex} 
+                      src={activeService.imageUrl}
+                      alt={activeService.title}
+                      fill
+                      className="object-cover transition-all duration-700 ease-in-out transform scale-100 group-hover:scale-105"
+                      data-ai-hint={activeService.dataAiHint}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent"></div>
+                  </div>
+                  <CardHeader className="relative z-10 -mt-16 px-8 pt-0 md:-mt-20">
+                    <CardTitle className="font-headline text-3xl md:text-4xl text-primary drop-shadow-md">{activeService.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="relative z-10 px-8 pb-8 flex-grow">
+                    <p className="font-body text-foreground/90 leading-relaxed text-lg md:text-xl">
+                      {activeService.detailedDescription}
+                    </p>
+                    <Button variant="link" className="text-primary hover:text-accent p-0 mt-6 font-semibold text-lg" data-cursor-type="pointer" onClick={() => {
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}>
+                      Discuss Your Project <ArrowUpRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full bg-muted rounded-lg p-10 text-center">
+                  <Truck className="h-20 w-20 text-primary/30 mb-6" />
+                  <p className="text-muted-foreground font-body text-xl">Select a service to view details.</p>
                 </div>
-                <CardHeader className="relative z-10 -mt-16 px-8 pt-0 md:-mt-20">
-                  <CardTitle className="font-headline text-3xl md:text-4xl text-primary drop-shadow-md">{activeService.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="relative z-10 px-8 pb-8 flex-grow">
-                  <p className="font-body text-foreground/90 leading-relaxed text-lg md:text-xl">
-                    {activeService.detailedDescription}
-                  </p>
-                  <Button variant="link" className="text-primary hover:text-accent p-0 mt-6 font-semibold text-lg" data-cursor-type="pointer" onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}>
-                    Discuss Your Project <ArrowUpRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full bg-muted rounded-lg p-10 text-center">
-                <Truck className="h-20 w-20 text-primary/30 mb-6" /> {/* Changed icon to Truck as a generic placeholder */}
-                <p className="text-muted-foreground font-body text-xl">Select a service to view details.</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>

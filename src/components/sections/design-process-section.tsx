@@ -54,19 +54,29 @@ const ScribbleCircle = ({ numberText }: { numberText: string }) => (
   </div>
 );
 
-const Arrow1 = () => (
-  <svg width="80" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white mx-1 hidden md:block flex-shrink-0">
-    <path d="M5 40C15.1809 40 32.0164 33.1752 38.8361 20.7208C42.9949 12.9447 48.1087 5 75 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    <path d="M70 0L75 5L70 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-  </svg>
-);
+const Arrow1 = () => {
+  const addScrollAnimElement = useScrollAnimation();
+  return (
+    <div ref={addScrollAnimElement} className="scroll-animate delay-2">
+      <svg width="80" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white mx-1 hidden md:block flex-shrink-0">
+        <path d="M5 40C15.1809 40 32.0164 33.1752 38.8361 20.7208C42.9949 12.9447 48.1087 5 75 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+        <path d="M70 0L75 5L70 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </svg>
+    </div>
+  );
+};
 
-const Arrow2 = () => (
- <svg width="80" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white mx-1 hidden md:block flex-shrink-0">
-    <path d="M5 5C15.1809 5 32.0164 11.8248 38.8361 24.2792C42.9949 32.0553 48.1087 40 75 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    <path d="M70 45L75 40L70 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-  </svg>
-);
+const Arrow2 = () => {
+ const addScrollAnimElement = useScrollAnimation();
+ return (
+    <div ref={addScrollAnimElement} className="scroll-animate delay-4">
+      <svg width="80" height="50" viewBox="0 0 80 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white mx-1 hidden md:block flex-shrink-0">
+        <path d="M5 5C15.1809 5 32.0164 11.8248 38.8361 24.2792C42.9949 32.0553 48.1087 40 75 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+        <path d="M70 45L75 40L70 35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </svg>
+    </div>
+  );
+};
 
 
 export default function DesignProcessSection() {
@@ -85,25 +95,32 @@ export default function DesignProcessSection() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center md:items-start justify-around md:gap-2 lg:gap-6">
-          {principlesData.map((principle, index) => (
-            <React.Fragment key={principle.id}>
-              <div
-                ref={addScrollAnimElement}
-                className={`scroll-animate delay-${index + 1} flex flex-col items-center text-center max-w-xs mb-12 md:mb-0`}
-                data-cursor-type="pointer"
-              >
-                <ScribbleCircle numberText={principle.number} />
-                <h3 className="font-headline text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
-                  {principle.title}
-                </h3>
-                <p className="font-body text-gray-300 text-base leading-relaxed">
-                  {principle.description}
-                </p>
-              </div>
-              {index === 0 && <Arrow1 />}
-              {index === 1 && <Arrow2 />}
-            </React.Fragment>
-          ))}
+          {principlesData.map((principle, index) => {
+            let principleDelay;
+            if (index === 0) principleDelay = 'delay-1';
+            else if (index === 1) principleDelay = 'delay-3';
+            else principleDelay = 'delay-5';
+            
+            return (
+              <React.Fragment key={principle.id}>
+                <div
+                  ref={addScrollAnimElement}
+                  className={`scroll-animate ${principleDelay} flex flex-col items-center text-center max-w-xs mb-12 md:mb-0`}
+                  data-cursor-type="pointer"
+                >
+                  <ScribbleCircle numberText={principle.number} />
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                    {principle.title}
+                  </h3>
+                  <p className="font-body text-gray-300 text-base leading-relaxed">
+                    {principle.description}
+                  </p>
+                </div>
+                {index === 0 && <Arrow1 />}
+                {index === 1 && <Arrow2 />}
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -162,6 +162,17 @@
   transform: translateY(0);
 }
 
+/* New animation for content transitions */
+@keyframes fade-in-up-content {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-in-up-content {
+  animation: fade-in-up-content 0.5s ease-out forwards;
+}
+
+
 /* Form Input Styles for B&W Theme */
 .form-input {
   @apply bg-input border-b border-border text-foreground placeholder-muted-foreground;
