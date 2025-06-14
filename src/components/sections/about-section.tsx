@@ -24,7 +24,7 @@ export default function AboutSection() {
         <div className="text-center mb-20 md:mb-24">
           <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">About Me</h2>
           <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
-            A seasoned Photoshop designer dedicated to crafting compelling visual narratives and high-impact designs.
+            Freelance graphic designer and creative vendor, transforming visions into impactful visual solutions for diverse clients.
           </p>
         </div>
 
