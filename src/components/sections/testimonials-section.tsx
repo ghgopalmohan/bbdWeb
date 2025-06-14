@@ -26,22 +26,22 @@ interface Testimonial {
 
 const testimonialsData: Testimonial[] = [
   {
-    name: 'Jane Doe',
-    title: 'Marketing Director, Innovatech',
+    name: 'Vilasa Vigraha Dasa',
+    title: 'Vice President, Iskcon AP',
     quote: 'Gopal\'s designs are simply outstanding. He has a unique ability to capture the essence of a brand and translate it into compelling visuals. Our engagement metrics soared after his redesign!',
     avatarUrl: 'https://placehold.co/100x100.png',
     stars: 5,
-    avatarFallback: 'JD',
-    dataAiHint: 'professional woman portrait'
+    avatarFallback: 'VVD',
+    dataAiHint: 'spiritual leader portrait'
   },
   {
-    name: 'John Smith',
-    title: 'Restaurateur, The Artisan Table',
+    name: 'Vamsidhara Dasa',
+    title: 'President, AkshayaPatra',
     quote: 'The menu Gopal designed is a work of art. It perfectly complements our restaurant\'s ambiance and has been a talking point for many guests. Truly exceptional craftsmanship.',
     avatarUrl: 'https://placehold.co/100x100.png',
     stars: 5,
-    avatarFallback: 'JS',
-    dataAiHint: 'man portrait smiling'
+    avatarFallback: 'VD',
+    dataAiHint: 'organization headshot'
   },
   {
     name: 'Alice Brown',
@@ -67,16 +67,16 @@ export default function TestimonialsSection() {
   const addScrollAnimElement = useScrollAnimation();
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-secondary text-secondary-foreground">
+    <section id="testimonials" className="py-24 md:py-32 bg-zinc-900 text-white"> {/* Dark theme */}
       <div className="container mx-auto px-4 md:px-6">
         <div 
           ref={addScrollAnimElement} 
           className="scroll-animate text-center mb-20 md:mb-24"
         >
-          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">
+          <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"> {/* Light text for dark theme */}
             What They Say
           </h2>
-          <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto"> {/* Increased max-w */}
+          <p className="font-body text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto"> {/* Lighter text for dark theme */}
             Discover why clients trust my design expertise to elevate their brands and projects.
           </p>
         </div>
@@ -103,30 +103,30 @@ export default function TestimonialsSection() {
               {testimonialsData.map((testimonial, index) => (
                 <CarouselItem key={index} className="pl-5 md:basis-1/2">
                   <div className="p-1 h-full">
-                    <Card className="h-full flex flex-col justify-between bg-card border border-border hover:border-primary/40 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group p-8 md:p-10">
+                    <Card className="h-full flex flex-col justify-between bg-zinc-800 border border-zinc-700 hover:border-purple-500/60 transition-all duration-300 shadow-xl hover:shadow-2xl rounded-xl overflow-hidden group p-8 md:p-10"> {/* Darker card for dark theme */}
                       <CardHeader className="pb-6 px-0 pt-0">
                         <div className="flex items-center mb-5">
-                          <Avatar className="h-20 w-20 mr-6 border-2 border-primary rounded-full shadow-sm">
+                          <Avatar className="h-20 w-20 mr-6 border-2 border-purple-500 rounded-full shadow-sm"> {/* Accent border */}
                             <AvatarImage src={testimonial.avatarUrl} alt={testimonial.name} data-ai-hint={testimonial.dataAiHint} />
-                            <AvatarFallback className="bg-muted text-foreground text-2xl font-medium">{testimonial.avatarFallback}</AvatarFallback>
+                            <AvatarFallback className="bg-zinc-700 text-gray-300 text-2xl font-medium">{testimonial.avatarFallback}</AvatarFallback> {/* Darker fallback for dark theme */}
                           </Avatar>
                           <div>
-                            <CardTitle className="font-headline text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors">{testimonial.name}</CardTitle>
-                            <p className="text-base text-muted-foreground font-body">{testimonial.title}</p>
+                            <CardTitle className="font-headline text-2xl md:text-3xl text-white group-hover:text-purple-400 transition-colors">{testimonial.name}</CardTitle> {/* Light text, accent on hover */}
+                            <p className="text-base text-gray-400 font-body">{testimonial.title}</p> {/* Lighter muted text */}
                           </div>
                         </div>
                         <div className="flex items-center mb-4">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`h-6 w-6 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/30 fill-muted-foreground/30'}`}
+                              className={`h-6 w-6 ${i < testimonial.stars ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600 fill-gray-600'}`} /* Adjusted dull star color */
                             />
                           ))}
                         </div>
                       </CardHeader>
                       <CardContent className="flex-grow px-0 pb-0 relative">
-                        <QuoteIcon className="absolute top-0 left-0 h-16 w-16 text-primary/10 transform -translate-x-4 -translate-y-3" />
-                        <p className="font-body text-lg md:text-xl text-foreground/85 italic leading-relaxed pl-10 relative z-10">
+                        <QuoteIcon className="absolute top-0 left-0 h-16 w-16 text-purple-500/20 transform -translate-x-4 -translate-y-3" /> {/* Accent quote icon */}
+                        <p className="font-body text-lg md:text-xl text-gray-300 italic leading-relaxed pl-10 relative z-10"> {/* Lighter italic text */}
                           {testimonial.quote}
                         </p>
                       </CardContent>
@@ -136,8 +136,8 @@ export default function TestimonialsSection() {
               ))}
             </CarouselContent>
             <div className="hidden sm:block mt-10"> 
-              <CarouselPrevious className="absolute left-[-25px] md:left-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
-              <CarouselNext className="absolute right-[-25px] md:right-[-70px] top-1/2 -translate-y-1/2 text-foreground hover:text-primary bg-card/80 hover:bg-primary/10 border-border hover:border-primary disabled:text-muted-foreground w-12 h-12 md:w-14 md:h-14" />
+              <CarouselPrevious className="absolute left-[-25px] md:left-[-70px] top-1/2 -translate-y-1/2 text-gray-300 hover:text-purple-400 bg-zinc-700/80 hover:bg-purple-500/20 border-zinc-600 hover:border-purple-500 disabled:text-gray-500 w-12 h-12 md:w-14 md:h-14" /> {/* Dark theme arrows */}
+              <CarouselNext className="absolute right-[-25px] md:right-[-70px] top-1/2 -translate-y-1/2 text-gray-300 hover:text-purple-400 bg-zinc-700/80 hover:bg-purple-500/20 border-zinc-600 hover:border-purple-500 disabled:text-gray-500 w-12 h-12 md:w-14 md:h-14" /> {/* Dark theme arrows */}
             </div>
           </Carousel>
         </div>
