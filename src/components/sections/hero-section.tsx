@@ -53,7 +53,7 @@ export default function HeroSection() {
         <div className="grid md:grid-cols-12 gap-8 items-center">
           <div className={cn("md:col-span-7 lg:col-span-8 text-left", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '100ms' }}>
             <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 !leading-tight text-foreground">
-              Product Designer
+              Photoshop Designer
             </h1>
           </div>
           <div className={cn("md:col-span-5 lg:col-span-4 flex flex-col items-start md:items-end", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '300ms' }}>
@@ -68,7 +68,7 @@ export default function HeroSection() {
               />
             </div>
             <p className="text-xs text-muted-foreground text-left md:text-right max-w-[200px]">
-              GM / Duwy Designer Creating Intuitive Digital Experiences.
+              GM / Photoshop Designer Creating Intuitive Design Experiences.
             </p>
           </div>
         </div>

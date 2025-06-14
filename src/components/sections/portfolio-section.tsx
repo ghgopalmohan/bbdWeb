@@ -2,48 +2,76 @@
 "use client";
 
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { ZoomIn, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
+import { ZoomIn, ExternalLink, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'; // Card added for consistent styling if needed
+import Link from 'next/link';
 
 interface PortfolioItem {
-  id: number;
+  id: string; // Changed to string for unique IDs
   title: string;
   category: string;
   imageUrl: string;
+  fullImageUrl?: string; // For higher resolution in dialog
+  description: string;
   dataAiHint: string;
+  projectUrl?: string;
 }
 
 const portfolioItemsData: PortfolioItem[] = [
-  { 
-    id: 1, title: 'Mobile App UI', category: 'UX/UI Design', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'mobile app interface' 
+  {
+    id: 'bizcard-01',
+    title: 'Elegant Business Cards',
+    category: 'Branding & Identity',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Professionally designed business cards that make a lasting first impression.',
+    dataAiHint: 'business card design',
+    projectUrl: '#',
   },
-  { 
-    id: 2, title: 'Dashboard Design', category: 'Web Design', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'dashboard analytics ui' 
+  {
+    id: 'logo-design-02',
+    title: 'Modern Logo Design',
+    category: 'Branding & Identity',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Creative and memorable logo designs tailored to brand identity.',
+    dataAiHint: 'modern logo concept',
   },
-  { 
-    id: 3, title: 'Landing Page Mockup', category: 'Web Design', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'website landing page' 
+  {
+    id: 'menu-design-03',
+    title: 'Restaurant Menu Layout',
+    category: 'Print Design',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Visually appealing and easy-to-navigate menu designs for restaurants and cafes.',
+    dataAiHint: 'restaurant menu food',
   },
-  { 
-    id: 4, title: 'Product Showcase', category: 'Branding', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'product design mockup' 
+  {
+    id: 'banner-ads-04',
+    title: 'Promotional Banners',
+    category: 'Advertising',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Eye-catching banners for digital and print advertising campaigns.',
+    dataAiHint: 'promotional banner event',
   },
-  { 
-    id: 5, title: 'Admin Panel UI', category: 'UX/UI Design', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'admin dashboard interface' 
+  {
+    id: 'poster-art-05',
+    title: 'Event Posters',
+    category: 'Print Design',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Impactful poster designs for events, promotions, and announcements.',
+    dataAiHint: 'event poster concert',
   },
-  { 
-    id: 6, title: 'E-commerce Site', category: 'Web Design', imageUrl: 'https://placehold.co/600x450.png', 
-    dataAiHint: 'ecommerce website design' 
+  {
+    id: 'brochure-corp-06',
+    title: 'Corporate Brochures',
+    category: 'Marketing Material',
+    imageUrl: 'https://placehold.co/600x450.png',
+    description: 'Informative and engaging brochure designs for businesses and organizations.',
+    dataAiHint: 'corporate brochure business',
   },
 ];
-
 
 export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -63,85 +91,93 @@ export default function PortfolioSection() {
     return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
-
   return (
-    <section id="portfolio" ref={sectionRef} className="section-padding bg-background text-foreground">
+    <section id="portfolio" ref={sectionRef} className="section-padding bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <div className="container-custom">
-        <div className="grid md:grid-cols-12 gap-8 items-end mb-12 md:mb-16">
-            <div 
-                className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-                style={{transitionDelay: '100ms'}}
-            >
-                <p className="text-xs font-medium text-foreground/60 uppercase tracking-wider mb-2">Portfolio</p>
-                <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-foreground">
-                    Explore my portfolio of creative solutions
-                </h2>
-            </div>
-            <div 
-                className={cn("md:col-span-5 md:text-right", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-                style={{transitionDelay: '200ms'}}
-            >
-                 <p className="text-sm text-muted-foreground md:ml-auto max-w-xs">
-                    Explore my portfolio full of creative solutions.
-                </p>
-            </div>
+        <div 
+          className={cn(
+            "text-center mb-12 md:mb-16",
+            isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+          )}
+          style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
+        >
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-3">
+            My Creative Works
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            A selection of projects that showcase my passion for design and attention to detail.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {portfolioItemsData.map((item, index) => (
-            <Dialog key={item.id}>
-              <DialogTrigger asChild>
-                <div
-                  className={cn(
-                    "transition-all duration-500 ease-out transform hover:-translate-y-1",
-                    isVisible ? "fade-in-up is-visible" : "fade-in-up"
-                  )}
-                  style={{ transitionDelay: `${isVisible ? (index * 100) + 300 : 0}ms` }}
-                >
-                  <Card className="overflow-hidden group cursor-pointer bg-card border-border hover:border-primary/30 shadow-subtle hover:shadow-card rounded-xl">
-                    <CardContent className="p-0">
-                      <div className="aspect-[4/3] overflow-hidden relative">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.title}
-                          width={600}
-                          height={450}
-                          className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
-                          data-ai-hint={item.dataAiHint}
-                        />
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                           <ZoomIn className="h-10 w-10 text-white/90" />
-                        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioItemsData.map((item, index) => {
+            const dialogTitleId = `dialog-title-${item.id}`;
+            return (
+              <Dialog key={item.id}>
+                <DialogTrigger asChild>
+                  <Card
+                    className={cn(
+                      "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
+                      isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                    )}
+                    style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
+                  >
+                    <CardContent className="p-0 aspect-[4/3] relative overflow-hidden">
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        width={600}
+                        height={450}
+                        className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
+                        data-ai-hint={item.dataAiHint}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
+                        <p className="text-xs text-primary-foreground/80">{item.category}</p>
                       </div>
+                       <div className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <ZoomIn className="h-5 w-5 text-white/90" />
+                        </div>
                     </CardContent>
                   </Card>
-                </div>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-2xl md:max-w-3xl bg-card p-0 rounded-lg border-border shadow-2xl text-foreground">
-                <div className="p-2 max-h-[80vh] overflow-y-auto">
-                  <Image
-                    src={item.imageUrl} 
-                    alt={item.title}
-                    width={1200}
-                    height={900}
-                    className="w-full h-auto object-contain rounded-md"
-                    data-ai-hint={item.dataAiHint}
-                  />
-                </div>
-                 <div className="p-4 border-t border-border flex justify-between items-center">
-                    <div>
-                        <h3 className="font-headline text-xl text-foreground">{item.title}</h3>
-                        <p className="text-sm text-muted-foreground">{item.category}</p>
+                </DialogTrigger>
+                <DialogContent 
+                  className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
+                  aria-labelledby={dialogTitleId}
+                >
+                  <div className="p-1 max-h-[85vh] overflow-y-auto">
+                    <Image
+                      src={item.fullImageUrl || item.imageUrl}
+                      alt={item.title}
+                      width={1200}
+                      height={900}
+                      className="w-full h-auto object-contain rounded-md"
+                      data-ai-hint={item.dataAiHint}
+                    />
+                  </div>
+                  <div className="p-6 border-t border-border dark:border-border-dark bg-secondary/30 dark:bg-secondary-dark/20 rounded-b-lg">
+                    <DialogTitle id={dialogTitleId} className="font-headline text-2xl text-primary mb-1">{item.title}</DialogTitle>
+                    <DialogDescription className="text-sm text-muted-foreground mb-3">{item.category}</DialogDescription>
+                    <p className="text-base text-foreground dark:text-foreground-dark mb-4">{item.description}</p>
+                    <div className="flex justify-between items-center">
+                        {item.projectUrl && (
+                           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark dark:hover:text-primary-dark-foreground">
+                             <Link href={item.projectUrl} target="_blank" rel="noopener noreferrer">
+                               View Project <ExternalLink className="ml-2 h-4 w-4" />
+                             </Link>
+                           </Button>
+                        )}
+                        <DialogClose asChild>
+                           <Button variant="ghost" className="text-muted-foreground hover:text-primary dark:hover:text-primary-dark">
+                             Close <X className="ml-2 h-4 w-4" />
+                           </Button>
+                        </DialogClose>
                     </div>
-                    <DialogTrigger asChild>
-                      <Button variant="ghost" size="sm" className="rounded-md">
-                          Close
-                      </Button>
-                    </DialogTrigger>
-                </div>
-              </DialogContent>
-            </Dialog>
-          ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            );
+          })}
         </div>
       </div>
     </section>

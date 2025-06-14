@@ -1,14 +1,68 @@
 
 "use client";
 
+import React, { useEffect, useState, useRef } from 'react';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
-import { useEffect, useState, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Linkedin, Instagram, Mail, Phone, MapPin, Send } from 'lucide-react';
+import Link from 'next/link';
 
-// This component is now the "Let's Connect There" CTA section
+const contactFormSchema = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Invalid email address.' }),
+  subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+});
+
+type ContactFormInputs = z.infer<typeof contactFormSchema>;
+
+interface ContactInfoItemProps {
+  icon: React.ElementType;
+  title: string;
+  value: string;
+  href?: string;
+  delay: string;
+  isVisible: boolean;
+}
+
+const ContactInfoItem: React.FC<ContactInfoItemProps> = ({ icon: Icon, title, value, href, delay, isVisible }) => (
+  <div 
+    className={cn(
+      "flex items-start space-x-4 p-4 rounded-lg transition-all duration-500 ease-out hover:bg-primary/5 dark:hover:bg-primary/10",
+      isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+    )}
+    style={{ transitionDelay: isVisible ? delay : '0ms' }}
+  >
+    <div className="flex-shrink-0">
+      <Icon className="w-7 h-7 text-primary" />
+    </div>
+    <div>
+      <h4 className="font-headline text-lg font-semibold text-foreground mb-1">{title}</h4>
+      {href ? (
+        <Link href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors break-all">
+          {value}
+        </Link>
+      ) : (
+        <p className="text-sm text-muted-foreground break-all">{value}</p>
+      )}
+    </div>
+  </div>
+);
+
+
 export default function ContactSection() {
+  const { toast } = useToast();
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormInputs>({
+    resolver: zodResolver(contactFormSchema),
+  });
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -26,30 +80,146 @@ export default function ContactSection() {
     return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    console.log(data);
+    toast({
+      title: "Message Sent!",
+      description: "Thanks for reaching out. I'll get back to you soon.",
+      variant: "default",
+    });
+    reset();
+  };
+  
+  const contactDetails = [
+    { icon: Mail, title: "Email Address", value: "gopal.mohan.design@example.com", href: "mailto:gopal.mohan.design@example.com", delay: "300ms"},
+    { icon: Phone, title: "Phone Number", value: "+91 98765 43210", href: "tel:+919876543210", delay: "400ms"},
+    { icon: MapPin, title: "Location", value: "Bengaluru, India", delay: "500ms"},
+  ];
+
+  const socialLinks = [
+    { icon: Linkedin, href: "https://www.linkedin.com/in/gopalmohan", label: "LinkedIn", delay: "600ms"},
+    { icon: Instagram, href: "https://www.instagram.com/gopalmohandesign", label: "Instagram", delay: "700ms"},
+  ];
+
   return (
-    <section id="contact-cta" ref={sectionRef} className="section-padding bg-footer-dark text-white">
+    <section id="contact" ref={sectionRef} className="section-padding bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <div className="container-custom">
         <div 
-            className={cn(
-                "flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left",
-                isVisible ? "fade-in-up is-visible" : "fade-in-up"
-            )}
-            style={{transitionDelay: '100ms'}}
+          className={cn(
+            "text-center mb-12 md:mb-16",
+            isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+          )}
+          style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
         >
-          <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl font-extrabold !leading-tight max-w-lg">
-            Let&apos;s Connect There
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-3">
+            Let&apos;s Connect
           </h2>
-          <Button 
-            asChild 
-            size="lg" 
-            className="bg-white text-footer-dark hover:bg-gray-200 rounded-md text-base font-medium py-4 px-8 shadow-md hover:shadow-lg transition-all duration-300 group min-w-[200px]"
-          >
-            <Link href="/contact-form"> {/* Placeholder link for a potential form page */}
-              Secure Form <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Have a project in mind or just want to say hi? Fill out the form or reach out through my social channels.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="md:col-span-5 lg:col-span-4 space-y-6">
+            {contactDetails.map((item) => (
+              <ContactInfoItem key={item.title} {...item} isVisible={isVisible} />
+            ))}
+            <div 
+                className={cn(
+                    "flex space-x-4 pt-4",
+                    isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                )}
+                style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}
+            >
+                {socialLinks.map(social => (
+                    <Link key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}
+                        className="p-3 bg-secondary dark:bg-secondary-dark rounded-full text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300 group">
+                        <social.icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                    </Link>
+                ))}
+            </div>
+          </div>
+
+          <div className="md:col-span-7 lg:col-span-8">
+            <Card 
+                className={cn(
+                    "bg-secondary/50 dark:bg-secondary-dark/30 border-border dark:border-border-dark shadow-lg",
+                    isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                )}
+                style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
+            >
+              <CardHeader>
+                <CardTitle className="font-headline text-2xl text-foreground dark:text-foreground-dark">Send Me a Message</CardTitle>
+                <CardDescription className="text-muted-foreground">I&apos;m excited to hear about your project!</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="name" className="form-label dark:text-foreground-dark">Full Name</Label>
+                      <Input 
+                        id="name" 
+                        {...register('name')} 
+                        placeholder="e.g. John Doe" 
+                        className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.name ? 'border-destructive' : '')}
+                        aria-invalid={errors.name ? "true" : "false"}
+                      />
+                      {errors.name && <p className="text-destructive text-xs mt-1">{errors.name.message}</p>}
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="form-label dark:text-foreground-dark">Email Address</Label>
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        {...register('email')} 
+                        placeholder="e.g. john.doe@example.com"
+                        className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.email ? 'border-destructive' : '')}
+                        aria-invalid={errors.email ? "true" : "false"}
+                      />
+                      {errors.email && <p className="text-destructive text-xs mt-1">{errors.email.message}</p>}
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="subject" className="form-label dark:text-foreground-dark">Subject</Label>
+                    <Input 
+                      id="subject" 
+                      {...register('subject')} 
+                      placeholder="e.g. Collaboration Inquiry"
+                      className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.subject ? 'border-destructive' : '')}
+                      aria-invalid={errors.subject ? "true" : "false"}
+                    />
+                    {errors.subject && <p className="text-destructive text-xs mt-1">{errors.subject.message}</p>}
+                  </div>
+                  <div>
+                    <Label htmlFor="message" className="form-label dark:text-foreground-dark">Your Message</Label>
+                    <Textarea 
+                      id="message" 
+                      {...register('message')} 
+                      rows={5} 
+                      placeholder="Tell me about your project or query..."
+                      className={cn("form-input dark:bg-background-dark dark:border-border-dark dark:text-foreground-dark dark:placeholder:text-muted-foreground/70", errors.message ? 'border-destructive' : '')}
+                      aria-invalid={errors.message ? "true" : "false"}
+                    />
+                    {errors.message && <p className="text-destructive text-xs mt-1">{errors.message.message}</p>}
+                  </div>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    size="lg"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary dark:bg-primary-dark dark:text-primary-dark-foreground dark:hover:bg-primary-dark/90 dark:focus:ring-primary-dark transition-all group"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+

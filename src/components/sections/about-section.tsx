@@ -70,12 +70,16 @@ export default function AboutSection() {
             style={{transitionDelay: '300ms'}}
           >
             <div>
-              <p className="font-headline text-5xl font-bold text-foreground mb-1">+320</p>
+              <p className="font-headline text-5xl font-bold text-foreground mb-1">+2300</p>
               <p className="text-sm text-muted-foreground">Successful projects completed, delivering impactful visual solutions.</p>
             </div>
             <div>
-              <p className="font-headline text-5xl font-bold text-foreground mb-1">+280</p>
+              <p className="font-headline text-5xl font-bold text-foreground mb-1">+640</p>
               <p className="text-sm text-muted-foreground">Satisfied clients across various industries globally.</p>
+            </div>
+            <div>
+              <p className="font-headline text-5xl font-bold text-foreground mb-1">100%</p>
+              <p className="text-sm text-muted-foreground">Clients Satisfaction.</p>
             </div>
           </div>
         </div>
