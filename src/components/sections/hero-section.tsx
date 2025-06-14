@@ -4,18 +4,9 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
-import { Briefcase, Building, Zap, Droplets, Slack } from 'lucide-react'; // Example icons
-
-const clientLogos = [
-  { name: 'Coinbase', icon: Briefcase, href: '#' },
-  { name: 'Spotify', icon: Zap, href: '#' },
-  { name: 'Zoom', icon: Building, href: '#' },
-  { name: 'Slack', icon: Slack, href: '#' },
-  { name: 'Dropbox', icon: Droplets, href: '#' },
-  { name: 'Zoro', icon: Briefcase, href: '#' },
-];
+import { ArrowDown, Calendar, CheckCircle, MapPin, MessageSquare, Send, Smile, Star, TrendingUp, Zap } from 'lucide-react';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -44,47 +35,88 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       ref={sectionRef}
-      className="relative min-h-[calc(100vh-5rem)] md:min-h-screen flex flex-col justify-center section-padding bg-background text-foreground overflow-hidden pt-28 md:pt-32" // Added padding top for header
+      className={cn(
+        "relative min-h-[calc(100vh-5rem)] md:min-h-screen flex flex-col justify-center bg-janice-olive text-janice-text-light overflow-hidden pt-28 md:pt-32 pb-0", // Removed section-padding, added pb-0
+        isVisible ? "fade-in-up is-visible" : "fade-in-up"
+      )}
     >
-      <div className="container-custom">
-        <div className="grid md:grid-cols-12 gap-8 items-center">
-          <div className={cn("md:col-span-7 lg:col-span-8 text-left", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '100ms' }}>
-            <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 !leading-tight text-foreground">
-              Photoshop Designer
-            </h1>
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-12 gap-8 items-center">
+          <div className="col-span-12 md:col-span-7 lg:col-span-6">
+            <div 
+              className={cn("transition-all duration-1000 ease-out", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10")}
+              style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
+            >
+              <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold !leading-none mb-6">
+                JANICE
+              </h1>
+              <p className="text-xl md:text-2xl lg:text-3xl font-medium text-janice-text-light/90 mb-4 !leading-tight">
+                Digital Designer &amp; Creative Expert
+              </p>
+              <p className="text-sm md:text-base text-janice-text-light/70 mb-8 max-w-md">
+                Crafting unique digital experiences with a passion for clean aesthetics and impactful design. Based in the vibrant city of Melbourne.
+              </p>
+              <div className="flex items-center space-x-4">
+                <Button 
+                  size="lg" 
+                  variant="janicePrimary"
+                  className="px-8 py-3 text-base rounded-full group"
+                  asChild
+                >
+                  <Link href="#contact">
+                    Let&apos;s Talk <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="janiceSecondary"
+                  className="px-8 py-3 text-base rounded-full group"
+                  asChild
+                >
+                  <Link href="#portfolio">
+                    My Work <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
-          <div className={cn("md:col-span-5 lg:col-span-4 flex flex-col items-start md:items-end", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '300ms' }}>
-            <div className="relative w-32 h-40 md:w-40 md:h-52 rounded-lg overflow-hidden shadow-subtle mb-3">
+          <div className="col-span-12 md:col-span-5 lg:col-span-6 flex items-center justify-center md:justify-end">
+            <div 
+              className={cn("relative w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-all duration-1000 ease-out", isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90")}
+              style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}
+            >
               <Image
-                src="https://placehold.co/300x400.png"
-                alt="Designer Portrait"
+                src="https://placehold.co/600x800.png"
+                alt="Janice - Digital Designer"
                 layout="fill"
                 objectFit="cover"
-                className="rounded-lg"
-                data-ai-hint="designer portrait subway"
+                className="rounded-2xl"
+                priority
+                data-ai-hint="designer portrait modern"
               />
+              <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg">
+                <Image
+                    src="https://placehold.co/100x100.png"
+                    alt="QR Code"
+                    width={80}
+                    height={80}
+                    className="rounded-md"
+                    data-ai-hint="qr code scan"
+                />
+              </div>
             </div>
-            <p className="text-xs text-muted-foreground text-left md:text-right max-w-[200px]">
-              GM / Photoshop Designer Creating Intuitive Design Experiences.
-            </p>
-          </div>
-        </div>
-
-        <div className={cn("mt-12 md:mt-20", isVisible ? "fade-in-up is-visible" : "fade-in-up")} style={{ transitionDelay: '500ms' }}>
-          <div className="flex flex-wrap gap-3 md:gap-4 items-center justify-start">
-            {clientLogos.map((client, index) => (
-              <Link key={client.name} href={client.href} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-secondary hover:bg-muted rounded-md text-sm text-foreground/80 hover:text-foreground transition-colors">
-                <client.icon className="w-4 h-4" />
-                <span>{client.name}</span>
-              </Link>
-            ))}
           </div>
         </div>
       </div>
+      
+      {/* Decorative floating elements - example, can be enhanced */}
+      <div className={cn("absolute top-1/4 left-1/4 w-12 h-12 bg-janice-accent/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}></div>
+      <div className={cn("absolute bottom-1/3 right-1/4 w-8 h-8 bg-janice-soft-gold/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '1000ms' : '0ms' }}></div>
+
     </section>
   );
 }
+
