@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
-import { Briefcase, Users, Award, Palette, Zap } from 'lucide-react';
+import { Briefcase, Users, Award, Palette } from 'lucide-react';
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -21,12 +21,13 @@ export default function AboutSection() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
@@ -70,10 +71,10 @@ export default function AboutSection() {
   ];
 
   return (
-    <section 
-      id="about" 
-      ref={sectionRef} 
-      className="bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32"
+    <section
+      id="about"
+      ref={sectionRef}
+      className="bg-black text-white pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32"
     >
       <div className="container-custom">
         {/* Title Block */}
@@ -82,8 +83,8 @@ export default function AboutSection() {
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
-            <p className="text-xs font-medium text-janice-dark/70 uppercase tracking-wider mb-2">INTRODUCTION</p>
-            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-janice-dark">
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">INTRODUCTION</p>
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-white">
               About Me
             </h2>
           </div>
@@ -91,10 +92,10 @@ export default function AboutSection() {
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
-            <p className="text-md text-janice-text-dark/80 md:pt-1 mb-4">
+            <p className="text-md text-gray-300 md:pt-1 mb-4">
               A seasoned design professional with over three decades of experience in impactful advertising, publishing, and freelance graphic design. My passion lies in creating visually compelling solutions that resonate with audiences and elevate brand presence, primarily utilizing Adobe Photoshop.
             </p>
-             <p className="text-md text-janice-text-dark/80 md:pt-1">
+             <p className="text-md text-gray-300 md:pt-1">
               My approach combines design precision with a deep understanding of brand identity, ensuring that every project I undertake not only meets but exceeds client expectations.
             </p>
           </div>
@@ -122,37 +123,43 @@ export default function AboutSection() {
 
           <div
             className={cn("md:col-span-5 space-y-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: isVisible ? '300ms' : '0ms'}}
+            style={{transitionDelay: isVisible ? '250ms' : '0ms'}} // Adjusted parent delay
           >
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  "flex items-center p-1 rounded-lg transition-all duration-500 ease-out",
-                  isVisible ? "fade-in-up is-visible" : "opacity-0"
-                )}
-                style={{ transitionDelay: isVisible ? stat.delay : '0ms' }}
-              >
-                <div className="flex-shrink-0 mr-4">
-                  <stat.icon className="w-10 h-10 text-janice-accent" />
+            {/* Horizontal Stats Container */}
+            <div className="flex flex-col space-y-6 sm:flex-row sm:space-y-0 sm:space-x-4 md:space-x-2 lg:space-x-6 justify-center sm:justify-around items-center">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className={cn(
+                    "flex items-center p-2 rounded-lg transition-all duration-500 ease-out hover:bg-gray-800", // Subtle hover for dark theme
+                    "text-center sm:text-left w-full sm:w-auto",
+                    isVisible ? "fade-in-up is-visible" : "opacity-0"
+                  )}
+                  style={{ transitionDelay: isVisible ? stat.delay : '0ms' }}
+                >
+                  <div className="flex-shrink-0 mr-0 sm:mr-3 mb-2 sm:mb-0">
+                    <stat.icon className="w-8 h-8 md:w-10 md:h-10 text-gray-300 mx-auto sm:mx-0" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-headline text-3xl md:text-4xl font-bold text-white mb-0">{stat.value}</p>
+                    <p className="text-xs md:text-sm text-gray-400">{stat.label}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-headline text-4xl font-bold text-janice-dark mb-0">{stat.value}</p>
-                  <p className="text-sm text-janice-text-dark/70">{stat.label}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Core Expertise Section */}
             <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-4")} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}>
-              <h3 className="font-headline text-xl font-semibold text-janice-dark mb-3 flex items-center">
-                <Palette className="w-6 h-6 text-janice-accent mr-2" />
+              <h3 className="font-headline text-xl font-semibold text-white mb-3 flex items-center">
+                <Palette className="w-6 h-6 text-gray-300 mr-2" />
                 Core Expertise
               </h3>
-              <ul className="space-y-1.5 text-sm text-janice-text-dark/70 list-disc list-inside pl-1">
+              <ul className="space-y-1.5 text-sm text-gray-400 list-disc list-inside pl-1">
                 {expertiseItems.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
-               <p className="text-sm text-janice-text-dark/70 mt-2">
+               <p className="text-sm text-gray-400 mt-2">
                 (Primarily Adobe Photoshop)
               </p>
             </div>
@@ -162,4 +169,3 @@ export default function AboutSection() {
     </section>
   );
 }
-    
