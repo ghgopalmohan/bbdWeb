@@ -113,7 +113,7 @@ export default function AboutSection() {
                   alt={image.alt}
                   width={400}
                   height={300}
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-105"
                   data-ai-hint={image.dataAiHint}
                 />
               </div>
@@ -162,5 +162,4 @@ export default function AboutSection() {
     </section>
   );
 }
-
     

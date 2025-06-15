@@ -170,7 +170,7 @@ export default function ServicesSection() {
                     alt={tab.imageAlt}
                     width={800}
                     height={600}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                     data-ai-hint={tab.dataAiHint}
                   />
                 </div>
