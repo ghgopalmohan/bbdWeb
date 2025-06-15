@@ -3,19 +3,19 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react'; // Removed Moon, Sun as ThemeToggle is null
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { ThemeToggle } from '@/components/theme-toggle'; // Re-added for PRD
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'My Style', href: '#my-style' }, // Changed from Testimonials
 ];
 
 export default function Header() {
@@ -68,7 +68,7 @@ export default function Header() {
               <Link href="#contact">Get Quote</Link>
             </Button>
           </div>
-          <ThemeToggle />
+          <ThemeToggle /> {/* Kept for structure, but it currently renders null */}
           <div className="flex items-center md:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -104,7 +104,7 @@ export default function Header() {
                   </Button>
                 </nav>
                 <div className="mt-auto pt-6 border-t dark:border-slate-700">
-                    <ThemeToggle />
+                    <ThemeToggle /> {/* Kept for structure, but it currently renders null */}
                 </div>
                 <div className="mt-4 text-center">
                   <p className="text-xs text-muted-foreground dark:text-slate-500">GM © {new Date().getFullYear()}</p>

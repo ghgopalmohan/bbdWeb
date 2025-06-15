@@ -5,70 +5,71 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
+import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react'; // Palette is used for Brochure
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
+// Assuming Film icon for other services as a placeholder if specific ones aren't needed
 const serviceTabsData = [
   {
     value: 'Brochure',
     title: 'Brochure Design',
-    icon: Palette,
-    description: 'Crafting pixel-perfect, responsive websites with Webflow that engage users and drive results. Expertise in creating custom interactions and animations.',
-    content: 'From initial concept to final launch, I specialize in Webflow development that combines aesthetic appeal with seamless functionality. My process involves understanding your brand, designing a user-centric interface, and building a website that is both beautiful and easy to manage.',
-    imageUrl: '/images/brochure-1.jpg',
+    icon: Palette, // Specific icon for Brochure
+    description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
+    content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
+    imageUrl: '/images/brochure-1.jpg', // Placeholder, update with actual image
     imageAlt: 'Brochure design process',
-    dataAiHint: 'brochure design webflow',
+    dataAiHint: 'brochure design layout',
   },
   {
     value: 'pamphlet',
     title: 'Pamphlet Design',
-    icon: Smartphone,
-    description: 'Designing intuitive and engaging user interfaces that enhance user experience and meet business goals. Focus on usability and accessibility.',
-    content: 'My UI/UX design philosophy centers on creating interfaces that are not only visually stunning but also incredibly user-friendly. I conduct thorough research, create wireframes and prototypes, and iterate based on user feedback to deliver optimal digital experiences.',
-    imageUrl: '/images/pamphlet-1.jpg',
+    icon: Film, // Using Film as a generic design icon
+    description: 'Designing concise and visually striking pamphlets for promotions, events, or informational purposes.',
+    content: 'My pamphlet designs focus on delivering key information in a compact and engaging format. I prioritize clear messaging and eye-catching visuals to ensure your pamphlets grab attention and achieve their purpose.',
+    imageUrl: '/images/pamphlet-1.jpg', // Placeholder
     imageAlt: 'Pamphlet design mockups',
-    dataAiHint: 'pamphlet mobile app',
+    dataAiHint: 'pamphlet design event',
   },
   {
     value: 'Logo',
     title: 'Logo Design',
-    icon: Film,
-    description: 'Bringing brands to life with captivating motion graphics and animations for web, social media, and presentations.',
-    content: 'I create dynamic motion graphics that tell your story and capture attention. Whether it\'s for explainer videos, logo animations, or social media content, my animations are designed to be impactful and memorable, enhancing your brand\'s digital presence.',
-    imageUrl: '/images/logo-1.jpg',
-    imageAlt: 'Logo example',
-    dataAiHint: 'Logo animation',
+    icon: Film, // Using Film as a generic design icon
+    description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
+    content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
+    imageUrl: '/images/logo-1.jpg', // Placeholder
+    imageAlt: 'Logo design example',
+    dataAiHint: 'logo design modern',
   },
   {
     value: 'Letterhead',
     title: 'LetterHead Design',
-    icon: Film,
-    description: 'Bringing brands to life with captivating motion graphics and animations for web, social media, and presentations.',
-    content: 'I create dynamic motion graphics that tell your story and capture attention. Whether it\'s for explainer videos, logo animations, or social media content, my animations are designed to be impactful and memorable, enhancing your brand\'s digital presence.',
-    imageUrl: '/images/capital letter head copy 2.jpg',
+    icon: Film, // Using Film as a generic design icon
+    description: 'Professional letterhead designs that reinforce your brand identity in all official correspondence.',
+    content: 'I design elegant and professional letterheads that maintain brand consistency and create a sophisticated impression. Attention to detail ensures your stationery is both functional and representative of your brand.',
+    imageUrl: '/images/capital letter head copy 2.jpg', // Placeholder
     imageAlt: 'Letterhead example',
-    dataAiHint: 'Letterhead animation',
+    dataAiHint: 'letterhead corporate stationery',
   },
   {
     value: 'Menus',
     title: 'Menu Design',
-    icon: Film,
-    description: 'Bringing brands to life with captivating motion graphics and animations for web, social media, and presentations.',
-    content: 'I create dynamic motion graphics that tell your story and capture attention. Whether it\'s for explainer videos, logo animations, or social media content, my animations are designed to be impactful and memorable, enhancing your brand\'s digital presence.',
-    imageUrl: '/images/menudummy.jpg',
+    icon: Film, // Using Film as a generic design icon
+    description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and food businesses.',
+    content: 'My menu designs balance aesthetics with functionality, enticing customers while making choices easy. I focus on layout, typography, and imagery to create menus that enhance the dining experience.',
+    imageUrl: '/images/menudummy.jpg', // Placeholder
     imageAlt: 'Menu example',
-    dataAiHint: 'Menu animation',
+    dataAiHint: 'menu design restaurant',
   },
   {
     value: 'Flyer',
     title: 'Flyer Design',
-    icon: Film,
-    description: 'Bringing brands to life with captivating motion graphics and animations for web, social media, and presentations.',
-    content: 'I create dynamic motion graphics that tell your story and capture attention. Whether it\'s for explainer videos, logo animations, or social media content, my animations are designed to be impactful and memorable, enhancing your brand\'s digital presence.',
-    imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
+    icon: Film, // Using Film as a generic design icon
+    description: 'Eye-catching flyer designs for promotions, events, and marketing campaigns that demand attention.',
+    content: 'I create dynamic flyers that effectively convey your message and drive action. Whether for print or digital distribution, my designs are crafted to be visually engaging and results-oriented.',
+    imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg', // Placeholder
     imageAlt: 'Flyer example',
-    dataAiHint: 'Flyer animation',
+    dataAiHint: 'flyer design promotion',
   },
 ];
 
@@ -88,30 +89,31 @@ export default function ServicesSection() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 md:py-28 bg-janice-main-bg text-janice-text-light">
+    <section id="services" ref={sectionRef} className="py-20 md:py-28 bg-primary text-primary-foreground"> {/* Changed to bg-primary for dark theme */}
       <div className="container-custom">
         <div className="grid md:grid-cols-12 gap-8 items-start mb-12 md:mb-16">
           <div
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
           >
-            <p className="text-xs font-medium text-janice-text-light/70 uppercase tracking-wider mb-2">WHAT I OFFER</p>
-            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-janice-text-light">
+            <p className="text-xs font-medium text-primary-foreground/70 uppercase tracking-wider mb-2">WHAT I OFFER</p>
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-white"> {/* Ensuring title is white on primary bg */}
               My Service
             </h2>
-             <p className="text-md text-janice-text-light/80 mt-3 max-w-xl">
+             <p className="text-md text-primary-foreground/80 mt-3 max-w-xl">
               Offering tailored design solutions to elevate your brand's visual identity and user engagement.
             </p>
           </div>
@@ -119,7 +121,8 @@ export default function ServicesSection() {
             className={cn("md:col-span-5 md:text-right self-start md:pt-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
           >
-            <Button asChild variant="janicePrimary" size="lg" className="rounded-lg group">
+            {/* Button styling for dark background: Use secondary or a light variant if primary is too dark for primary button */}
+            <Button asChild variant="secondary" size="lg" className="rounded-lg group">
               <Link href="#contact">
                 Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -130,7 +133,7 @@ export default function ServicesSection() {
         <Tabs defaultValue={serviceTabsData[0].value} onValueChange={setActiveTab} className="w-full">
           <TabsList 
             className={cn(
-              "grid w-full grid-cols-1 sm:grid-cols-3 gap-2 bg-janice-dark/30 p-2 rounded-xl mb-10",
+              "grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-2 bg-black/20 backdrop-blur-sm p-2 rounded-xl mb-10", // Adjusted for more tabs & dark bg
               isVisible ? "fade-in-up is-visible" : "fade-in-up"
             )}
             style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
@@ -139,9 +142,9 @@ export default function ServicesSection() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="font-medium text-base text-janice-text-light/70 data-[state=active]:bg-janice-accent data-[state=active]:text-janice-dark data-[state=active]:shadow-lg rounded-lg px-4 py-3 transition-all duration-300"
+                className="font-medium text-sm text-primary-foreground/70 data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground data-[state=active]:shadow-lg rounded-lg px-3 py-2.5 transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <tab.icon className="mr-2 h-5 w-5" />
+                <tab.icon className="h-4 w-4" /> {/* Adjusted icon size */}
                 {tab.title}
               </TabsTrigger>
             ))}
@@ -158,11 +161,11 @@ export default function ServicesSection() {
               )}
               style={{ transitionDelay: `${isVisible ? 400 + index * 50 : 0}ms` }}
             >
-              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-janice-dark/20 p-6 md:p-10 rounded-xl shadow-xl">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-black/10 backdrop-blur-sm p-6 md:p-10 rounded-xl shadow-xl"> {/* Subtle dark card on primary bg */}
                 <div className="order-2 md:order-1">
-                  <h3 className="font-headline text-3xl md:text-4xl font-semibold text-janice-accent mb-3">{tab.title}</h3>
-                  <p className="text-md text-janice-text-light/80 mb-4">{tab.description}</p>
-                  <p className="text-sm text-janice-text-light/60 leading-relaxed">{tab.content}</p>
+                  <h3 className="font-headline text-3xl md:text-4xl font-semibold text-secondary mb-3">{tab.title}</h3> {/* Title color contrasted with bg */}
+                  <p className="text-md text-primary-foreground/80 mb-4">{tab.description}</p>
+                  <p className="text-sm text-primary-foreground/60 leading-relaxed">{tab.content}</p>
                 </div>
                 <div className="order-1 md:order-2 aspect-[4/3] md:aspect-square rounded-lg overflow-hidden">
                   <Image

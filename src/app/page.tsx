@@ -3,35 +3,34 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import HeroSection from '@/components/sections/hero-section';
 import AboutSection from '@/components/sections/about-section';
-import ExperienceSection from '@/components/sections/experience-section'; // Added
+import ExperienceSection from '@/components/sections/experience-section';
 import ServicesSection from '@/components/sections/services-section';
 import PortfolioSection from '@/components/sections/portfolio-section';
-import TestimonialsSection from '@/components/sections/testimonials-section';
-import ContactSection from '@/components/sections/contact-section'; // This is the "Stay Updated on Our Progress" / form
+import MyStyleSection from '@/components/sections/my-style-section'; // Added
+import ContactSection from '@/components/sections/contact-section';
 
 export default function JanicePortfolioPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background"> {/* Use global background */}
+    <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow">
-        <HeroSection />
-        {/* The following sections create the alternating dark/light bg effect */}
-        <div className="bg-background"> {/* Light background container for About */}
-          <AboutSection />
+        <HeroSection /> {/* Custom bg, effectively darkish */}
+        <div className="bg-background"> {/* Light container for About */}
+          <AboutSection /> {/* AboutSection has its own light bg */}
         </div>
-        <ExperienceSection /> {/* Dark background from its own definition */}
-        <div className="bg-background"> {/* Light background container for Services */}
-           <ServicesSection />
+        <ExperienceSection /> {/* Dark (bg-janice-dark) */}
+        {/* ServicesSection is now set to dark (bg-primary) */}
+        <ServicesSection /> 
+        <div className="bg-background"> {/* Light container for Portfolio */}
+           <PortfolioSection /> {/* PortfolioSection has light bg */}
         </div>
-        <PortfolioSection /> {/* Dark background from its own definition */}
-         <div className="bg-background"> {/* Light background for Testimonials */}
-          <TestimonialsSection />
+        {/* MyStyleSection is dark (bg-black) */}
+        <MyStyleSection />
+        <div className="bg-background"> {/* Light container for Contact */}
+           <ContactSection /> {/* ContactSection has light bg */}
         </div>
-        <ContactSection /> {/* Dark background for Contact/Form section */}
       </main>
       <Footer />
     </div>
   );
 }
-
-    
