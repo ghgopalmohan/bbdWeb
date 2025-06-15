@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
-import { PlayCircle } from 'lucide-react';
+import { Briefcase, Users, Award } from 'lucide-react'; // Icons for stats
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -31,56 +31,93 @@ export default function AboutSection() {
     };
   }, []);
 
+  const stats = [
+    {
+      icon: Briefcase,
+      value: "25+",
+      label: "Years of Experience",
+      delay: "300ms"
+    },
+    {
+      icon: Users,
+      value: "100+",
+      label: "Satisfied Clients",
+      delay: "400ms"
+    },
+    {
+      icon: Award,
+      value: "500+",
+      label: "Projects Completed",
+      delay: "500ms"
+    }
+  ];
+
+  const collageImages = [
+    { src: "https://placehold.co/400x300.png", alt: "Design process sketch", dataAiHint: "design sketch process" },
+    { src: "https://placehold.co/400x300.png", alt: "Client collaboration meeting", dataAiHint: "client meeting collaboration" },
+    { src: "https://placehold.co/400x300.png", alt: "Final design mockup", dataAiHint: "design mockup app" },
+    { src: "https://placehold.co/400x300.png", alt: "Branding assets", dataAiHint: "branding assets styleguide" },
+  ];
+
   return (
-    <section id="about" ref={sectionRef} className="section-padding bg-background text-foreground">
+    <section id="about" ref={sectionRef} className="section-padding bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32">
       <div className="container-custom">
-        <div 
-            className={cn("mb-10 md:mb-12 max-w-3xl", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: '100ms'}}
+        <div
+          className={cn("mb-10 md:mb-16 max-w-3xl", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+          style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
         >
-            <p className="text-xs font-medium text-foreground/60 uppercase tracking-wider mb-2">About Me</p>
-            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug mb-4 text-foreground">
-                Design has always been more than just a job - it&apos;s my passion.
-            </h2>
-            <p className="text-sm text-muted-foreground">
-                Driven by a passion for design, I create solutions that are not only visually appealing but also highly functional and user-centric.
-            </p>
+          <h2 className="font-headline text-5xl md:text-6xl font-bold !leading-tight text-janice-dark mb-4">
+            About Me
+          </h2>
+          <p className="text-lg text-janice-text-dark/80">
+            With over 25 years in the design industry, I've had the privilege of working on a diverse range of projects, helping businesses and individuals bring their visions to life through impactful visual communication. My passion lies in understanding unique challenges and crafting bespoke design solutions that resonate and deliver results.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
-          <div 
-            className={cn("md:col-span-7 relative group aspect-video md:aspect-[16/10] rounded-xl overflow-hidden shadow-card", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: '200ms'}}
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+          <div
+            className={cn("md:col-span-7 grid grid-cols-2 gap-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
           >
-            <Image
-              src="https://placehold.co/800x500.png" 
-              alt="Designer working on tablet"
-              width={800}
-              height={500}
-              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-              data-ai-hint="designer tablet workspace"
-            />
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <PlayCircle className="w-16 h-16 text-white/80" />
-            </div>
+            {collageImages.map((image, index) => (
+              <div key={index} className="aspect-[4/3] rounded-lg overflow-hidden shadow-lg group">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={400}
+                  height={300}
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                  data-ai-hint={image.dataAiHint}
+                />
+              </div>
+            ))}
           </div>
 
-          <div 
+          <div
             className={cn("md:col-span-5 space-y-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: '300ms'}}
+            style={{transitionDelay: isVisible ? '300ms' : '0ms'}}
           >
-            <div>
-              <p className="font-headline text-5xl font-bold text-foreground mb-1">+2300</p>
-              <p className="text-sm text-muted-foreground">Successful projects completed, delivering impactful visual solutions.</p>
-            </div>
-            <div>
-              <p className="font-headline text-5xl font-bold text-foreground mb-1">+640</p>
-              <p className="text-sm text-muted-foreground">Satisfied clients across various industries globally.</p>
-            </div>
-            <div>
-              <p className="font-headline text-5xl font-bold text-foreground mb-1">100%</p>
-              <p className="text-sm text-muted-foreground">Clients Satisfaction.</p>
-            </div>
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className={cn(
+                  "flex items-center p-1 rounded-lg transition-all duration-500 ease-out",
+                  isVisible ? "fade-in-up is-visible" : "opacity-0"
+                )}
+                style={{ transitionDelay: isVisible ? stat.delay : '0ms' }}
+              >
+                <div className="flex-shrink-0 mr-4">
+                  <stat.icon className="w-10 h-10 text-janice-accent" />
+                </div>
+                <div>
+                  <p className="font-headline text-4xl font-bold text-janice-dark mb-0">{stat.value}</p>
+                  <p className="text-sm text-janice-text-dark/70">{stat.label}</p>
+                </div>
+              </div>
+            ))}
+             <p className="text-sm text-janice-text-dark/70 pt-4">
+              My approach is collaborative and client-focused, ensuring that every design not only looks great but also achieves its strategic objectives. I specialize in creating memorable brand identities, compelling marketing materials, and user-friendly digital experiences.
+            </p>
           </div>
         </div>
       </div>
