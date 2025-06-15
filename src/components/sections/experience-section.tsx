@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
-import { Briefcase, CalendarDays, Building, Sparkles } from 'lucide-react'; // Using more varied icons
+import { Briefcase, Building, Sparkles } from 'lucide-react';
 
 const timelineData = [
   {
@@ -47,13 +47,14 @@ export default function ExperienceSection() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
@@ -63,13 +64,13 @@ export default function ExperienceSection() {
       <div className="container-custom">
         {/* Title Block */}
         <div className="mb-12 md:mb-16 text-center">
-          <p 
+          <p
             className={cn("text-xs font-medium text-janice-text-light/70 uppercase tracking-wider mb-2", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
             MY JOURNEY
           </p>
-          <h2 
+          <h2
             className={cn("font-headline text-3xl md:text-4xl font-semibold !leading-snug text-janice-accent", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
@@ -93,7 +94,7 @@ export default function ExperienceSection() {
               style={{ transitionDelay: isVisible ? item.delay : '0ms' }}
             >
               {/* Icon and Date for larger screens */}
-              <div className="hidden md:flex flex-col items-center mx-6 lg:mx-10_">
+              <div className="hidden md:flex flex-col items-center mx-6 lg:mx-10">
                  <div className="bg-janice-accent p-3 rounded-full text-janice-dark mb-2 shadow-lg">
                    <item.icon className="w-6 h-6" />
                  </div>
@@ -126,5 +127,3 @@ export default function ExperienceSection() {
     </section>
   );
 }
-
-    
