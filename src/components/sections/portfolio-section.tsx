@@ -86,10 +86,10 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'banner-envelope-07',
-    title: 'Indraprastha Envelope Banners',
+    title: 'Bathinas Navara Rice',
     category: 'Advertising',
-    imageUrl: '/images/envelope layout indraprastta 30x23.jpg',
-    fullImageUrl: '/images/envelope layout indraprastta 30x23.jpg',
+    imageUrl: '/images/pamphlet-1.jpg',
+    fullImageUrl: '/images/pamphlet-1.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
     imageWidth: 1000, imageHeight: 400 // Placeholder

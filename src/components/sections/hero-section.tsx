@@ -54,10 +54,10 @@ export default function HeroSection() {
                 Gopal Mohan
               </h1>
               <p className="text-xl md:text-2xl lg:text-3xl font-medium text-janice-text-light/90 mb-4 !leading-tight">
-                Digital Designer &amp; Creative Expert
+                <span className="font-calligraphy">Professional Photoshop Designer</span>
               </p>
               <p className="text-sm md:text-base text-janice-text-light/70 mb-8 max-w-md">
-                Crafting unique digital experiences with a passion for clean aesthetics and impactful design. Based in the vibrant city of Melbourne.
+              From logos and brochures to cards, banners, and hoardings — Whether for print or digital, my designs are made to stand out, tell your story, and leave a lasting impression.
               </p>
               <div className="flex items-center space-x-4">
                 <Button 
@@ -89,7 +89,7 @@ export default function HeroSection() {
               style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}
             >
               <Image
-                src="/images/hero-1.jpeg"
+                src="/images/hero22.jpeg"
                 alt="Janice - Digital Designer"
                 layout="fill"
                 objectFit="cover"
