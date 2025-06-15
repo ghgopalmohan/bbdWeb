@@ -3,12 +3,12 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
-import { ZoomIn, ExternalLink, X } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'; // Removed DialogHeader, DialogTitle, DialogDescription, DialogClose
+import { ZoomIn } from 'lucide-react'; // Removed ExternalLink, X
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import Link from 'next/link';
+// import Link from 'next/link'; // Link is no longer used in the dialog
 
 interface PortfolioItem {
   id: string;
@@ -16,9 +16,9 @@ interface PortfolioItem {
   category: string;
   imageUrl: string;
   fullImageUrl?: string;
-  description: string;
+  description: string; // Kept for data, but not displayed in dialog
   dataAiHint: string;
-  projectUrl?: string;
+  projectUrl?: string; // Kept for data, but not displayed in dialog
 }
 
 const portfolioItemsData: PortfolioItem[] = [
@@ -143,74 +143,51 @@ export default function PortfolioSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {portfolioItemsData.map((item, index) => {
-            return (
-              <Dialog key={item.id}>
-                <DialogTrigger asChild>
-                  <Card
-                    className={cn(
-                      "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
-                      isVisible ? "fade-in-up is-visible" : "fade-in-up"
-                    )}
-                    style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
-                  >
-                    <CardContent className="p-0 aspect-[4/3] relative overflow-hidden">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.title}
-                        width={600}
-                        height={450}
-                        className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
-                        data-ai-hint={item.dataAiHint}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                        <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
-                        <p className="text-xs text-primary-foreground/80">{item.category}</p>
-                      </div>
-                       <div className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <ZoomIn className="h-5 w-5 text-white/90" />
-                        </div>
-                    </CardContent>
-                  </Card>
-                </DialogTrigger>
-                <DialogContent
-                  className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
+          {portfolioItemsData.map((item, index) => (
+            <Dialog key={item.id}>
+              <DialogTrigger asChild>
+                <Card
+                  className={cn(
+                    "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
+                    isVisible ? "fade-in-up is-visible" : "fade-in-up"
+                  )}
+                  style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
                 >
-                  <div className="p-1 max-h-[85vh] overflow-y-auto">
+                  <CardContent className="p-0 aspect-[4/3] relative overflow-hidden">
                     <Image
-                      src={item.fullImageUrl || item.imageUrl}
+                      src={item.imageUrl}
                       alt={item.title}
-                      width={1200}
-                      height={900}
-                      className="w-full h-auto object-contain rounded-md"
+                      layout="fill"
+                      className="object-cover object-top w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
                       data-ai-hint={item.dataAiHint}
                     />
-                  </div>
-                  <div className="p-6 border-t border-border dark:border-border-dark bg-secondary/30 dark:bg-secondary-dark/20 rounded-b-lg">
-                    <DialogHeader>
-                      <DialogTitle className="font-headline text-2xl text-primary mb-1">{item.title}</DialogTitle>
-                      <DialogDescription className="text-sm text-muted-foreground mb-3">{item.category}</DialogDescription>
-                    </DialogHeader>
-                    <p className="text-base text-foreground dark:text-foreground-dark mb-4 mt-4">{item.description}</p>
-                    <div className="flex justify-between items-center">
-                        {item.projectUrl && (
-                           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark dark:hover:text-primary-dark-foreground">
-                             <Link href={item.projectUrl} target="_blank" rel="noopener noreferrer">
-                               View Project <ExternalLink className="ml-2 h-4 w-4" />
-                             </Link>
-                           </Button>
-                        )}
-                        <DialogClose asChild>
-                           <Button variant="ghost" className="text-muted-foreground hover:text-primary dark:hover:text-primary-dark">
-                             Close <X className="ml-2 h-4 w-4" />
-                           </Button>
-                        </DialogClose>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                      <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
+                      <p className="text-xs text-primary-foreground/80">{item.category}</p>
                     </div>
-                  </div>
-                </DialogContent>
-              </Dialog>
-            );
-          })}
+                    <div className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <ZoomIn className="h-5 w-5 text-white/90" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </DialogTrigger>
+              <DialogContent
+                className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
+              >
+                <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center"> {/* Centering the image */}
+                  <Image
+                    src={item.fullImageUrl || item.imageUrl}
+                    alt={item.title} // Alt text is good for accessibility even if not visually displayed
+                    width={1200} // Provide base width for optimization
+                    height={900} // Provide base height for optimization
+                    className="w-full h-auto object-contain rounded-md" // object-contain ensures full image is visible
+                    data-ai-hint={item.dataAiHint}
+                  />
+                </div>
+                {/* All other content (title, description, buttons) is removed from DialogContent */}
+              </DialogContent>
+            </Dialog>
+          ))}
         </div>
       </div>
     </section>
