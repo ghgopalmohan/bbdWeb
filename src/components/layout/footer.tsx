@@ -12,7 +12,7 @@ const footerNavLinks = [
 const socialLinks = [
   { Icon: Twitter, href: '#', label: 'Twitter' },
   { Icon: Dribbble, href: '#', label: 'Dribbble' },
-  { Icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/in/gopal-mohan-g-h-17376624/?originalSubdomain=in', label: 'LinkedIn' },
   { Icon: Github, href: '#', label: 'Github' },
 ];
 

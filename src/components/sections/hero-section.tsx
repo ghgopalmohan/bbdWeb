@@ -89,7 +89,7 @@ export default function HeroSection() {
               style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}
             >
               <Image
-                src="https://placehold.co/600x800.png"
+                src="/images/hero-1.jpeg"
                 alt="Janice - Digital Designer"
                 layout="fill"
                 objectFit="cover"
@@ -99,7 +99,7 @@ export default function HeroSection() {
               />
               <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg">
                 <Image
-                    src="https://placehold.co/100x100.png"
+                    src="/images/qrcode.png"
                     alt="QR Code"
                     width={80}
                     height={80}

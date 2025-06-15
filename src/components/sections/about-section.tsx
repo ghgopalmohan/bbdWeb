@@ -53,10 +53,10 @@ export default function AboutSection() {
   ];
 
   const collageImages = [
-    { src: "https://placehold.co/400x300.png", alt: "Design process sketch", dataAiHint: "design sketch process" },
-    { src: "https://placehold.co/400x300.png", alt: "Client collaboration meeting", dataAiHint: "client meeting collaboration" },
-    { src: "https://placehold.co/400x300.png", alt: "Final design mockup", dataAiHint: "design mockup app" },
-    { src: "https://placehold.co/400x300.png", alt: "Branding assets", dataAiHint: "branding assets styleguide" },
+    { src: "/images/bbd-1.jpeg", alt: "Design process sketch", dataAiHint: "design sketch process" },
+    { src: "/images/bbd-2.jpg", alt: "Client collaboration meeting", dataAiHint: "client meeting collaboration" },
+    { src: "/images/bbd-3.jpg", alt: "Final design mockup", dataAiHint: "design mockup app" },
+    { src: "/images/bbd-4.jpg", alt: "Branding assets", dataAiHint: "branding assets styleguide" },
   ];
 
   const expertiseItems = [

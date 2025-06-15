@@ -11,11 +11,11 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import Link from 'next/link';
 
 interface PortfolioItem {
-  id: string; // Changed to string for unique IDs
+  id: string; 
   title: string;
   category: string;
   imageUrl: string;
-  fullImageUrl?: string; // For higher resolution in dialog
+  fullImageUrl?: string; 
   description: string;
   dataAiHint: string;
   projectUrl?: string;
@@ -26,7 +26,7 @@ const portfolioItemsData: PortfolioItem[] = [
     id: 'bizcard-01',
     title: 'Elegant Business Cards',
     category: 'Branding & Identity',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/5000 BB 90gsm-back copy.jpg',
     description: 'Professionally designed business cards that make a lasting first impression.',
     dataAiHint: 'business card design',
     projectUrl: '#',
@@ -35,7 +35,7 @@ const portfolioItemsData: PortfolioItem[] = [
     id: 'logo-design-02',
     title: 'Modern Logo Design',
     category: 'Branding & Identity',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/2x4 babaji-2 copy.jpg',
     description: 'Creative and memorable logo designs tailored to brand identity.',
     dataAiHint: 'modern logo concept',
   },
@@ -43,31 +43,55 @@ const portfolioItemsData: PortfolioItem[] = [
     id: 'menu-design-03',
     title: 'Restaurant Menu Layout',
     category: 'Print Design',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants and cafes.',
     dataAiHint: 'restaurant menu food',
   },
   {
-    id: 'banner-ads-04',
-    title: 'Promotional Banners',
+    id: 'banner-moonlight-04', // Unique ID
+    title: 'Moonlight Promotional Banners', // Updated title
     category: 'Advertising',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
   },
   {
-    id: 'poster-art-05',
-    title: 'Event Posters',
+    id: 'poster-valet-05', // Unique ID
+    title: 'Valet Parking Event Posters', // Updated title
     category: 'Print Design',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
     description: 'Impactful poster designs for events, promotions, and announcements.',
     dataAiHint: 'event poster concert',
   },
   {
-    id: 'brochure-corp-06',
-    title: 'Corporate Brochures',
+    id: 'brochure-cards-06', // Unique ID
+    title: 'Corporate Branding Brochures', // Updated title
     category: 'Marketing Material',
-    imageUrl: 'https://placehold.co/600x450.png',
+    imageUrl: '/images/business card copy.jpg',
+    description: 'Informative and engaging brochure designs for businesses and organizations.',
+    dataAiHint: 'corporate brochure business',
+  },
+  {
+    id: 'banner-envelope-07', // Changed from banner-ads-04
+    title: 'Indraprastha Envelope Banners', // Made title more specific
+    category: 'Advertising',
+    imageUrl: '/images/envelope layout indraprastta 30x23.jpg',
+    description: 'Eye-catching banners for digital and print advertising campaigns.',
+    dataAiHint: 'promotional banner event',
+  },
+  {
+    id: 'poster-furniture-08', // Changed from poster-art-05
+    title: 'Baba Furniture Event Posters', // Made title more specific
+    category: 'Print Design',
+    imageUrl: '/images/envelope baba furniture copy 2.jpg',
+    description: 'Impactful poster designs for events, promotions, and announcements.',
+    dataAiHint: 'event poster concert',
+  },
+  {
+    id: 'brochure-lifestyle-09', // Changed from brochure-corp-06
+    title: 'Lifestyle Product Brochures', // Made title more specific
+    category: 'Marketing Material',
+    imageUrl: '/images/lifestyle-front copy 2.jpg',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
   },
@@ -97,7 +121,7 @@ export default function PortfolioSection() {
         <div 
           className={cn(
             "text-center mb-12 md:mb-16",
-            isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+            isVisible ? "fade-in-up is-visible" : "fade-in-up" // Changed from animate-fade-in-up
           )}
           style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
         >
@@ -118,7 +142,7 @@ export default function PortfolioSection() {
                   <Card
                     className={cn(
                       "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
-                      isVisible ? "animate-fade-in-up is-visible" : "opacity-0"
+                      isVisible ? "fade-in-up is-visible" : "fade-in-up" // Changed from animate-fade-in-up
                     )}
                     style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
                   >
@@ -183,3 +207,5 @@ export default function PortfolioSection() {
     </section>
   );
 }
+
+    
