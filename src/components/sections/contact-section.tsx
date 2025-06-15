@@ -106,7 +106,7 @@ export default function ContactSection() {
   };
 
   const contactDetails = [
-    { icon: Mail, title: "Email Address", value: "gopal.mohan.design@example.com", href: "mailto:gopal.mohan.design@example.com", delay: "300ms"},
+    { icon: Mail, title: "Email Address", value: "gopalmohan.design@gmail.com", href: "mailto:gopalmohan.design@gmail.com", delay: "300ms"},
     { icon: Phone, title: "Phone Number", value: "+91 98765 43210", href: "tel:+919876543210", delay: "400ms"},
     { icon: MapPin, title: "Location", value: "Bengaluru, India", delay: "500ms"},
   ];

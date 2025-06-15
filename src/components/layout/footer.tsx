@@ -57,8 +57,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Email Address</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="mailto:info@email.com" className="hover:text-white transition-colors">info@email.com</Link></li>
-              <li><Link href="mailto:careers@email.com" className="hover:text-white transition-colors">careers@email.com</Link></li>
+              <li><Link href="mailto:gopalmohan.design@gmail.com" className="hover:text-white transition-colors">gopalmohan.design@gmail.com</Link></li>
             </ul>
           </div>
           
