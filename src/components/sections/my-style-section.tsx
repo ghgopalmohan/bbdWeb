@@ -91,9 +91,8 @@ export default function MyStyleSection() {
                        <path d="M75.26,96.39a47.46,47.46,0,1,1,16-64.41" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" opacity="0.7" transform="rotate(-10 50 50)"/>
                     </svg>
                   </div>
-                  <div className="relative w-20 h-20 rounded-full bg-white text-black flex items-center justify-center text-3xl font-bold shadow-lg z-10">
-                    {/* Using Icon for a more polished look than just number, can revert to point.number if preferred */}
-                    <point.icon className="w-10 h-10 text-primary" /> 
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-black flex items-center justify-center text-3xl font-bold shadow-lg z-10">
+                    <point.icon className="w-8 h-8 sm:w-10 sm:h-10 text-primary" /> 
                   </div>
                 </div>
                 <h3 className="font-headline text-xl lg:text-2xl font-semibold mb-3 text-white">{point.title}</h3>

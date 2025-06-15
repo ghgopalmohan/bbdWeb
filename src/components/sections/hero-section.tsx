@@ -61,19 +61,19 @@ export default function HeroSection() {
               </p>
               <div className="flex items-center space-x-4">
                 <Button 
-                  size="lg" 
+                  size="default" 
                   variant="janicePrimary"
-                  className="px-8 py-3 text-base rounded-full group"
+                  className="md:size-lg px-6 py-3 md:px-8 text-sm md:text-base rounded-full group"
                   asChild
                 >
                   <Link href="#contact">
- Get Quote <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                     Get Quote <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
                 <Button 
-                  size="lg" 
+                  size="default"
                   variant="janiceSecondary"
-                  className="px-8 py-3 text-base rounded-full group"
+                  className="md:size-lg px-6 py-3 md:px-8 text-sm md:text-base rounded-full group"
                   asChild
                 >
                   <Link href="#portfolio">

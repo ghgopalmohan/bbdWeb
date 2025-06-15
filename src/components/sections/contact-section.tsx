@@ -220,8 +220,8 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    size="lg"
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 focus:ring-primary dark:focus:ring-accent transition-all group rounded-md"
+                    size="default" 
+                    className="md:size-lg w-full bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 focus:ring-primary dark:focus:ring-accent transition-all group rounded-md"
                   >
                     {isSubmitting ? 'Sending...' : "Let's Talk"}
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

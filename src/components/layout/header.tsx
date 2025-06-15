@@ -46,7 +46,7 @@ export default function Header() {
       )}
     >
       <div className="container-custom flex h-20 items-center justify-between">
-        <Link href="#home" className="font-headline text-3xl font-bold text-primary dark:text-primary-dark hover:opacity-80 transition-opacity">
+        <Link href="#home" className="font-headline text-2xl md:text-3xl font-bold text-primary dark:text-primary-dark hover:opacity-80 transition-opacity">
           GM
         </Link>
 
@@ -64,7 +64,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
-            <Button asChild variant="default" size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 dark:text-accent-foreground rounded-full px-6 py-3">
+            <Button asChild variant="default" size="default" className="md:size-lg bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 dark:text-accent-foreground rounded-full px-4 py-2 md:px-6 md:py-3">
               <Link href="#contact">Get Quote</Link>
             </Button>
           </div>

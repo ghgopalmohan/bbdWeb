@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs'; // Re-added TabsList
+import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
@@ -120,7 +120,7 @@ export default function ServicesSection() {
             className={cn("md:col-span-5 md:text-right self-start md:pt-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
           >
-            <Button asChild variant="default" size="lg" className="rounded-lg group">
+            <Button asChild variant="default" size="default" className="md:size-lg rounded-lg group">
               <Link href="#contact">
                 <span className="flex items-center"> {/* Ensure single child for Link if Button asChild is tricky */}
                   Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -132,8 +132,8 @@ export default function ServicesSection() {
 
         <Tabs defaultValue={serviceTabsData[0].value} onValueChange={setActiveTab} className="w-full">
           <TabsList className={cn(
-            "flex flex-wrap gap-3 mb-10 justify-center", // Custom layout for triggers
-            "bg-transparent shadow-none p-0 h-auto", // Override default TabsList container look
+            "flex flex-wrap gap-3 mb-10 justify-center", 
+            "bg-transparent shadow-none p-0 h-auto", 
             isVisible ? "fade-in-up is-visible" : "fade-in-up"
           )}
           style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
@@ -143,11 +143,11 @@ export default function ServicesSection() {
                 key={tab.value}
                 value={tab.value}
                 className={cn(
-                  "font-medium text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-3 py-5 transition-all duration-300 flex items-center justify-center gap-2", // py-5 for more height
+                  "font-medium text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-3 py-2.5 sm:py-4 transition-all duration-300 flex items-center justify-center gap-2", 
                   activeTab === tab.value ? "data-[state=active]:text-primary-foreground" : "text-muted-foreground"
                 )}
               >
-                <tab.icon className={cn("h-5 w-5", activeTab === tab.value ? "text-primary-foreground" : "text-muted-foreground")} />
+                <tab.icon className={cn("h-4 w-4 sm:h-5 sm:w-5", activeTab === tab.value ? "text-primary-foreground" : "text-muted-foreground")} />
                 {tab.title}
               </TabsTrigger>
             ))}
