@@ -1,3 +1,4 @@
+
 'use server';
 
 import { z } from 'zod';
@@ -30,7 +31,7 @@ export async function sendContactEmail(
   }
 
   const { name, email, subject, message } = validation.data;
-  const recipientEmail = "gopal.mohan.design@example.com"; // Fixed recipient email
+  const recipientEmail = "gopalmohan.design@gmail.com"; // Updated recipient email
 
   // --- Actual Email Sending Logic Would Go Here ---
   // For example, using Nodemailer with an SMTP transport or an email service SDK (e.g., SendGrid, Resend).
@@ -58,3 +59,4 @@ export async function sendContactEmail(
     return { success: false, message: 'Failed to send message. Please try again later.' };
   }
 }
+
