@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
-import { Briefcase, Users, Award, Palette } from 'lucide-react'; // Palette for expertise
+import { Briefcase, Users, Award, Palette, Zap } from 'lucide-react';
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -40,13 +40,13 @@ export default function AboutSection() {
     },
     {
       icon: Users,
-      value: "150+", // Placeholder based on "numerous leading companies"
+      value: "150+",
       label: "Happy Clients",
       delay: "400ms"
     },
     {
       icon: Award,
-      value: "500+", // Placeholder based on extensive portfolio
+      value: "500+",
       label: "Projects Done",
       delay: "500ms"
     }
@@ -70,7 +70,11 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32">
+    <section 
+      id="about" 
+      ref={sectionRef} 
+      className="bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32"
+    >
       <div className="container-custom">
         {/* Title Block */}
         <div className="grid md:grid-cols-12 gap-8 items-start mb-10 md:mb-16">
@@ -88,10 +92,10 @@ export default function AboutSection() {
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
             <p className="text-md text-janice-text-dark/80 md:pt-1 mb-4">
-              With over 31 years in design and entrepreneurship, my journey began by founding Business Bonds Directory (Yellow Pages)—a company dedicated to impactful advertisements, growing to 10 successful branches across Andhra Pradesh between 2000 and 2018. I then focused on the healthcare sector from 2018 to 2020, publishing a specialized Medical Directory for Vijayawada.
+              A seasoned design professional with over three decades of experience in impactful advertising, publishing, and freelance graphic design. My passion lies in creating visually compelling solutions that resonate with audiences and elevate brand presence, primarily utilizing Adobe Photoshop.
             </p>
-            <p className="text-md text-janice-text-dark/80 md:pt-1">
-              Since 2021, I've thrived as a freelance graphic designer and creative vendor for leading companies in India and abroad. My approach combines design precision with a deep understanding of brand identity, ensuring every project exceeds client expectations.
+             <p className="text-md text-janice-text-dark/80 md:pt-1">
+              My approach combines design precision with a deep understanding of brand identity, ensuring that every project I undertake not only meets but exceeds client expectations.
             </p>
           </div>
         </div>
@@ -145,11 +149,11 @@ export default function AboutSection() {
               </h3>
               <ul className="space-y-1.5 text-sm text-janice-text-dark/70 list-disc list-inside pl-1">
                 {expertiseItems.map((item, index) => (
-                  <li key={index}>{item} (Primarily Adobe Photoshop)</li>
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
-               <p className="text-sm text-janice-text-dark/70 mt-4">
-                My core strength lies in leveraging Adobe Photoshop to deliver these diverse design solutions.
+               <p className="text-sm text-janice-text-dark/70 mt-2">
+                (Primarily Adobe Photoshop)
               </p>
             </div>
           </div>
@@ -158,3 +162,5 @@ export default function AboutSection() {
     </section>
   );
 }
+
+    
