@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
-import { Briefcase, Users, Award, Palette, Smile } from 'lucide-react'; // Added Smile
+import { Briefcase, Users, Award, Palette, Smile } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
 
 interface CollageImage {
@@ -55,18 +55,18 @@ export default function AboutSection() {
     },
     {
       icon: Users,
-      value: "400+", // Updated
+      value: "400+",
       label: "Happy Clients",
       delay: "400ms"
     },
     {
       icon: Award,
-      value: "1500+", // Updated
+      value: "1500+",
       label: "Projects Done",
       delay: "500ms"
     },
     {
-      icon: Smile, // New stat
+      icon: Smile,
       value: "100%",
       label: "Client Satisfaction",
       delay: "600ms"
@@ -90,17 +90,56 @@ export default function AboutSection() {
       className="bg-background text-foreground pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32"
     >
       <div className="container-custom">
-        {/* Title Block & Stats */}
-        <div className="grid md:grid-cols-12 gap-8 items-start mb-8 md:mb-12">
+        {/* Single Main Grid for the entire content */}
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+          
+          {/* Left Column: Title and Images */}
           <div
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
             <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">INTRODUCTION</p>
-            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary">
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary mb-6">
               About Me
             </h2>
+            
+            {/* Images stacked vertically under the title */}
+            <div
+              className={cn("space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+              style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
+            >
+              {collageImagesData.map((image, index) => (
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <div className="aspect-[4/3] rounded-lg shadow-md group relative hover:shadow-2xl transition-shadow duration-300">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        width={200} 
+                        height={150} 
+                        className="object-cover object-top w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-125 group-hover:z-10"
+                        data-ai-hint={image.dataAiHint}
+                      />
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
+                     <DialogTitle className="sr-only">{image.alt}</DialogTitle>
+                      <Image
+                          src={image.src}
+                          alt={image.alt}
+                          width={image.imageWidth}
+                          height={image.imageHeight}
+                          className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+                          data-ai-hint={image.dataAiHint}
+                          priority={index < 2} 
+                      />
+                  </DialogContent>
+                </Dialog>
+              ))}
+            </div>
           </div>
+
+          {/* Right Column: Intro, Stats, Expertise */}
           <div
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
@@ -111,10 +150,11 @@ export default function AboutSection() {
              <p className="text-md text-muted-foreground md:pt-1 mb-6">
               My approach combines design precision with a deep understanding of brand identity, ensuring that every project I undertake not only meets but exceeds client expectations.
             </p>
+            
             {/* Stats Grid - 2x2 */}
             <div
               className={cn(
-                "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 lg:gap-x-8 lg:gap-y-8 mt-6",
+                "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 lg:gap-x-8 lg:gap-y-8 mt-6 mb-8", // Added mb-8
                 isVisible ? "fade-in-up is-visible" : "opacity-0"
               )}
               style={{ transitionDelay: isVisible ? '250ms' : '0ms' }}
@@ -139,50 +179,9 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
 
-        {/* Content Grid: Images and Expertise */}
-        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-          <div
-            className={cn("md:col-span-5 space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
-          >
-            {collageImagesData.map((image, index) => (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <div className="aspect-[4/3] rounded-lg shadow-md group relative hover:shadow-2xl transition-shadow duration-300">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={200}
-                      height={150}
-                      className="object-cover object-top w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-125 group-hover:z-10"
-                      data-ai-hint={image.dataAiHint}
-                    />
-                  </div>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
-                   <DialogTitle className="sr-only">{image.alt}</DialogTitle>
-                    <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.imageWidth}
-                        height={image.imageHeight}
-                        className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
-                        data-ai-hint={image.dataAiHint}
-                        priority={index < 2} 
-                    />
-                </DialogContent>
-              </Dialog>
-            ))}
-          </div>
-
-          <div
-            className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-            style={{transitionDelay: isVisible ? '250ms' : '0ms'}}
-          >
-            <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}> {/* Delay for expertise section */}
+            {/* Core Expertise */}
+            <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}> {/* Adjusted delay for expertise */}
               <h3 className="font-headline text-xl font-semibold text-primary mb-3 flex items-center">
                 <Palette className="w-6 h-6 text-primary mr-2" />
                 Core Expertise
