@@ -3,12 +3,11 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'; // Removed DialogHeader, DialogTitle, DialogDescription, DialogClose
-import { ZoomIn } from 'lucide-react'; // Removed ExternalLink, X
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; // Added DialogTitle
+import { ZoomIn } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-// import Link from 'next/link'; // Link is no longer used in the dialog
 
 interface PortfolioItem {
   id: string;
@@ -16,9 +15,11 @@ interface PortfolioItem {
   category: string;
   imageUrl: string;
   fullImageUrl?: string;
-  description: string; // Kept for data, but not displayed in dialog
+  description: string;
   dataAiHint: string;
-  projectUrl?: string; // Kept for data, but not displayed in dialog
+  projectUrl?: string;
+  imageWidth: number; // Added for aspect ratio
+  imageHeight: number; // Added for aspect ratio
 }
 
 const portfolioItemsData: PortfolioItem[] = [
@@ -31,6 +32,7 @@ const portfolioItemsData: PortfolioItem[] = [
     description: 'Professionally designed business cards that make a lasting first impression.',
     dataAiHint: 'business card design',
     projectUrl: '#',
+    imageWidth: 800, imageHeight: 600 // Placeholder
   },
   {
     id: 'logo-design-02',
@@ -40,6 +42,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/2x4 babaji-2 copy.jpg',
     description: 'Creative and memorable logo designs tailored to brand identity.',
     dataAiHint: 'modern logo concept',
+    imageWidth: 700, imageHeight: 500 // Placeholder
   },
   {
     id: 'menu-design-03',
@@ -49,15 +52,17 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants and cafes.',
     dataAiHint: 'restaurant menu food',
+    imageWidth: 600, imageHeight: 800 // Placeholder
   },
   {
-    id: 'banner-moonlight-04',
+    id: 'banner-moonlight-04', // This was removed and then re-requested to be present
     title: 'Moonlight Promotional Banners',
     category: 'Advertising',
     imageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
     fullImageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
+    imageWidth: 900, imageHeight: 300 // Placeholder
   },
   {
     id: 'poster-valet-05',
@@ -67,6 +72,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
     description: 'Impactful poster designs for events, promotions, and announcements.',
     dataAiHint: 'event poster concert',
+    imageWidth: 600, imageHeight: 900 // Placeholder
   },
   {
     id: 'brochure-cards-06',
@@ -76,6 +82,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/business card copy.jpg',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
+    imageWidth: 800, imageHeight: 550 // Placeholder
   },
   {
     id: 'banner-envelope-07',
@@ -85,6 +92,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/envelope layout indraprastta 30x23.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
+    imageWidth: 1000, imageHeight: 400 // Placeholder
   },
   {
     id: 'poster-furniture-08',
@@ -94,6 +102,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/envelope baba furniture copy 2.jpg',
     description: 'Impactful poster designs for events, promotions, and announcements.',
     dataAiHint: 'event poster concert',
+    imageWidth: 500, imageHeight: 750 // Placeholder
   },
   {
     id: 'brochure-lifestyle-09',
@@ -103,6 +112,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/lifestyle-front copy 2.jpg',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
+    imageWidth: 750, imageHeight: 600 // Placeholder
   },
 ];
 
@@ -127,6 +137,7 @@ export default function PortfolioSection() {
   return (
     <section id="portfolio" ref={sectionRef} className="section-padding bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <div className="container-custom">
+        {/* Title Block - Use standard h2/p */}
         <div
           className={cn(
             "text-center mb-12 md:mb-16",
@@ -157,9 +168,11 @@ export default function PortfolioSection() {
                     <Image
                       src={item.imageUrl}
                       alt={item.title}
-                      layout="fill"
+                      layout="fill" // Fills the parent CardContent
                       className="object-cover object-top w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
                       data-ai-hint={item.dataAiHint}
+                      // No explicit width/height here as layout="fill" takes over.
+                      // For optimization, ensure your source images are reasonably sized.
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                       <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
@@ -174,17 +187,18 @@ export default function PortfolioSection() {
               <DialogContent
                 className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
               >
-                <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center"> {/* Centering the image */}
+                <DialogTitle className="sr-only">{item.title}</DialogTitle> {/* Visually hidden title for accessibility */}
+                <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center">
                   <Image
                     src={item.fullImageUrl || item.imageUrl}
-                    alt={item.title} // Alt text is good for accessibility even if not visually displayed
-                    width={1200} // Provide base width for optimization
-                    height={900} // Provide base height for optimization
-                    className="w-full h-auto object-contain rounded-md" // object-contain ensures full image is visible
+                    alt={item.title}
+                    width={item.imageWidth || 1200} // Use provided dimensions or default
+                    height={item.imageHeight || 900} // Use provided dimensions or default
+                    className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                     data-ai-hint={item.dataAiHint}
+                    priority // Consider adding if it's LCP
                   />
                 </div>
-                {/* All other content (title, description, buttons) is removed from DialogContent */}
               </DialogContent>
             </Dialog>
           ))}
@@ -193,3 +207,4 @@ export default function PortfolioSection() {
     </section>
   );
 }
+
