@@ -34,20 +34,20 @@ export default function AboutSection() {
   const stats = [
     {
       icon: Briefcase,
-      value: "25+",
-      label: "Years of Experience",
+      value: "10+",
+      label: "Years Experience",
       delay: "300ms"
     },
     {
       icon: Users,
-      value: "100+",
-      label: "Satisfied Clients",
+      value: "280+",
+      label: "Happy Clients",
       delay: "400ms"
     },
     {
       icon: Award,
-      value: "500+",
-      label: "Projects Completed",
+      value: "50+",
+      label: "Projects Done",
       delay: "500ms"
     }
   ];
@@ -60,20 +60,30 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="section-padding bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32">
+    <section id="about" ref={sectionRef} className="bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32">
       <div className="container-custom">
-        <div
-          className={cn("mb-10 md:mb-16 max-w-3xl", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
-          style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
-        >
-          <h2 className="font-headline text-5xl md:text-6xl font-bold !leading-tight text-janice-dark mb-4">
-            About Me
-          </h2>
-          <p className="text-lg text-janice-text-dark/80">
-            With over 25 years in the design industry, I've had the privilege of working on a diverse range of projects, helping businesses and individuals bring their visions to life through impactful visual communication. My passion lies in understanding unique challenges and crafting bespoke design solutions that resonate and deliver results.
-          </p>
+        {/* Title Block */}
+        <div className="grid md:grid-cols-12 gap-8 items-start mb-10 md:mb-16">
+          <div 
+            className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
+          >
+            <p className="text-xs font-medium text-janice-dark/70 uppercase tracking-wider mb-2">INTRODUCTION</p>
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-janice-dark">
+              About Me
+            </h2>
+          </div>
+          <div 
+            className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
+          >
+            <p className="text-md text-janice-text-dark/80 md:pt-1">
+              With over 10 years in the design industry, I've had the privilege of working on a diverse range of projects, helping businesses and individuals bring their visions to life through impactful visual communication. My passion lies in understanding unique challenges and crafting bespoke design solutions that resonate and deliver results.
+            </p>
+          </div>
         </div>
 
+        {/* Content Grid: Collage and Stats */}
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div
             className={cn("md:col-span-7 grid grid-cols-2 gap-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}

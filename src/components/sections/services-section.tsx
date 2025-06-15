@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, Palette, Smartphone, Film, Briefcase, MessageSquare, TrendingUp } from 'lucide-react';
+import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -72,20 +72,21 @@ export default function ServicesSection() {
   return (
     <section id="services" ref={sectionRef} className="py-20 md:py-28 bg-janice-main-bg text-janice-text-light">
       <div className="container-custom">
-        <div className="grid md:grid-cols-12 gap-8 items-center mb-12 md:mb-16">
+        <div className="grid md:grid-cols-12 gap-8 items-start mb-12 md:mb-16">
           <div
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
           >
-            <h2 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold mb-4 !leading-tight">
+            <p className="text-xs font-medium text-janice-text-light/70 uppercase tracking-wider mb-2">WHAT I OFFER</p>
+            <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-janice-text-light">
               My Service
             </h2>
-            <p className="text-lg md:text-xl text-janice-text-light/80 max-w-xl">
+             <p className="text-md text-janice-text-light/80 mt-3 max-w-xl">
               Offering tailored design solutions to elevate your brand's visual identity and user engagement.
             </p>
           </div>
           <div
-            className={cn("md:col-span-5 md:text-right", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            className={cn("md:col-span-5 md:text-right self-start md:pt-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
           >
             <Button asChild variant="janicePrimary" size="lg" className="rounded-lg group">
@@ -125,7 +126,7 @@ export default function ServicesSection() {
                 activeTab === tab.value ? "opacity-100" : "opacity-0",
                 isVisible ? "fade-in-up is-visible" : "fade-in-up"
               )}
-              style={{ transitionDelay: `${isVisible ? 400 + index * 50 : 0}ms` }} // Staggered delay for content
+              style={{ transitionDelay: `${isVisible ? 400 + index * 50 : 0}ms` }}
             >
               <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-janice-dark/20 p-6 md:p-10 rounded-xl shadow-xl">
                 <div className="order-2 md:order-1">
