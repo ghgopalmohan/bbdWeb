@@ -145,7 +145,7 @@ export default function AboutSection() {
         {/* Content Grid: Images and Expertise */}
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div
-            className={cn("md:col-span-4 space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            className={cn("md:col-span-5 space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
           >
             {collageImagesData.map((image, index) => (
@@ -179,7 +179,7 @@ export default function AboutSection() {
           </div>
 
           <div
-            className={cn("md:col-span-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '250ms' : '0ms'}}
           >
             <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}> {/* Delay for expertise section */}
@@ -199,4 +199,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
