@@ -3,19 +3,19 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
 import { ZoomIn, ExternalLink, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'; // Card added for consistent styling if needed
+import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 
 interface PortfolioItem {
-  id: string; 
+  id: string;
   title: string;
   category: string;
   imageUrl: string;
-  fullImageUrl?: string; 
+  fullImageUrl?: string;
   description: string;
   dataAiHint: string;
   projectUrl?: string;
@@ -27,6 +27,7 @@ const portfolioItemsData: PortfolioItem[] = [
     title: 'Elegant Business Cards',
     category: 'Branding & Identity',
     imageUrl: '/images/5000 BB 90gsm-back copy.jpg',
+    fullImageUrl: '/images/5000 BB 90gsm-back copy.jpg',
     description: 'Professionally designed business cards that make a lasting first impression.',
     dataAiHint: 'business card design',
     projectUrl: '#',
@@ -36,6 +37,7 @@ const portfolioItemsData: PortfolioItem[] = [
     title: 'Modern Logo Design',
     category: 'Branding & Identity',
     imageUrl: '/images/2x4 babaji-2 copy.jpg',
+    fullImageUrl: '/images/2x4 babaji-2 copy.jpg',
     description: 'Creative and memorable logo designs tailored to brand identity.',
     dataAiHint: 'modern logo concept',
   },
@@ -44,54 +46,61 @@ const portfolioItemsData: PortfolioItem[] = [
     title: 'Restaurant Menu Layout',
     category: 'Print Design',
     imageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
+    fullImageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants and cafes.',
     dataAiHint: 'restaurant menu food',
   },
   {
-    id: 'banner-moonlight-04', // Unique ID
-    title: 'Moonlight Promotional Banners', // Updated title
+    id: 'banner-moonlight-04',
+    title: 'Moonlight Promotional Banners',
     category: 'Advertising',
     imageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
+    fullImageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
   },
   {
-    id: 'poster-valet-05', // Unique ID
-    title: 'Valet Parking Event Posters', // Updated title
+    id: 'poster-valet-05',
+    title: 'Valet Parking Event Posters',
     category: 'Print Design',
     imageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
+    fullImageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
     description: 'Impactful poster designs for events, promotions, and announcements.',
     dataAiHint: 'event poster concert',
   },
   {
-    id: 'brochure-cards-06', // Unique ID
-    title: 'Corporate Branding Brochures', // Updated title
+    id: 'brochure-cards-06',
+    title: 'Corporate Branding Brochures',
     category: 'Marketing Material',
     imageUrl: '/images/business card copy.jpg',
+    fullImageUrl: '/images/business card copy.jpg',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
   },
   {
-    id: 'banner-envelope-07', // Changed from banner-ads-04
-    title: 'Indraprastha Envelope Banners', // Made title more specific
+    id: 'banner-envelope-07',
+    title: 'Indraprastha Envelope Banners',
     category: 'Advertising',
     imageUrl: '/images/envelope layout indraprastta 30x23.jpg',
+    fullImageUrl: '/images/envelope layout indraprastta 30x23.jpg',
     description: 'Eye-catching banners for digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
   },
   {
-    id: 'poster-furniture-08', // Changed from poster-art-05
-    title: 'Baba Furniture Event Posters', // Made title more specific
+    id: 'poster-furniture-08',
+    title: 'Baba Furniture Event Posters',
     category: 'Print Design',
     imageUrl: '/images/envelope baba furniture copy 2.jpg',
+    fullImageUrl: '/images/envelope baba furniture copy 2.jpg',
     description: 'Impactful poster designs for events, promotions, and announcements.',
     dataAiHint: 'event poster concert',
   },
   {
-    id: 'brochure-lifestyle-09', // Changed from brochure-corp-06
-    title: 'Lifestyle Product Brochures', // Made title more specific
+    id: 'brochure-lifestyle-09',
+    title: 'Lifestyle Product Brochures',
     category: 'Marketing Material',
     imageUrl: '/images/lifestyle-front copy 2.jpg',
+    fullImageUrl: '/images/lifestyle-front copy 2.jpg',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
   },
@@ -118,10 +127,10 @@ export default function PortfolioSection() {
   return (
     <section id="portfolio" ref={sectionRef} className="section-padding bg-background dark:bg-background-dark text-foreground dark:text-foreground-dark">
       <div className="container-custom">
-        <div 
+        <div
           className={cn(
             "text-center mb-12 md:mb-16",
-            isVisible ? "fade-in-up is-visible" : "fade-in-up" // Changed from animate-fade-in-up
+            isVisible ? "fade-in-up is-visible" : "fade-in-up"
           )}
           style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
         >
@@ -135,14 +144,13 @@ export default function PortfolioSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolioItemsData.map((item, index) => {
-            const dialogTitleId = `dialog-title-${item.id}`;
             return (
               <Dialog key={item.id}>
                 <DialogTrigger asChild>
                   <Card
                     className={cn(
                       "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
-                      isVisible ? "fade-in-up is-visible" : "fade-in-up" // Changed from animate-fade-in-up
+                      isVisible ? "fade-in-up is-visible" : "fade-in-up"
                     )}
                     style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
                   >
@@ -165,9 +173,8 @@ export default function PortfolioSection() {
                     </CardContent>
                   </Card>
                 </DialogTrigger>
-                <DialogContent 
+                <DialogContent
                   className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
-                  aria-labelledby={dialogTitleId}
                 >
                   <div className="p-1 max-h-[85vh] overflow-y-auto">
                     <Image
@@ -180,9 +187,11 @@ export default function PortfolioSection() {
                     />
                   </div>
                   <div className="p-6 border-t border-border dark:border-border-dark bg-secondary/30 dark:bg-secondary-dark/20 rounded-b-lg">
-                    <DialogTitle id={dialogTitleId} className="font-headline text-2xl text-primary mb-1">{item.title}</DialogTitle>
-                    <DialogDescription className="text-sm text-muted-foreground mb-3">{item.category}</DialogDescription>
-                    <p className="text-base text-foreground dark:text-foreground-dark mb-4">{item.description}</p>
+                    <DialogHeader>
+                      <DialogTitle className="font-headline text-2xl text-primary mb-1">{item.title}</DialogTitle>
+                      <DialogDescription className="text-sm text-muted-foreground mb-3">{item.category}</DialogDescription>
+                    </DialogHeader>
+                    <p className="text-base text-foreground dark:text-foreground-dark mb-4 mt-4">{item.description}</p>
                     <div className="flex justify-between items-center">
                         {item.projectUrl && (
                            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary-dark dark:text-primary-dark dark:hover:bg-primary-dark dark:hover:text-primary-dark-foreground">
@@ -207,5 +216,3 @@ export default function PortfolioSection() {
     </section>
   );
 }
-
-    
