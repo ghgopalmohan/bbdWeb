@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs'; // Re-added TabsList
 import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
@@ -33,7 +33,7 @@ const serviceTabsData = [
   {
     value: 'Logo',
     title: 'Logo Design',
-    icon: Film,
+    icon: Palette, 
     description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
     content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
     imageUrl: '/images/logo-1.jpg',
@@ -43,7 +43,7 @@ const serviceTabsData = [
   {
     value: 'Letterhead',
     title: 'LetterHead Design',
-    icon: Film,
+    icon: Palette, 
     description: 'Professional letterhead designs that reinforce your brand identity in all official correspondence.',
     content: 'I design elegant and professional letterheads that maintain brand consistency and create a sophisticated impression. Attention to detail ensures your stationery is both functional and representative of your brand.',
     imageUrl: '/images/capital letter head copy 2.jpg',
@@ -53,7 +53,7 @@ const serviceTabsData = [
   {
     value: 'Menus',
     title: 'Menu Design',
-    icon: Film,
+    icon: Palette, 
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and food businesses.',
     content: 'My menu designs balance aesthetics with functionality, enticing customers while making choices easy. I focus on layout, typography, and imagery to create menus that enhance the dining experience.',
     imageUrl: '/images/menudummy.jpg',
@@ -63,7 +63,7 @@ const serviceTabsData = [
   {
     value: 'Flyer',
     title: 'Flyer Design',
-    icon: Film,
+    icon: Palette, 
     description: 'Eye-catching flyer designs for promotions, events, and marketing campaigns that demand attention.',
     content: 'I create dynamic flyers that effectively convey your message and drive action. Whether for print or digital distribution, my designs are crafted to be visually engaging and results-oriented.',
     imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
@@ -122,7 +122,7 @@ export default function ServicesSection() {
           >
             <Button asChild variant="default" size="lg" className="rounded-lg group">
               <Link href="#contact">
-                <span className="flex items-center">
+                <span className="flex items-center"> {/* Ensure single child for Link if Button asChild is tricky */}
                   Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
@@ -131,20 +131,20 @@ export default function ServicesSection() {
         </div>
 
         <Tabs defaultValue={serviceTabsData[0].value} onValueChange={setActiveTab} className="w-full">
-          <TabsList
-            className={cn(
-              "grid w-full grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3 bg-muted backdrop-blur-sm p-6 rounded-xl mb-10",
-              isVisible ? "fade-in-up is-visible" : "fade-in-up"
-            )}
-            style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
+          <TabsList className={cn(
+            "flex flex-wrap gap-3 mb-10 justify-center", // Custom layout for triggers
+            "bg-transparent shadow-none p-0 h-auto", // Override default TabsList container look
+            isVisible ? "fade-in-up is-visible" : "fade-in-up"
+          )}
+          style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
           >
             {serviceTabsData.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
                 className={cn(
-                  "font-medium text-sm text-muted-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-3 py-5 transition-all duration-300 flex items-center justify-center gap-2",
-                   activeTab === tab.value ? "data-[state=active]:text-primary-foreground" : "text-muted-foreground"
+                  "font-medium text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-3 py-5 transition-all duration-300 flex items-center justify-center gap-2", // py-5 for more height
+                  activeTab === tab.value ? "data-[state=active]:text-primary-foreground" : "text-muted-foreground"
                 )}
               >
                 <tab.icon className={cn("h-5 w-5", activeTab === tab.value ? "text-primary-foreground" : "text-muted-foreground")} />
@@ -188,5 +188,3 @@ export default function ServicesSection() {
     </section>
   );
 }
-
-
