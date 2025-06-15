@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
-import { Briefcase, Users, Award } from 'lucide-react'; // Icons for stats
+import { Briefcase, Users, Award, Palette } from 'lucide-react'; // Palette for expertise
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,19 +34,19 @@ export default function AboutSection() {
   const stats = [
     {
       icon: Briefcase,
-      value: "10+",
+      value: "31+",
       label: "Years Experience",
       delay: "300ms"
     },
     {
       icon: Users,
-      value: "280+",
+      value: "150+", // Placeholder based on "numerous leading companies"
       label: "Happy Clients",
       delay: "400ms"
     },
     {
       icon: Award,
-      value: "50+",
+      value: "500+", // Placeholder based on extensive portfolio
       label: "Projects Done",
       delay: "500ms"
     }
@@ -59,12 +59,22 @@ export default function AboutSection() {
     { src: "https://placehold.co/400x300.png", alt: "Branding assets", dataAiHint: "branding assets styleguide" },
   ];
 
+  const expertiseItems = [
+    "Business Cards",
+    "Brochures & Flyers",
+    "Banners, Hoardings & Flexes",
+    "Corporate Stationery (Letterheads, Envelopes, Notepads, etc.)",
+    "Hotel Menus",
+    "Billboards & Signage",
+    "Custom Visual Branding Solutions"
+  ];
+
   return (
     <section id="about" ref={sectionRef} className="bg-janice-light-gray text-janice-text-dark pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32">
       <div className="container-custom">
         {/* Title Block */}
         <div className="grid md:grid-cols-12 gap-8 items-start mb-10 md:mb-16">
-          <div 
+          <div
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
@@ -73,17 +83,20 @@ export default function AboutSection() {
               About Me
             </h2>
           </div>
-          <div 
+          <div
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
+            <p className="text-md text-janice-text-dark/80 md:pt-1 mb-4">
+              With over 31 years in design and entrepreneurship, my journey began by founding Business Bonds Directory (Yellow Pages)—a company dedicated to impactful advertisements, growing to 10 successful branches across Andhra Pradesh between 2000 and 2018. I then focused on the healthcare sector from 2018 to 2020, publishing a specialized Medical Directory for Vijayawada.
+            </p>
             <p className="text-md text-janice-text-dark/80 md:pt-1">
-              With over 10 years in the design industry, I've had the privilege of working on a diverse range of projects, helping businesses and individuals bring their visions to life through impactful visual communication. My passion lies in understanding unique challenges and crafting bespoke design solutions that resonate and deliver results.
+              Since 2021, I've thrived as a freelance graphic designer and creative vendor for leading companies in India and abroad. My approach combines design precision with a deep understanding of brand identity, ensuring every project exceeds client expectations.
             </p>
           </div>
         </div>
 
-        {/* Content Grid: Collage and Stats */}
+        {/* Content Grid: Collage, Stats, and Expertise */}
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <div
             className={cn("md:col-span-7 grid grid-cols-2 gap-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
@@ -125,9 +138,20 @@ export default function AboutSection() {
                 </div>
               </div>
             ))}
-             <p className="text-sm text-janice-text-dark/70 pt-4">
-              My approach is collaborative and client-focused, ensuring that every design not only looks great but also achieves its strategic objectives. I specialize in creating memorable brand identities, compelling marketing materials, and user-friendly digital experiences.
-            </p>
+            <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-4")} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}>
+              <h3 className="font-headline text-xl font-semibold text-janice-dark mb-3 flex items-center">
+                <Palette className="w-6 h-6 text-janice-accent mr-2" />
+                Core Expertise
+              </h3>
+              <ul className="space-y-1.5 text-sm text-janice-text-dark/70 list-disc list-inside pl-1">
+                {expertiseItems.map((item, index) => (
+                  <li key={index}>{item} (Primarily Adobe Photoshop)</li>
+                ))}
+              </ul>
+               <p className="text-sm text-janice-text-dark/70 mt-4">
+                My core strength lies in leveraging Adobe Photoshop to deliver these diverse design solutions.
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -8,7 +8,6 @@ import PortfolioSection from '@/components/sections/portfolio-section';
 import TestimonialsSection from '@/components/sections/testimonials-section';
 // ClientsSection removed as logos are integrated into Hero
 import ContactSection from '@/components/sections/contact-section'; // This is the "Let's Connect There" CTA
-import ExperienceSection from '@/components/sections/experience-section'; // New section
 
 export default function HomePage() {
   return (
@@ -18,7 +17,6 @@ export default function HomePage() {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
-        <ExperienceSection /> 
         <PortfolioSection />
         <TestimonialsSection />
         <ContactSection /> {/* This is the "Let's Connect There" CTA */}
