@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Linkedin, Instagram, Mail, Phone, MapPin, Send } from 'lucide-react';
 import Link from 'next/link';
-import { sendContactEmail, type SendContactEmailResponse } from '@/app/actions/send-contact-email';
+// Removed import for sendContactEmail and SendContactEmailResponse
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -77,31 +77,40 @@ export default function ContactSection() {
       },
       { threshold: 0.1 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
+    }
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
 
-  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
-    const response: SendContactEmailResponse = await sendContactEmail(data);
+  const onSubmit: SubmitHandler<ContactFormInputs> = (data) => {
+    const recipientEmail = "gopalmohan.design@gmail.com";
+    const mailtoSubject = encodeURIComponent(data.subject);
+    const mailtoBody = encodeURIComponent(
+      `Hi I'm ${data.name}.\n\n${data.message}\n\n(My email address is: ${data.email})`
+    );
+    const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
-    if (response.success) {
+    try {
+      window.location.href = mailtoLink;
       toast({
-        title: "Message Sent!",
-        description: response.message,
+        title: "Opening Email Client",
+        description: "Your email client should open with a pre-filled message. Please verify and send.",
         variant: "default",
       });
       reset();
-    } else {
+    } catch (error) {
+      console.error("Failed to open mailto link:", error);
       toast({
         title: "Error",
-        description: response.message || "Failed to send message. Please try again.",
+        description: "Could not open your email client. Please try copying the details manually or use one of the contact methods above.",
         variant: "destructive",
       });
-      // TODO: Handle field-specific errors from response.errors if provided
     }
   };
 
@@ -221,9 +230,9 @@ export default function ContactSection() {
                     type="submit"
                     disabled={isSubmitting}
                     size="default" 
-                    className="md:size-lg w-full bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 focus:ring-primary dark:focus:ring-accent transition-all group rounded-md"
+                    className="w-full md:size-lg bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90 focus:ring-primary dark:focus:ring-accent transition-all group rounded-md"
                   >
-                    {isSubmitting ? 'Sending...' : "Let's Talk"}
+                    {isSubmitting ? 'Preparing...' : "Let's Talk"}
                     <Send className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
@@ -235,3 +244,4 @@ export default function ContactSection() {
     </section>
   );
 }
+
