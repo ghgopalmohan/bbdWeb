@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Linkedin, Instagram, Mail, Phone, MapPin, Send } from 'lucide-react';
 import Link from 'next/link';
+import { sendContactEmail, type SendContactEmailResponse } from '@/app/actions/send-contact-email';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -85,14 +86,23 @@ export default function ContactSection() {
   }, []);
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    console.log(data);
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-      variant: "default",
-    });
-    reset();
+    const response: SendContactEmailResponse = await sendContactEmail(data);
+
+    if (response.success) {
+      toast({
+        title: "Message Sent!",
+        description: response.message,
+        variant: "default",
+      });
+      reset();
+    } else {
+      toast({
+        title: "Error",
+        description: response.message || "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+      // TODO: Handle field-specific errors from response.errors if provided
+    }
   };
 
   const contactDetails = [
