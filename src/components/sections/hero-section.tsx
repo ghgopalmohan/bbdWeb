@@ -13,7 +13,7 @@ const clientNames = [
   "Akshayapatra", "Moonlight", "Dharmakshetra", "Bouncer", 
   "Rapid Rx Pharmacy", "Baba Furniture", "Sleepwell"
 ];
-const extendedClientNames = [...clientNames, ...clientNames]; // Duplicate for seamless marquee
+const extendedClientNames = [...clientNames, ...clientNames, ...clientNames]; // Tripled for even smoother marquee
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -120,28 +120,41 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scrolling Clients Bar */}
+      {/* Client Logos Bar Section */}
       <div 
         className={cn(
-          "w-full py-6 md:py-8 bg-white/5 mt-16 md:mt-20 lg:mt-24",
+          "w-full mt-16 md:mt-20 lg:mt-24", // This div now handles the top margin
           isVisible ? "fade-in-up is-visible" : "fade-in-up"
         )}
         style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}
       >
-        <div className="relative w-full overflow-hidden group">
-          <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
-            {extendedClientNames.map((name, index) => (
-              <div key={`client-${index}`} className="mx-3 md:mx-4 flex-shrink-0">
-                <span className="inline-block px-4 py-2 md:px-5 md:py-2.5 bg-gray-100 text-gray-800 rounded-full text-sm md:text-base font-medium shadow-sm">
-                  {name}
-                </span>
-              </div>
-            ))}
+        <div className="container-custom">
+          <p 
+            className={cn(
+              "text-center text-xs font-medium text-janice-text-light/70 uppercase tracking-wider mb-4 md:mb-6",
+               isVisible ? "fade-in-up is-visible" : "fade-in-up"
+            )}
+            style={{ transitionDelay: isVisible ? '700ms' : '0ms' }} // Slightly later delay
+          >
+            Trusted By
+          </p>
+        </div>
+        <div className="py-6 md:py-8 bg-white/5"> {/* Background for the marquee itself */}
+          <div className="relative w-full overflow-hidden group">
+            <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
+              {extendedClientNames.map((name, index) => (
+                <div key={`client-${index}`} className="mx-3 md:mx-4 flex-shrink-0">
+                  <span className="inline-block px-4 py-2 md:px-5 md:py-2.5 bg-gray-100 text-gray-800 rounded-full text-sm md:text-base font-medium shadow-sm">
+                    {name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Decorative floating elements - example, can be enhanced */}
+      {/* Decorative floating elements */}
       <div className={cn("absolute top-1/4 left-1/4 w-12 h-12 bg-janice-accent/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}></div>
       <div className={cn("absolute bottom-1/3 right-1/4 w-8 h-8 bg-janice-soft-gold/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '1000ms' : '0ms' }}></div>
 
