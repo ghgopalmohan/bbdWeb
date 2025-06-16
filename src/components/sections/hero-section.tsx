@@ -97,7 +97,7 @@ export default function HeroSection() {
               style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}
             >
               <Image
-                src="/images/hero3.jpeg"
+                src="/images/hero44.jpeg"
                 alt="Gopal Mohan - Professional Photoshop Designer"
                 layout="fill"
                 objectFit="cover"
