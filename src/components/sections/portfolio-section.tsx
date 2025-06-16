@@ -4,10 +4,10 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; 
-import { ZoomIn } from 'lucide-react';
+import { ZoomIn, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link'; // Added for potential project links
 
 interface PortfolioItem {
   id: string;
@@ -17,7 +17,7 @@ interface PortfolioItem {
   fullImageUrl?: string;
   description: string;
   dataAiHint: string;
-  projectUrl?: string;
+  projectUrl?: string; // Optional: for a "View Project" button
   imageWidth: number;
   imageHeight: number;
 }
@@ -31,7 +31,7 @@ const portfolioItemsData: PortfolioItem[] = [
     fullImageUrl: '/images/5000 BB 90gsm-back copy.jpg',
     description: 'Professionally designed business cards that make a lasting first impression for Indraprastha.',
     dataAiHint: 'business card design',
-    projectUrl: '#',
+    projectUrl: '#', // Example, remove or update as needed
     imageWidth: 800, imageHeight: 600
   },
   {
@@ -99,7 +99,7 @@ const portfolioItemsData: PortfolioItem[] = [
     title: 'LifeStyle Card Design',
     category: 'Print Design',
     imageUrl: '/images/lifestyle visiting card-name copy 2.jpg',
-    fullImageUrl: '/images/lifestyle visiting card-name copy 2.jpgg',
+    fullImageUrl: '/images/lifestyle visiting card-name copy 2.jpgg', // Note: double 'g' in .jpgg, might be a typo
     description: 'Impactful envelope card designs for Baba Furniture promotions.',
     dataAiHint: 'stationery design furniture',
     imageWidth: 500, imageHeight: 750
@@ -125,13 +125,20 @@ export default function PortfolioSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.unobserve(entry.target);
+          // No unobserve needed if we want child elements to animate as they come into view
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 } // Trigger when 5% of the section is visible
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
+    const currentSectionRef = sectionRef.current;
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
+    }
+    return () => {
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
+      }
+    };
   }, []);
 
   return (
@@ -152,62 +159,84 @@ export default function PortfolioSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-16 md:space-y-24">
           {portfolioItemsData.map((item, index) => (
-            <Dialog key={item.id}>
-              <DialogTrigger asChild>
-                <Card
-                  className={cn(
-                    "group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30",
-                    isVisible ? "fade-in-up is-visible" : "fade-in-up"
-                  )}
-                  style={{ transitionDelay: `${isVisible ? (index * 100) + 200 : 0}ms` }}
-                >
-                  <CardContent className="p-0 aspect-[4/3] relative overflow-hidden">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title} 
-                      layout="fill"
-                      className={cn(
-                        "object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105",
-                        item.id === 'poster-furniture-08' ? 'object-left-top' : 'object-top'
-                      )}
-                      data-ai-hint={item.dataAiHint}
-                      quality={75}
-                      onContextMenu={(e) => e.preventDefault()}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
-                      <p className="text-xs text-primary-foreground/80">{item.category}</p>
-                    </div>
-                    <div className="absolute top-3 right-3 bg-black/30 backdrop-blur-sm p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <ZoomIn className="h-5 w-5 text-white/90" />
-                    </div>
-                  </CardContent>
-                </Card>
-              </DialogTrigger>
-              <DialogContent
-                className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
+            <div
+              key={item.id}
+              className={cn(
+                "grid md:grid-cols-12 gap-8 lg:gap-12 items-center",
+                isVisible ? "fade-in-up is-visible" : "fade-in-up" 
+              )}
+              style={{ 
+                transitionDelay: isVisible ? `${200 + index * 150}ms` : '0ms',
+                opacity: isVisible ? 1 : 0 // Manage visibility based on section, not individual items
+              }}
+            >
+              {/* Image Column */}
+              <div 
+                className={cn(
+                  "md:col-span-6 lg:col-span-7 relative group",
+                  index % 2 !== 0 ? "md:order-last" : "" // Image on right for even items
+                )}
               >
-                <DialogTitle className="sr-only">{item.title}</DialogTitle>
-                <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center">
-                  <Image
-                    src={item.fullImageUrl || item.imageUrl}
-                    alt={item.title} 
-                    width={item.imageWidth || 1200}
-                    height={item.imageHeight || 900}
-                    className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
-                    data-ai-hint={item.dataAiHint}
-                    priority 
-                    quality={90}
-                    onContextMenu={(e) => e.preventDefault()}
-                  />
-                </div>
-              </DialogContent>
-            </Dialog>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 ease-out transform hover:-translate-y-1 cursor-pointer bg-card dark:bg-card-dark border border-border dark:border-border-dark hover:border-primary/30 dark:hover:border-primary-dark/30">
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title} 
+                        layout="fill"
+                        objectFit="cover" // Changed from object-top for more general fit
+                        className="transition-transform duration-500 ease-out group-hover:scale-105"
+                        data-ai-hint={item.dataAiHint}
+                        quality={75}
+                        onContextMenu={(e) => e.preventDefault()}
+                      />
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <ZoomIn className="h-12 w-12 text-white/80" />
+                      </div>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent
+                    className="sm:max-w-3xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl bg-card dark:bg-card-dark p-0 rounded-lg shadow-2xl text-foreground dark:text-foreground-dark border-border dark:border-border-dark"
+                  >
+                    <DialogTitle className="sr-only">{item.title}</DialogTitle>
+                    <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center">
+                      <Image
+                        src={item.fullImageUrl || item.imageUrl}
+                        alt={item.title} 
+                        width={item.imageWidth || 1200}
+                        height={item.imageHeight || 900}
+                        className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+                        data-ai-hint={item.dataAiHint}
+                        priority 
+                        quality={90}
+                        onContextMenu={(e) => e.preventDefault()}
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+
+              {/* Text Content Column */}
+              <div className="md:col-span-6 lg:col-span-5">
+                <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">{item.category}</p>
+                <h3 className="font-headline text-2xl md:text-3xl font-semibold text-foreground mb-3 !leading-tight">{item.title}</h3>
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">{item.description}</p>
+                {item.projectUrl && (
+                  <Button asChild variant="outline" size="default" className="group">
+                    <Link href={item.projectUrl}>
+                      View Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                )}
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
+    
