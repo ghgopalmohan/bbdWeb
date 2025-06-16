@@ -56,7 +56,7 @@ export default function AboutSection() {
     {
       icon: Users,
       value: "400+",
-      label: "Happy Clients",
+      label: "Clients", // Changed from "Happy Clients"
       delay: "400ms"
     },
     {
@@ -111,14 +111,14 @@ export default function AboutSection() {
               {collageImagesData.map((image, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
-                    <div className="relative rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300">
+                    <div className="relative aspect-[4/3] rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300 overflow-hidden">
                       <Image
                         src={image.src}
                         alt={image.alt}
-                        width={160} 
-                        height={120} 
+                        layout="fill"
+                        objectFit="cover"
                         quality={100} 
-                        className="rounded-lg object-cover"
+                        className="rounded-lg"
                         data-ai-hint={image.dataAiHint}
                       />
                     </div>
@@ -200,3 +200,4 @@ export default function AboutSection() {
     </section>
   );
 }
+
