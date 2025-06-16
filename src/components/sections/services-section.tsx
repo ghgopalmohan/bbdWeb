@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; // Added Dialog imports
 import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
@@ -19,6 +20,8 @@ const serviceTabsData = [
     imageUrl: '/images/brochure-1.jpg',
     imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
+    imageWidth: 800, // Added for dialog consistency
+    imageHeight: 600, // Added for dialog consistency
   },
   {
     value: 'pamphlet',
@@ -29,6 +32,8 @@ const serviceTabsData = [
     imageUrl: '/images/superdesign.jpeg',
     imageAlt: 'Pamphlet design mockup for event promotion',
     dataAiHint: 'pamphlet design event',
+    imageWidth: 800,
+    imageHeight: 600,
   },
   {
     value: 'Logo',
@@ -39,6 +44,8 @@ const serviceTabsData = [
     imageUrl: '/images/logo-1.jpg',
     imageAlt: 'Modern and impactful logo design example',
     dataAiHint: 'logo design modern',
+    imageWidth: 800,
+    imageHeight: 600,
   },
   {
     value: 'Letterhead',
@@ -49,6 +56,8 @@ const serviceTabsData = [
     imageUrl: '/images/capital letter head copy 2.jpg',
     imageAlt: 'Corporate letterhead design sample',
     dataAiHint: 'letterhead corporate stationery',
+    imageWidth: 800,
+    imageHeight: 600,
   },
   {
     value: 'Menus',
@@ -59,6 +68,8 @@ const serviceTabsData = [
     imageUrl: '/images/originalmenu.png',
     imageAlt: 'Restaurant menu design layout',
     dataAiHint: 'menu design restaurant',
+    imageWidth: 800,
+    imageHeight: 600,
   },
   {
     value: 'Flyer',
@@ -69,6 +80,8 @@ const serviceTabsData = [
     imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
     imageAlt: 'Promotional flyer design sample',
     dataAiHint: 'flyer design promotion',
+    imageWidth: 800,
+    imageHeight: 600,
   },
 ];
 
@@ -101,7 +114,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="pt-20 md:pt-28 pb-16 md:pb-24 lg:pb-28 bg-background text-foreground">
+    <section id="services" ref={sectionRef} className="pt-20 md:pt-28 pb-16 md:pb-20 lg:pb-24">
       <div className="container-custom">
         <div className="grid md:grid-cols-12 gap-8 items-start mb-12 md:mb-16">
           <div
@@ -120,10 +133,10 @@ export default function ServicesSection() {
             className={cn("md:col-span-5 md:text-right self-start md:pt-8", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
           >
-            <Button asChild variant="default" size="sm" className="md:size-lg rounded-lg group">
+            <Button asChild variant="default" size="sm" className="md:size-lg rounded-lg group text-xs md:text-sm px-3 py-1.5 md:px-6 md:py-3">
               <Link href="#contact">
                 <span className="flex items-center">
-                  Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Get Quote <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             </Button>
@@ -143,11 +156,11 @@ export default function ServicesSection() {
                 key={tab.value}
                 value={tab.value}
                 className={cn(
-                  "font-medium text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2",
+                  "font-medium text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 transition-all duration-300 flex items-center justify-center gap-1 sm:gap-1.5",
                   activeTab === tab.value ? "data-[state=active]:text-primary-foreground" : "text-muted-foreground"
                 )}
               >
-                <tab.icon className={cn("h-3.5 w-3.5 sm:h-4 sm:w-4", activeTab === tab.value ? "text-primary-foreground" : "text-muted-foreground")} />
+                <tab.icon className={cn("h-3 w-3 sm:h-3.5 sm:w-3.5", activeTab === tab.value ? "text-primary-foreground" : "text-muted-foreground")} />
                 {tab.title}
               </TabsTrigger>
             ))}
@@ -170,19 +183,38 @@ export default function ServicesSection() {
                   <p className="text-md text-muted-foreground mb-4">{tab.description}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{tab.content}</p>
                 </div>
-                <div className="order-1 md:order-2 aspect-[4/3] md:aspect-square rounded-lg overflow-hidden">
-                  <Image
-                    src={tab.imageUrl}
-                    alt={tab.imageAlt}
-                    width={800}
-                    height={600}
-                    className={cn(
-                        "w-full h-full object-cover transition-transform duration-500 hover:scale-105",
-                        (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
-                    )}
-                    data-ai-hint={tab.dataAiHint}
-                    quality={75}
-                  />
+                <div className="order-1 md:order-2 aspect-[4/3] md:aspect-square rounded-lg overflow-hidden group">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <div className="w-full h-full cursor-pointer">
+                        <Image
+                          src={tab.imageUrl}
+                          alt={tab.imageAlt}
+                          width={800} // Original display width
+                          height={600} // Original display height
+                          className={cn(
+                              "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105",
+                              (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
+                          )}
+                          data-ai-hint={tab.dataAiHint}
+                          quality={75}
+                        />
+                      </div>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
+                      <DialogTitle className="sr-only">{tab.imageAlt}</DialogTitle>
+                      <Image
+                        src={tab.imageUrl}
+                        alt={tab.imageAlt}
+                        width={tab.imageWidth || 800} // Use specific or default
+                        height={tab.imageHeight || 600} // Use specific or default
+                        className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+                        data-ai-hint={tab.dataAiHint}
+                        priority
+                        quality={90}
+                      />
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
             </TabsContent>

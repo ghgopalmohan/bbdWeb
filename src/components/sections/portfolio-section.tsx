@@ -46,7 +46,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'menu-design-03',
-    title: 'Prom Menu Layout Design',
+    title: 'Hoarding Design',
     category: 'Print Design',
     imageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
     fullImageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',

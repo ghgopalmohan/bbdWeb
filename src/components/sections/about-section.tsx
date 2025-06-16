@@ -5,14 +5,14 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
 import { Briefcase, Users, Award, Palette, Smile } from 'lucide-react';
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
+// Removed Dialog imports as they are no longer used here
 
 interface CollageImage {
   src: string;
   alt: string;
   dataAiHint: string;
-  imageWidth: number;
-  imageHeight: number;
+  imageWidth: number; // Kept for potential future use or data consistency, but not directly for sizing here
+  imageHeight: number; // Kept for potential future use or data consistency, but not directly for sizing here
 }
 
 const collageImagesData: CollageImage[] = [
@@ -109,35 +109,22 @@ export default function AboutSection() {
               style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
             >
               {collageImagesData.map((image, index) => (
-                <Dialog key={index}>
-                  <DialogTrigger asChild>
-                    <div className="relative aspect-[4/3] rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        layout="fill"
-                        objectFit="cover"
-                        quality={100}
-                        className="rounded-lg"
-                        data-ai-hint={image.dataAiHint}
-                        priority={index < 2}
-                      />
-                    </div>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
-                     <DialogTitle className="sr-only">{image.alt}</DialogTitle>
-                      <Image
-                          src={image.src}
-                          alt={image.alt}
-                          width={image.imageWidth}
-                          height={image.imageHeight}
-                          className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
-                          data-ai-hint={image.dataAiHint}
-                          priority // Prioritize loading for dialog image
-                          quality={100}
-                      />
-                  </DialogContent>
-                </Dialog>
+                // Removed Dialog, DialogTrigger, DialogContent wrapper
+                <div 
+                  key={index}
+                  className="relative aspect-[4/3] rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    layout="fill"
+                    objectFit="cover"
+                    quality={100} // Kept quality setting
+                    className="rounded-lg"
+                    data-ai-hint={image.dataAiHint}
+                    priority={index < 2}
+                  />
+                </div>
               ))}
             </div>
           </div>
