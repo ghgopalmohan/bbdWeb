@@ -178,7 +178,7 @@ export default function ServicesSection() {
                     height={600}
                     className={cn(
                         "w-full h-full object-cover transition-transform duration-500 hover:scale-105",
-                        tab.value === 'pamphlet' ? 'object-left-top' : 'object-top'
+                        (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
                     )}
                     data-ai-hint={tab.dataAiHint}
                   />
