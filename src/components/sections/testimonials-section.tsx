@@ -29,7 +29,7 @@ const testimonialsData: Testimonial[] = [
     id: 3,
     quote: "Working with Gopal Mohan has significantly elevated our marketing materials. His creative approach and attention to detail are exceptional.",
     author: "Shyam Rupa Dasa",
-    designation: "Marketing Lead, Hare Krishna Gokul Kshetram",
+    designation: "Marketing Lead, Hara Krishna Gokul Kshetram",
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
     <section
       id="testimonials"
       ref={sectionRef}
-      className="section-padding bg-background text-foreground overflow-hidden" // Added overflow-hidden here
+      className="section-padding bg-background text-foreground overflow-hidden"
     >
       <div className="container-custom">
         <div
@@ -96,7 +96,7 @@ export default function TestimonialsSection() {
       {/* Marquee Container */}
       <div
         className={cn(
-          "relative w-full group", // Removed overflow-hidden from here, parent section has it
+          "relative w-full group",
           isVisible ? "fade-in-up is-visible" : "fade-in-up"
         )}
         style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
@@ -108,7 +108,7 @@ export default function TestimonialsSection() {
               className={cn(
                 "flex-shrink-0 w-[300px] sm:w-[350px] md:w-[380px] p-6 mx-3 sm:mx-4",
                 "bg-card border border-border rounded-xl shadow-lg",
-                "flex flex-col justify-between" // Ensures consistent height if content varies slightly
+                "flex flex-col justify-between" 
               )}
             >
               <div>
@@ -128,10 +128,6 @@ export default function TestimonialsSection() {
             </div>
           ))}
         </div>
-         {/* Optional: Fades at the edges if you want them
-        <div className="absolute top-0 left-0 h-full w-16 bg-gradient-to-r from-background to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-background to-transparent pointer-events-none"></div>
-        */}
       </div>
     </section>
   );
