@@ -169,7 +169,10 @@ export default function PortfolioSection() {
                       src={item.imageUrl}
                       alt={item.title}
                       layout="fill" // Fills the parent CardContent
-                      className="object-cover object-top w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
+                      className={cn(
+                        "object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105",
+                        item.id === 'poster-furniture-08' ? 'object-left-top' : 'object-top'
+                      )}
                       data-ai-hint={item.dataAiHint}
                       // No explicit width/height here as layout="fill" takes over.
                       // For optimization, ensure your source images are reasonably sized.
