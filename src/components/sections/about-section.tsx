@@ -111,14 +111,14 @@ export default function AboutSection() {
               {collageImagesData.map((image, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
-                    <div className="aspect-[4/3] rounded-lg shadow-md group relative hover:shadow-xl transition-shadow duration-300">
+                    <div className="relative rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300">
                       <Image
                         src={image.src}
                         alt={image.alt}
                         width={160} 
                         height={120} 
-                        quality={100} // Increased quality
-                        className="object-cover object-top w-full h-full rounded-lg" // Removed transform classes
+                        quality={100} 
+                        className="rounded-lg object-cover"
                         data-ai-hint={image.dataAiHint}
                       />
                     </div>
@@ -133,7 +133,7 @@ export default function AboutSection() {
                           className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                           data-ai-hint={image.dataAiHint}
                           priority={index < 2} 
-                          quality={100} // Increased quality for lightbox too, if desired
+                          quality={100}
                       />
                   </DialogContent>
                 </Dialog>

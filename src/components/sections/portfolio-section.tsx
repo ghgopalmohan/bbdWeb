@@ -25,7 +25,7 @@ interface PortfolioItem {
 const portfolioItemsData: PortfolioItem[] = [
   {
     id: 'bizcard-01',
-    title: 'Elegant Business Cards',
+    title: 'Indraprastha Pamphlet',
     category: 'Branding & Identity',
     imageUrl: '/images/5000 BB 90gsm-back copy.jpg',
     fullImageUrl: '/images/5000 BB 90gsm-back copy.jpg',
@@ -36,7 +36,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'logo-design-02',
-    title: 'Modern Logo Design',
+    title: 'Babaji Kriya Yoga Pamphlet',
     category: 'Branding & Identity',
     imageUrl: '/images/2x4 babaji-2 copy.jpg',
     fullImageUrl: '/images/2x4 babaji-2 copy.jpg',
@@ -46,7 +46,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'menu-design-03',
-    title: 'Restaurant Menu Layout',
+    title: 'Prom Menu Layout',
     category: 'Print Design',
     imageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
     fullImageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
@@ -66,7 +66,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'poster-valet-05',
-    title: 'Valet Parking Event Posters',
+    title: 'Valet Parking Cards',
     category: 'Print Design',
     imageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
     fullImageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
@@ -76,7 +76,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'brochure-cards-06',
-    title: 'Corporate Branding Brochures',
+    title: 'Corporate Branding Cards',
     category: 'Marketing Material',
     imageUrl: '/images/business card copy.jpg',
     fullImageUrl: '/images/business card copy.jpg',
@@ -86,7 +86,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'banner-envelope-07',
-    title: 'Bathinas Navara Rice',
+    title: 'Bathinas Navara Rice Cover Design',
     category: 'Advertising',
     imageUrl: '/images/pamphlet-1.jpg',
     fullImageUrl: '/images/pamphlet-1.jpg',
@@ -96,7 +96,7 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'poster-furniture-08',
-    title: 'Baba Furniture Event Posters',
+    title: 'Baba Furniture Envelope Cards',
     category: 'Print Design',
     imageUrl: '/images/envelope baba furniture copy 2.jpg',
     fullImageUrl: '/images/envelope baba furniture copy 2.jpg',
@@ -106,10 +106,10 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'brochure-lifestyle-09',
-    title: 'Lifestyle Product Brochures',
+    title: 'Restaurant Menus',
     category: 'Marketing Material',
-    imageUrl: '/images/lifestyle-front copy 2.jpg',
-    fullImageUrl: '/images/lifestyle-front copy 2.jpg',
+    imageUrl: '/images/menufinall.png',
+    fullImageUrl: '/images/menufinall.png',
     description: 'Informative and engaging brochure designs for businesses and organizations.',
     dataAiHint: 'corporate brochure business',
     imageWidth: 750, imageHeight: 600 // Placeholder
@@ -146,7 +146,7 @@ export default function PortfolioSection() {
           style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
         >
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-3">
-            My Creative Works
+            My Works
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A selection of projects that showcase my passion for design and attention to detail.

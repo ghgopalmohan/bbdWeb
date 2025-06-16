@@ -121,8 +121,8 @@ export default function ContactSection() {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "https://www.linkedin.com/in/gopalmohan", label: "LinkedIn", delay: "600ms"},
-    { icon: Instagram, href: "https://www.instagram.com/gopalmohandesign", label: "Instagram", delay: "700ms"},
+    { icon: Linkedin, href: "https://www.linkedin.com/in/gopal-mohan-g-h-17376624", label: "LinkedIn", delay: "600ms"},
+    { icon: Instagram, href: "https://www.instagram.com/gopalmohangh?igsh=MWxnZmJvampjNXZyMw==", label: "Instagram", delay: "700ms"},
   ];
 
   return (

@@ -8,10 +8,10 @@ const footerNavLinks = [
 ];
 
 const socialLinks = [
-  { Icon: Twitter, href: '#', label: 'Twitter' },
-  { Icon: Dribbble, href: '#', label: 'Dribbble' },
-  { Icon: Linkedin, href: 'https://www.linkedin.com/in/gopal-mohan-g-h-17376624/?originalSubdomain=in', label: 'LinkedIn' },
-  { Icon: Github, href: '#', label: 'Github' },
+  { Icon: Twitter, href: 'https://x.com/ghgopalmohan2?s=11', label: 'Twitter' },
+  // { Icon: Dribbble, href: '#', label: 'Dribbble' },
+  { Icon: Linkedin, href: 'https://www.linkedin.com/in/gopal-mohan-g-h-17376624', label: 'LinkedIn' },
+  { Icon: Instagram, href: 'https://www.instagram.com/gopalmohangh?igsh=MWxnZmJvampjNXZyMw==', label: 'Instagram' },
 ];
 
 export default function Footer() {
