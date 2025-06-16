@@ -174,8 +174,8 @@ export default function TestimonialsSection() {
 
         <div
           className={cn(
-            "group grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-h-[600px] md:max-h-[700px] overflow-hidden relative", // Added relative for pseudo-elements if needed
-            isVisible ? "fade-in-up is-visible" : "opacity-0" // fade-in-up needs to be on a block that isn't the scroller
+            "group grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-h-[600px] md:max-h-[700px] overflow-hidden relative", 
+            isVisible ? "fade-in-up is-visible" : "opacity-0" 
           )}
           style={{ animationDelay: isVisible ? '200ms' : '0ms', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
           onMouseEnter={(e) => e.currentTarget.style.setProperty('--animation-play-state', 'paused')}
@@ -185,23 +185,23 @@ export default function TestimonialsSection() {
           <div className="overflow-hidden">
             <ColumnTestimonials
               testimonials={column1Data}
-              animationClass="animate-[marquee-y_50s_linear_infinite]"
+              animationClass="animate-[marquee-y_20s_linear_infinite]"
               columnId="col1"
             />
           </div>
           {/* Column 2 */}
-          <div className="overflow-hidden hidden md:block"> {/* Hide on mobile, show on md+ */}
+          <div className="overflow-hidden hidden md:block"> 
             <ColumnTestimonials
               testimonials={column2Data}
-              animationClass="animate-[marquee-y_65s_linear_infinite]"
+              animationClass="animate-[marquee-y_25s_linear_infinite]"
               columnId="col2"
             />
           </div>
           {/* Column 3 */}
-          <div className="overflow-hidden hidden md:block"> {/* Hide on mobile, show on md+ */}
+          <div className="overflow-hidden hidden md:block"> 
             <ColumnTestimonials
               testimonials={column3Data}
-              animationClass="animate-[marquee-y_45s_linear_infinite]"
+              animationClass="animate-[marquee-y_18s_linear_infinite]"
               columnId="col3"
             />
           </div>
@@ -217,8 +217,8 @@ export default function TestimonialsSection() {
           onMouseLeave={(e) => e.currentTarget.style.setProperty('--animation-play-state', 'running')}
         >
             <ColumnTestimonials
-                testimonials={testimonialsData} // All 9 testimonials for mobile
-                animationClass="animate-[marquee-y_120s_linear_infinite]"
+                testimonials={testimonialsData} 
+                animationClass="animate-[marquee-y_45s_linear_infinite]"
                 columnId="colMobile"
             />
         </div>
@@ -226,3 +226,4 @@ export default function TestimonialsSection() {
     </section>
   );
 }
+
