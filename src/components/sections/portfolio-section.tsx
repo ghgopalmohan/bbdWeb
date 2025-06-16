@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; // Added DialogTitle
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; 
 import { ZoomIn } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState, useRef } from 'react';
@@ -48,28 +48,28 @@ const portfolioItemsData: PortfolioItem[] = [
     id: 'menu-design-03',
     title: 'Hoarding Design',
     category: 'Print Design',
-    imageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
-    fullImageUrl: '/images/a5 pamphlet-page 1 copy 2.jpg',
+    imageUrl: '/images/lifestyle-front copy 2.jpg',
+    fullImageUrl: '/images/lifestyle-front copy 2.jpg',
     description: 'Visually appealing and easy-to-navigate menu designs for Prom restaurants and cafes.',
     dataAiHint: 'restaurant menu food',
     imageWidth: 600, imageHeight: 800
   },
   {
     id: 'banner-moonlight-04',
-    title: 'Moonlight Promotional Banner Design',
+    title: 'Promotional Banner Design',
     category: 'Advertising',
-    imageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
-    fullImageUrl: '/images/1-cover page-moonlight A5 copy 2.jpg',
+    imageUrl: '/images/www-aum llc.jpg',
+    fullImageUrl: '/images/www-aum llc.jpg',
     description: 'Eye-catching banners for Moonlight digital and print advertising campaigns.',
     dataAiHint: 'promotional banner event',
     imageWidth: 900, imageHeight: 300
   },
   {
     id: 'poster-valet-05',
-    title: 'Valet Parking Card Design',
+    title: 'Standee Design',
     category: 'Print Design',
-    imageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
-    fullImageUrl: '/images/brown-6x16 valet parking front indraprasttha nov-2024 copy 2.jpg',
+    imageUrl: '/images/nick vujicic 2x4-1 copy.jpg',
+    fullImageUrl: '/images/nick vujicic 2x4-1 copy.jpg',
     description: 'Impactful valet parking card designs for events and promotions.',
     dataAiHint: 'event poster concert',
     imageWidth: 600, imageHeight: 900
@@ -96,10 +96,10 @@ const portfolioItemsData: PortfolioItem[] = [
   },
   {
     id: 'poster-furniture-08',
-    title: 'Baba Furniture Envelope Card Design',
+    title: 'LifeStyle Card Design',
     category: 'Print Design',
-    imageUrl: '/images/envelope baba furniture copy 2.jpg',
-    fullImageUrl: '/images/envelope baba furniture copy 2.jpg',
+    imageUrl: '/images/lifestyle visiting card-name copy 2.jpg',
+    fullImageUrl: '/images/lifestyle visiting card-name copy 2.jpgg',
     description: 'Impactful envelope card designs for Baba Furniture promotions.',
     dataAiHint: 'stationery design furniture',
     imageWidth: 500, imageHeight: 750
@@ -166,14 +166,15 @@ export default function PortfolioSection() {
                   <CardContent className="p-0 aspect-[4/3] relative overflow-hidden">
                     <Image
                       src={item.imageUrl}
-                      alt={item.title} // Using item.title as alt text
+                      alt={item.title} 
                       layout="fill"
                       className={cn(
                         "object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105",
                         item.id === 'poster-furniture-08' ? 'object-left-top' : 'object-top'
                       )}
                       data-ai-hint={item.dataAiHint}
-                      quality={75} // Default quality, can be adjusted
+                      quality={75}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                       <h3 className="font-headline text-xl text-white mb-1">{item.title}</h3>
@@ -192,13 +193,14 @@ export default function PortfolioSection() {
                 <div className="p-1 max-h-[90vh] overflow-y-auto flex items-center justify-center">
                   <Image
                     src={item.fullImageUrl || item.imageUrl}
-                    alt={item.title} // Using item.title as alt text for dialog image
+                    alt={item.title} 
                     width={item.imageWidth || 1200}
                     height={item.imageHeight || 900}
                     className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                     data-ai-hint={item.dataAiHint}
-                    priority // Prioritize loading for dialog image
-                    quality={90} // Higher quality for dialog image
+                    priority 
+                    quality={90}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
               </DialogContent>

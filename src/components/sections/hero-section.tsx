@@ -13,7 +13,7 @@ const clientNames = [
   "Akshayapatra", "Moonlight", "Dharmakshetra", "Bouncer",
   "Rapid Rx Pharmacy", "Baba Furniture", "Sleepwell"
 ];
-const extendedClientNames = [...clientNames, ...clientNames, ...clientNames]; // Tripled for even smoother marquee
+const extendedClientNames = [...clientNames, ...clientNames, ...clientNames]; 
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -62,7 +62,7 @@ export default function HeroSection() {
                 Gopal Mohan
               </h1>
               <p className="text-xl md:text-2xl lg:text-3xl font-medium text-janice-text-light/90 mb-4 !leading-tight">
-                <span className="font-calligraphy">Professional Photoshop Designer</span>
+                <span className="font-calligraphy">Professional Designer & Printer</span>
               </p>
               <p className="text-sm md:text-base text-janice-text-light/70 mb-8 max-w-md">
               From logos and brochures to cards, banners, and hoardings — Whether for print or digital, my designs are made to stand out, tell your story, and leave a lasting impression.
@@ -104,6 +104,7 @@ export default function HeroSection() {
                 className="rounded-2xl"
                 priority
                 data-ai-hint="designer portrait modern"
+                onContextMenu={(e) => e.preventDefault()}
               />
               <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg">
                 <Image
@@ -113,17 +114,16 @@ export default function HeroSection() {
                     height={80}
                     className="rounded-md"
                     data-ai-hint="qr code scan"
+                    onContextMenu={(e) => e.preventDefault()}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Client Logos Bar Section */}
       <div
         className={cn(
-          "w-full mt-16 md:mt-20 lg:mt-24", // This div now handles the top margin
+          "w-full mt-16 md:mt-20 lg:mt-24", 
           isVisible ? "fade-in-up is-visible" : "fade-in-up"
         )}
         style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}
@@ -134,12 +134,12 @@ export default function HeroSection() {
               "text-center text-xs font-medium text-janice-text-light/70 uppercase tracking-wider mb-4 md:mb-6",
                isVisible ? "fade-in-up is-visible" : "fade-in-up"
             )}
-            style={{ transitionDelay: isVisible ? '700ms' : '0ms' }} // Slightly later delay
+            style={{ transitionDelay: isVisible ? '700ms' : '0ms' }}
           >
             Trusted By
           </p>
         </div>
-        <div className="py-6 md:py-8 bg-white/5"> {/* Background for the marquee itself */}
+        <div className="py-6 md:py-8 bg-white/5"> 
           <div className="relative w-full overflow-hidden group">
             <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
               {extendedClientNames.map((name, index) => (
@@ -153,11 +153,8 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
-      {/* Decorative floating elements */}
       <div className={cn("absolute top-1/4 left-1/4 w-12 h-12 bg-janice-accent/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}></div>
       <div className={cn("absolute bottom-1/3 right-1/4 w-8 h-8 bg-janice-soft-gold/20 rounded-full animate-pulse opacity-0 transition-opacity duration-1000", isVisible && "opacity-100")} style={{ transitionDelay: isVisible ? '1000ms' : '0ms' }}></div>
-
     </section>
   );
 }

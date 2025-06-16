@@ -8,7 +8,7 @@ import { Briefcase, Building, Sparkles } from 'lucide-react';
 const timelineData = [
   {
     icon: Building,
-    date: "2000 - 2018",
+    date: "1994 - 2018",
     title: "Founder & Director",
     company: "Business Bonds Directory (Yellow Pages)",
     description: "Launched entrepreneurial journey by founding a company dedicated to designing impactful advertisements and publishing comprehensive business directories. Grew to establish 10 successful branches across Andhra Pradesh, becoming a trusted name in regional business networking.",
@@ -25,9 +25,9 @@ const timelineData = [
   {
     icon: Sparkles,
     date: "2021 - Present",
-    title: "Freelance Graphic Designer & Creative Vendor",
+    title: "Freelance Designer & Printer, Corporate Vendor",
     company: "Serving Leading Companies in India & Abroad",
-    description: "Working with numerous leading companies, leveraging core expertise in Adobe Photoshop to deliver a wide range of creative solutions including business cards, brochures, banners, corporate stationery, hotel menus, billboards, and custom visual branding.",
+    description: "Working with numerous leading companies, to deliver a wide range of creative solutions including business cards, brochures, banners, corporate stationery, hotel menus, billboards, and vehicle branding.",
     delay: "400ms",
   },
 ];

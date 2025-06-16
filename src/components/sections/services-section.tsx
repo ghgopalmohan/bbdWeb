@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
-import { ArrowRight, BookOpenText, FileText, Wand2, Mail, MenuSquare, Megaphone } from 'lucide-react'; // Updated icons
+import { ArrowRight, BookOpenText, FileText, Wand2, Mail, MenuSquare, Megaphone } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -14,7 +14,7 @@ const serviceTabsData = [
   {
     value: 'Brochure',
     title: 'Brochure Design',
-    icon: BookOpenText, // Updated
+    icon: BookOpenText,
     description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
     content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
     imageUrl: '/images/brochure-1.jpg',
@@ -26,7 +26,7 @@ const serviceTabsData = [
   {
     value: 'pamphlet',
     title: 'Pamphlet Design',
-    icon: FileText, // Updated
+    icon: FileText,
     description: 'Designing concise and visually striking pamphlets for promotions, events, or informational purposes.',
     content: 'My pamphlet designs focus on delivering key information in a compact and engaging format. I prioritize clear messaging and eye-catching visuals to ensure your pamphlets grab attention and achieve their purpose.',
     imageUrl: '/images/superdesign.jpeg',
@@ -38,7 +38,7 @@ const serviceTabsData = [
   {
     value: 'Logo',
     title: 'Logo Design',
-    icon: Wand2, // Updated
+    icon: Wand2,
     description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
     content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
     imageUrl: '/images/logo-1.jpg',
@@ -50,7 +50,7 @@ const serviceTabsData = [
   {
     value: 'Letterhead',
     title: 'LetterHead Design',
-    icon: Mail, // Updated
+    icon: Mail,
     description: 'Professional letterhead designs that reinforce your brand identity in all official correspondence.',
     content: 'I design elegant and professional letterheads that maintain brand consistency and create a sophisticated impression. Attention to detail ensures your stationery is both functional and representative of your brand.',
     imageUrl: '/images/capital letter head copy 2.jpg',
@@ -62,7 +62,7 @@ const serviceTabsData = [
   {
     value: 'Menus',
     title: 'Menu Design',
-    icon: MenuSquare, // Updated
+    icon: MenuSquare,
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and food businesses.',
     content: 'My menu designs balance aesthetics with functionality, enticing customers while making choices easy. I focus on layout, typography, and imagery to create menus that enhance the dining experience.',
     imageUrl: '/images/originalmenu.png',
@@ -74,7 +74,7 @@ const serviceTabsData = [
   {
     value: 'Flyer',
     title: 'Flyer Design',
-    icon: Megaphone, // Updated
+    icon: Megaphone,
     description: 'Eye-catching flyer designs for promotions, events, and marketing campaigns that demand attention.',
     content: 'I create dynamic flyers that effectively convey your message and drive action. Whether for print or digital distribution, my designs are crafted to be visually engaging and results-oriented.',
     imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
@@ -126,7 +126,7 @@ export default function ServicesSection() {
               My Service
             </h2>
              <p className="text-md text-muted-foreground mt-3 max-w-xl">
-              Offering tailored design solutions to elevate your brand's visual identity and user engagement.
+              Offering design and printing solutions to elevate your brand's visual identity and user engagement.
             </p>
           </div>
           <div
@@ -198,6 +198,7 @@ export default function ServicesSection() {
                           )}
                           data-ai-hint={tab.dataAiHint}
                           quality={75}
+                          onContextMenu={(e) => e.preventDefault()}
                         />
                       </div>
                     </DialogTrigger>
@@ -212,6 +213,7 @@ export default function ServicesSection() {
                         data-ai-hint={tab.dataAiHint}
                         priority
                         quality={90}
+                        onContextMenu={(e) => e.preventDefault()}
                       />
                     </DialogContent>
                   </Dialog>

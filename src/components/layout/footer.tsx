@@ -26,7 +26,7 @@ export default function Footer() {
               GM
             </Link>
             <p className="text-sm max-w-xs leading-relaxed">
-            Professional Photoshop Designer.
+            Professional Designer & Printer.
             </p>
             <div className="flex space-x-4 mt-6">
               {socialLinks.map((social) => (

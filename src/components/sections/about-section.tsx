@@ -5,14 +5,13 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useEffect, useState, useRef } from 'react';
 import { Briefcase, Users, Award, Palette, Smile } from 'lucide-react';
-// Removed Dialog imports as they are no longer used here
 
 interface CollageImage {
   src: string;
   alt: string;
   dataAiHint: string;
-  imageWidth: number; // Kept for potential future use or data consistency, but not directly for sizing here
-  imageHeight: number; // Kept for potential future use or data consistency, but not directly for sizing here
+  imageWidth: number; 
+  imageHeight: number;
 }
 
 const collageImagesData: CollageImage[] = [
@@ -56,7 +55,7 @@ export default function AboutSection() {
     {
       icon: Users,
       value: "400+",
-      label: "Clients", // Changed from "Happy Clients"
+      label: "Clients", 
       delay: "400ms"
     },
     {
@@ -80,7 +79,12 @@ export default function AboutSection() {
     "Corporate Stationery (Letterheads, Envelopes, Notepads, etc.)",
     "Hotel Menus",
     "Billboards & Signage",
-    "Custom Visual Branding Solutions"
+    "Vehicle Stickering & Branding",
+    "Digital Printing", 
+    "Multi Color Offset Printing",
+    "Single Color Printing",
+    "Spiral and Customized Binding",
+    "Customized Box Making with Design Printing",
   ];
 
   return (
@@ -90,10 +94,7 @@ export default function AboutSection() {
       className="bg-background text-foreground pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32"
     >
       <div className="container-custom">
-        {/* Single Main Grid for the entire content */}
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-
-          {/* Left Column: Title and Images */}
           <div
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
@@ -102,14 +103,11 @@ export default function AboutSection() {
             <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary mb-6">
               About Me
             </h2>
-
-            {/* Images stacked vertically under the title */}
             <div
               className={cn("space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
               style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
             >
               {collageImagesData.map((image, index) => (
-                // Removed Dialog, DialogTrigger, DialogContent wrapper
                 <div 
                   key={index}
                   className="relative aspect-[4/3] rounded-lg shadow-md group hover:shadow-xl transition-shadow duration-300 overflow-hidden"
@@ -119,29 +117,26 @@ export default function AboutSection() {
                     alt={image.alt}
                     layout="fill"
                     objectFit="cover"
-                    quality={100} // Kept quality setting
+                    quality={100}
                     className="rounded-lg"
                     data-ai-hint={image.dataAiHint}
                     priority={index < 2}
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Right Column: Intro, Stats, Expertise */}
           <div
             className={cn("md:col-span-7", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
             <p className="text-md text-muted-foreground md:pt-1 mb-4">
-              Hi, I'm Gopal Mohan, a design professional with over three decades of experience in impactful advertising, publishing, and freelance design. My passion lies in creating visually compelling solutions that resonate with audiences and elevate brand presence, primarily utilizing Adobe Photoshop.
+              Hi, I'm Gopal Mohan, professional designer and printer with over three decades of experience in impactful advertising, publishing, and freelance designing. My passion lies in creating visually compelling solutions that resonate with audiences and elevate brand presence.
             </p>
              <p className="text-md text-muted-foreground md:pt-1 mb-6">
               My approach combines design precision with a deep understanding of brand identity, ensuring that every project I undertake not only meets but exceeds client expectations.
             </p>
-
-            {/* Stats Grid - 2x2 */}
             <div
               className={cn(
                 "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 lg:gap-x-8 lg:gap-y-8 mt-6 mb-8",
@@ -169,8 +164,6 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-
-            {/* Core Expertise */}
             <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}>
               <h3 className="font-headline text-xl font-semibold text-primary mb-3 flex items-center">
                 <Palette className="w-6 h-6 text-primary mr-2" />
