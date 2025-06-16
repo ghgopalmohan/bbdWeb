@@ -16,8 +16,8 @@ interface CollageImage {
 }
 
 const collageImagesData: CollageImage[] = [
-  { src: "/images/bbd-3.jpg", alt: "Final design mockup", dataAiHint: "design mockup app", imageWidth: 800, imageHeight: 600 },
-  { src: "/images/bbd-4.jpg", alt: "Branding assets", dataAiHint: "branding assets styleguide", imageWidth: 800, imageHeight: 600 },
+  { src: "/images/bbd22.jpeg", alt: "Final design mockup", dataAiHint: "design mockup app", imageWidth: 800, imageHeight: 600 },
+  { src: "/images/bbd33.tiff", alt: "Branding assets", dataAiHint: "branding assets styleguide", imageWidth:800, imageHeight: 600 },
 ];
 
 export default function AboutSection() {
@@ -115,8 +115,8 @@ export default function AboutSection() {
                       <Image
                         src={image.src}
                         alt={image.alt}
-                        width={200} 
-                        height={150} 
+                        width={160} 
+                        height={120} 
                         className="object-cover object-top w-full h-full rounded-lg transition-transform duration-500 ease-in-out"
                         data-ai-hint={image.dataAiHint}
                       />

@@ -89,7 +89,7 @@ export default function HeroSection() {
               style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}
             >
               <Image
-                src="/images/hero22.jpeg"
+                src="/images/hero-1.jpeg"
                 alt="Janice - Digital Designer"
                 layout="fill"
                 objectFit="cover"

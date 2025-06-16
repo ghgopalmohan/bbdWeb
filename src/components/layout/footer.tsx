@@ -3,9 +3,7 @@ import Link from 'next/link';
 import { Linkedin, Instagram, Twitter, Github, Dribbble, Mail } from 'lucide-react';
 
 const footerNavLinks = [
-  { label: 'Templates', href: '#' },
-  { label: 'Tools', href: '#' },
-  { label: 'Features', href: '#' },
+
   { label: 'About Us', href: '#' },
 ];
 
@@ -28,7 +26,7 @@ export default function Footer() {
               GM
             </Link>
             <p className="text-sm max-w-xs leading-relaxed">
-              Sales Product design ares creative Media for Creatina Product Experiences.
+            Professional Photoshop Designer.
             </p>
             <div className="flex space-x-4 mt-6">
               {socialLinks.map((social) => (
@@ -49,22 +47,22 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Address</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Moonshine St. 14/05 Light City,</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">London, United Kingdom</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Vijayawda</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Andhra Pradesh, India</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-3">
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Email Address</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="mailto:gopalmohan.design@gmail.com" className="hover:text-white transition-colors">gopalmohan.design@gmail.com</Link></li>
+              <li><Link href="mailto:gopalmohan.design@gmail.com" className="hover:text-white transition-colors">gopalmohan.design</Link></li>
             </ul>
           </div>
           
           <div className="md:col-span-3">
              <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Phone Number</h4>
              <ul className="space-y-2 text-sm">
-                <li><Link href="tel:00088888888" className="hover:text-white transition-colors">(000) 888 - 88888</Link></li>
+                <li><Link href="tel:8309492753" className="hover:text-white transition-colors">+91 8309492753</Link></li>
              </ul>
           </div>
         </div>
