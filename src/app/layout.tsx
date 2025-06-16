@@ -5,8 +5,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'GM – Product Designer', // Updated title
-  description: 'Portfolio of GM, a Product Designer crafting intuitive digital experiences.', // Updated description
+  title: 'Gopal Mohan – Professional Photoshop Designer | Creative Design Services',
+  description: 'Portfolio of Gopal Mohan (GM), a seasoned Photoshop Designer offering expert graphic design services: logos, brochures, banners, menus, and complete visual branding solutions.',
 };
 
 export default function RootLayout({

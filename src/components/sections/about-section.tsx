@@ -16,8 +16,8 @@ interface CollageImage {
 }
 
 const collageImagesData: CollageImage[] = [
-  { src: "/images/bbd22.jpeg", alt: "Final design mockup", dataAiHint: "design mockup app", imageWidth: 800, imageHeight: 600 },
-  { src: "/images/bbd33.tiff", alt: "Branding assets", dataAiHint: "branding assets styleguide", imageWidth:800, imageHeight: 600 },
+  { src: "/images/bbd22.jpeg", alt: "Sample design mockup by Gopal Mohan", dataAiHint: "design mockup app", imageWidth: 800, imageHeight: 600 },
+  { src: "/images/bbd33.tiff", alt: "Branding assets example by Gopal Mohan", dataAiHint: "branding assets styleguide", imageWidth:800, imageHeight: 600 },
 ];
 
 export default function AboutSection() {
@@ -92,7 +92,7 @@ export default function AboutSection() {
       <div className="container-custom">
         {/* Single Main Grid for the entire content */}
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-          
+
           {/* Left Column: Title and Images */}
           <div
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
@@ -102,7 +102,7 @@ export default function AboutSection() {
             <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary mb-6">
               About Me
             </h2>
-            
+
             {/* Images stacked vertically under the title */}
             <div
               className={cn("space-y-4", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
@@ -117,9 +117,10 @@ export default function AboutSection() {
                         alt={image.alt}
                         layout="fill"
                         objectFit="cover"
-                        quality={100} 
+                        quality={100}
                         className="rounded-lg"
                         data-ai-hint={image.dataAiHint}
+                        priority={index < 2}
                       />
                     </div>
                   </DialogTrigger>
@@ -132,7 +133,7 @@ export default function AboutSection() {
                           height={image.imageHeight}
                           className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                           data-ai-hint={image.dataAiHint}
-                          priority={index < 2} 
+                          priority // Prioritize loading for dialog image
                           quality={100}
                       />
                   </DialogContent>
@@ -152,7 +153,7 @@ export default function AboutSection() {
              <p className="text-md text-muted-foreground md:pt-1 mb-6">
               My approach combines design precision with a deep understanding of brand identity, ensuring that every project I undertake not only meets but exceeds client expectations.
             </p>
-            
+
             {/* Stats Grid - 2x2 */}
             <div
               className={cn(
@@ -165,7 +166,7 @@ export default function AboutSection() {
                 <div
                   key={stat.label}
                   className={cn(
-                    "flex items-start p-3 rounded-lg transition-all duration-500 ease-out hover:bg-secondary", 
+                    "flex items-start p-3 rounded-lg transition-all duration-500 ease-out hover:bg-secondary",
                     "text-left",
                     isVisible ? "fade-in-up is-visible" : "opacity-0"
                   )}
@@ -200,4 +201,3 @@ export default function AboutSection() {
     </section>
   );
 }
-

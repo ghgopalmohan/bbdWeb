@@ -17,7 +17,7 @@ const serviceTabsData = [
     description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
     content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
     imageUrl: '/images/brochure-1.jpg',
-    imageAlt: 'Brochure design process',
+    imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
   },
   {
@@ -27,47 +27,47 @@ const serviceTabsData = [
     description: 'Designing concise and visually striking pamphlets for promotions, events, or informational purposes.',
     content: 'My pamphlet designs focus on delivering key information in a compact and engaging format. I prioritize clear messaging and eye-catching visuals to ensure your pamphlets grab attention and achieve their purpose.',
     imageUrl: '/images/superdesign.jpeg',
-    imageAlt: 'Pamphlet design mockups',
+    imageAlt: 'Pamphlet design mockup for event promotion',
     dataAiHint: 'pamphlet design event',
   },
   {
     value: 'Logo',
     title: 'Logo Design',
-    icon: Palette, 
+    icon: Palette,
     description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
     content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
     imageUrl: '/images/logo-1.jpg',
-    imageAlt: 'Logo design example',
+    imageAlt: 'Modern and impactful logo design example',
     dataAiHint: 'logo design modern',
   },
   {
     value: 'Letterhead',
     title: 'LetterHead Design',
-    icon: Palette, 
+    icon: Palette,
     description: 'Professional letterhead designs that reinforce your brand identity in all official correspondence.',
     content: 'I design elegant and professional letterheads that maintain brand consistency and create a sophisticated impression. Attention to detail ensures your stationery is both functional and representative of your brand.',
     imageUrl: '/images/capital letter head copy 2.jpg',
-    imageAlt: 'Letterhead example',
+    imageAlt: 'Corporate letterhead design sample',
     dataAiHint: 'letterhead corporate stationery',
   },
   {
     value: 'Menus',
     title: 'Menu Design',
-    icon: Palette, 
+    icon: Palette,
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and food businesses.',
     content: 'My menu designs balance aesthetics with functionality, enticing customers while making choices easy. I focus on layout, typography, and imagery to create menus that enhance the dining experience.',
     imageUrl: '/images/originalmenu.png',
-    imageAlt: 'Menu example',
+    imageAlt: 'Restaurant menu design layout',
     dataAiHint: 'menu design restaurant',
   },
   {
     value: 'Flyer',
     title: 'Flyer Design',
-    icon: Palette, 
+    icon: Palette,
     description: 'Eye-catching flyer designs for promotions, events, and marketing campaigns that demand attention.',
     content: 'I create dynamic flyers that effectively convey your message and drive action. Whether for print or digital distribution, my designs are crafted to be visually engaging and results-oriented.',
     imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
-    imageAlt: 'Flyer example',
+    imageAlt: 'Promotional flyer design sample',
     dataAiHint: 'flyer design promotion',
   },
 ];
@@ -101,7 +101,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 md:py-28 bg-background text-foreground">
+    <section id="services" ref={sectionRef} className="pt-20 md:pt-28 pb-16 md:pb-24 lg:pb-28 bg-background text-foreground">
       <div className="container-custom">
         <div className="grid md:grid-cols-12 gap-8 items-start mb-12 md:mb-16">
           <div
@@ -122,7 +122,7 @@ export default function ServicesSection() {
           >
             <Button asChild variant="default" size="sm" className="md:size-lg rounded-lg group">
               <Link href="#contact">
-                <span className="flex items-center"> {/* Ensure single child for Link if Button asChild is tricky */}
+                <span className="flex items-center">
                   Get Quote <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
@@ -132,8 +132,8 @@ export default function ServicesSection() {
 
         <Tabs defaultValue={serviceTabsData[0].value} onValueChange={setActiveTab} className="w-full">
           <TabsList className={cn(
-            "flex flex-wrap gap-2 mb-10 justify-center", 
-            "bg-transparent shadow-none p-0 h-auto", 
+            "flex flex-wrap gap-2 mb-10 justify-center",
+            "bg-transparent shadow-none p-0 h-auto",
             isVisible ? "fade-in-up is-visible" : "fade-in-up"
           )}
           style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}
@@ -143,7 +143,7 @@ export default function ServicesSection() {
                 key={tab.value}
                 value={tab.value}
                 className={cn(
-                  "font-medium text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2", 
+                  "font-medium text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-lg px-2.5 py-2 sm:px-3 sm:py-2.5 transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2",
                   activeTab === tab.value ? "data-[state=active]:text-primary-foreground" : "text-muted-foreground"
                 )}
               >
@@ -181,6 +181,7 @@ export default function ServicesSection() {
                         (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
                     )}
                     data-ai-hint={tab.dataAiHint}
+                    quality={75}
                   />
                 </div>
               </div>
