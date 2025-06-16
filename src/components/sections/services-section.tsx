@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog'; // Added Dialog imports
-import { ArrowRight, Palette, Smartphone, Film } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
+import { ArrowRight, BookOpenText, FileText, Wand2, Mail, MenuSquare, Megaphone } from 'lucide-react'; // Updated icons
 import React, { useEffect, useState, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -14,19 +14,19 @@ const serviceTabsData = [
   {
     value: 'Brochure',
     title: 'Brochure Design',
-    icon: Palette,
+    icon: BookOpenText, // Updated
     description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
     content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
     imageUrl: '/images/brochure-1.jpg',
     imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
-    imageWidth: 800, // Added for dialog consistency
-    imageHeight: 600, // Added for dialog consistency
+    imageWidth: 800,
+    imageHeight: 600,
   },
   {
     value: 'pamphlet',
     title: 'Pamphlet Design',
-    icon: Film,
+    icon: FileText, // Updated
     description: 'Designing concise and visually striking pamphlets for promotions, events, or informational purposes.',
     content: 'My pamphlet designs focus on delivering key information in a compact and engaging format. I prioritize clear messaging and eye-catching visuals to ensure your pamphlets grab attention and achieve their purpose.',
     imageUrl: '/images/superdesign.jpeg',
@@ -38,7 +38,7 @@ const serviceTabsData = [
   {
     value: 'Logo',
     title: 'Logo Design',
-    icon: Palette,
+    icon: Wand2, // Updated
     description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
     content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
     imageUrl: '/images/logo-1.jpg',
@@ -50,7 +50,7 @@ const serviceTabsData = [
   {
     value: 'Letterhead',
     title: 'LetterHead Design',
-    icon: Palette,
+    icon: Mail, // Updated
     description: 'Professional letterhead designs that reinforce your brand identity in all official correspondence.',
     content: 'I design elegant and professional letterheads that maintain brand consistency and create a sophisticated impression. Attention to detail ensures your stationery is both functional and representative of your brand.',
     imageUrl: '/images/capital letter head copy 2.jpg',
@@ -62,7 +62,7 @@ const serviceTabsData = [
   {
     value: 'Menus',
     title: 'Menu Design',
-    icon: Palette,
+    icon: MenuSquare, // Updated
     description: 'Visually appealing and easy-to-navigate menu designs for restaurants, cafes, and food businesses.',
     content: 'My menu designs balance aesthetics with functionality, enticing customers while making choices easy. I focus on layout, typography, and imagery to create menus that enhance the dining experience.',
     imageUrl: '/images/originalmenu.png',
@@ -74,7 +74,7 @@ const serviceTabsData = [
   {
     value: 'Flyer',
     title: 'Flyer Design',
-    icon: Palette,
+    icon: Megaphone, // Updated
     description: 'Eye-catching flyer designs for promotions, events, and marketing campaigns that demand attention.',
     content: 'I create dynamic flyers that effectively convey your message and drive action. Whether for print or digital distribution, my designs are crafted to be visually engaging and results-oriented.',
     imageUrl: '/images/111 pharmacy flyer front-new copy 2.jpg',
@@ -114,7 +114,7 @@ export default function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="pt-20 md:pt-28 pb-16 md:pb-20 lg:pb-24">
+    <section id="services" ref={sectionRef} className="pt-20 md:pt-28 pb-12 md:pb-16 lg:pb-20">
       <div className="container-custom">
         <div className="grid md:grid-cols-12 gap-8 items-start mb-12 md:mb-16">
           <div
@@ -190,8 +190,8 @@ export default function ServicesSection() {
                         <Image
                           src={tab.imageUrl}
                           alt={tab.imageAlt}
-                          width={800} // Original display width
-                          height={600} // Original display height
+                          width={800} 
+                          height={600} 
                           className={cn(
                               "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105",
                               (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
@@ -206,8 +206,8 @@ export default function ServicesSection() {
                       <Image
                         src={tab.imageUrl}
                         alt={tab.imageAlt}
-                        width={tab.imageWidth || 800} // Use specific or default
-                        height={tab.imageHeight || 600} // Use specific or default
+                        width={tab.imageWidth || 800} 
+                        height={tab.imageHeight || 600}
                         className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                         data-ai-hint={tab.dataAiHint}
                         priority
