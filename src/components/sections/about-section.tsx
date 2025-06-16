@@ -111,13 +111,14 @@ export default function AboutSection() {
               {collageImagesData.map((image, index) => (
                 <Dialog key={index}>
                   <DialogTrigger asChild>
-                    <div className="aspect-[4/3] rounded-lg shadow-md group relative hover:shadow-2xl transition-shadow duration-300">
+                    <div className="aspect-[4/3] rounded-lg shadow-md group relative hover:shadow-xl transition-shadow duration-300">
                       <Image
                         src={image.src}
                         alt={image.alt}
                         width={160} 
                         height={120} 
-                        className="object-cover object-top w-full h-full rounded-lg transition-transform duration-500 ease-in-out"
+                        quality={100} // Increased quality
+                        className="object-cover object-top w-full h-full rounded-lg" // Removed transform classes
                         data-ai-hint={image.dataAiHint}
                       />
                     </div>
@@ -132,6 +133,7 @@ export default function AboutSection() {
                           className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
                           data-ai-hint={image.dataAiHint}
                           priority={index < 2} 
+                          quality={100} // Increased quality for lightbox too, if desired
                       />
                   </DialogContent>
                 </Dialog>
@@ -154,7 +156,7 @@ export default function AboutSection() {
             {/* Stats Grid - 2x2 */}
             <div
               className={cn(
-                "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 lg:gap-x-8 lg:gap-y-8 mt-6 mb-8", // Added mb-8
+                "grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-6 lg:gap-x-8 lg:gap-y-8 mt-6 mb-8",
                 isVisible ? "fade-in-up is-visible" : "opacity-0"
               )}
               style={{ transitionDelay: isVisible ? '250ms' : '0ms' }}
@@ -181,7 +183,7 @@ export default function AboutSection() {
             </div>
 
             {/* Core Expertise */}
-            <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}> {/* Adjusted delay for expertise */}
+            <div className={cn(isVisible ? "fade-in-up is-visible" : "opacity-0", "pt-0")} style={{ transitionDelay: isVisible ? '300ms' : '0ms' }}>
               <h3 className="font-headline text-xl font-semibold text-primary mb-3 flex items-center">
                 <Palette className="w-6 h-6 text-primary mr-2" />
                 Core Expertise
