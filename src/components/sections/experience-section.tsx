@@ -60,7 +60,7 @@ export default function ExperienceSection() {
   }, []);
 
   return (
-    <section id="experience" ref={sectionRef} className="section-padding bg-primary text-primary-foreground">
+    <section id="experience" ref={sectionRef} className="section-padding bg-black text-primary-foreground">
       <div className="container-custom">
         {/* Title Block */}
         <div className="mb-12 md:mb-16 text-center">
