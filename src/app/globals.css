@@ -47,7 +47,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     @apply font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
@@ -98,4 +98,54 @@
 .no-scrollbar {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+/* Background Animation */
+.animated-blob-1, .animated-blob-2 {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+  filter: blur(80px);
+}
+
+.animated-blob-1 {
+  width: 30vw;
+  height: 30vw;
+  min-width: 300px;
+  min-height: 300px;
+  background-color: hsl(200 80% 80% / 0.2);
+  top: 5vh;
+  left: 20vw;
+  animation: move-blob-1 20s infinite alternate ease-in-out;
+}
+
+.animated-blob-2 {
+  width: 25vw;
+  height: 25vw;
+  min-width: 250px;
+  min-height: 250px;
+  background-color: hsl(300 80% 90% / 0.2);
+  bottom: 10vh;
+  right: 15vw;
+  animation: move-blob-2 25s infinite alternate ease-in-out;
+  animation-delay: -7s;
+}
+
+@keyframes move-blob-1 {
+  from {
+    transform: translate(-20%, -10%) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translate(20%, 10%) rotate(45deg) scale(1.2);
+  }
+}
+
+@keyframes move-blob-2 {
+  from {
+    transform: translate(10%, 20%) rotate(0deg) scale(1.2);
+  }
+  to {
+    transform: translate(-10%, -20%) rotate(-30deg) scale(1);
+  }
 }

@@ -28,8 +28,8 @@ const testimonialsData: Testimonial[] = [
   {
     id: 3,
     quote: "Consistently high-quality designs that meet all our branding needs. A reliable and creative partner for any business seeking to make a visual impact. Their team is responsive and talented.",
-    author: "Priya Sharma",
-    designation: "Founder, EcoBloom Ventures",
+    author: "Srinivas Anumanchipalli",
+    designation: "Cheif Financial Officer, Axiscades",
   },
   {
     id: 4,
@@ -40,8 +40,8 @@ const testimonialsData: Testimonial[] = [
   {
     id: 5,
     quote: "Gopal is a true professional. His designs are not only beautiful but also strategically sound. He took the time to understand our vision and brought it to life flawlessly. The results speak for themselves.",
-    author: "Ravi Kumar",
-    designation: "CEO, TechSpark Solutions",
+    author: "Srikanth Kandoori",
+    designation: "Vice President, Wells Fargo",
   },
   {
     id: 6,

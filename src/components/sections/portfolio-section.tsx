@@ -49,7 +49,17 @@ const portfolioItemsData: PortfolioItem[] = [
     imageWidth: 700, imageHeight: 500
   },
   {
-    id: 'menu-design-03',
+    id: 'harekrishna-pamphlet-03',
+    title: 'Harekrishna Pamphlet',
+    category: 'Pamphlet',
+    imageUrl: '/images/harekrishna pamphlet.jpeg',
+    fullImageUrl: '/images/harekrishna pamphlet.jpeg',
+    description: 'Informative pamphlet design for Harekrishna.',
+    dataAiHint: 'pamphlet design',
+    imageWidth: 800, imageHeight: 600
+  },
+  {
+    id: 'menu-design-04',
     title: 'Hoarding Design',
     category: 'Print Design',
     imageUrl: '/images/lifestyle-front copy 2.jpg',
@@ -59,7 +69,7 @@ const portfolioItemsData: PortfolioItem[] = [
     imageWidth: 600, imageHeight: 800
   },
   {
-    id: 'banner-moonlight-04',
+    id: 'banner-moonlight-05',
     title: 'Promotional Banner Design',
     category: 'Advertising',
     imageUrl: '/images/www-aum llc.jpg',
@@ -69,7 +79,17 @@ const portfolioItemsData: PortfolioItem[] = [
     imageWidth: 900, imageHeight: 300
   },
   {
-    id: 'poster-valet-05',
+    id: 'harekrishna-digital-card-06',
+    title: 'Harekrishna Digital Card',
+    category: 'Digital Design',
+    imageUrl: '/images/harekrishna digital card.jpeg',
+    fullImageUrl: '/images/harekrishna digital card.jpeg',
+    description: 'Digital business card design for Harekrishna.',
+    dataAiHint: 'digital business card',
+    imageWidth: 800, imageHeight: 600
+  },
+  {
+    id: 'poster-valet-07',
     title: 'Standee Design',
     category: 'Print Design',
     imageUrl: '/images/nick vujicic 2x4-1 copy.jpg',
@@ -79,7 +99,7 @@ const portfolioItemsData: PortfolioItem[] = [
     imageWidth: 600, imageHeight: 900
   },
   {
-    id: 'brochure-cards-06',
+    id: 'brochure-cards-08',
     title: 'Corporate Branding Card Design',
     category: 'Marketing Material',
     imageUrl: '/images/business card copy.jpg',
@@ -88,6 +108,36 @@ const portfolioItemsData: PortfolioItem[] = [
     dataAiHint: 'corporate brochure business',
     imageWidth: 800, imageHeight: 550
   },
+ {
+    id: 'harekrishna-hoarding-09',
+    title: 'Harekrishna Hoarding',
+    category: 'Advertising',
+    imageUrl: '/images/harekrishna hoarding.jpeg',
+    fullImageUrl: '/images/harekrishna hoarding.jpeg',
+    description: 'Large format hoarding design for Harekrishna.',
+    dataAiHint: 'outdoor advertising hoarding',
+    imageWidth: 800, imageHeight: 600
+  },
+ {
+    id: 'harekrishna-sticker-board-10',
+    title: 'Harekrishna Sticker Board',
+    category: 'Sticker Board',
+    imageUrl: '/images/harekrishna sticker board.jpeg',
+    fullImageUrl: '/images/harekrishna sticker board.jpeg',
+    description: 'Sticker board design for Harekrishna promotions.',
+    dataAiHint: 'sticker board design',
+    imageWidth: 800, imageHeight: 600
+  },
+//  {
+//     id: 'harekrishna-box-design-11',
+//  title: 'Harekrishna Box Design',
+//  category: 'Packaging Design',
+//     imageUrl: '/images/harekrishna box design.jpg',
+//  fullImageUrl: '/images/harekrishna box design.jpg',
+//  description: 'Packaging box design for Harekrishna products.',
+//     dataAiHint: 'packaging design box',
+//  imageWidth: 800, imageHeight: 600
+//   },
 ];
 
 
