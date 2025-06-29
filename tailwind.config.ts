@@ -84,12 +84,17 @@ export default {
           '0%': { transform: 'translateY(0%)' },
           '100%': { transform: 'translateY(-50%)' },
         },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         'marquee': 'marquee 40s linear infinite',
         'marquee-y': 'marquee-y 40s linear infinite',
+        'fade-in': 'fade-in 0.5s ease-in-out',
       },
       boxShadow: {
         'subtle': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
