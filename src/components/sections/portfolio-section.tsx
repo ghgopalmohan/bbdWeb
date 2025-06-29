@@ -11,6 +11,8 @@ import React,
     useEffect,
     useRef
 } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface PortfolioItem {
   id: string;
@@ -92,6 +94,7 @@ const portfolioItemsData: PortfolioItem[] = [
 
 export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -114,6 +117,16 @@ export default function PortfolioSection() {
       }
     };
   }, []);
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+        const scrollAmount = 400; // Adjust as needed
+        scrollContainerRef.current.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth',
+        });
+    }
+  };
   
   return (
     <section id="portfolio" ref={sectionRef} className="section-padding bg-background text-foreground">
@@ -141,13 +154,25 @@ export default function PortfolioSection() {
         )}
         style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
       >
-        <div className="flex w-full overflow-x-auto no-scrollbar py-8 pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 lg:pr-10 gap-6 md:gap-8">
+        <Button 
+            onClick={() => handleScroll('left')}
+            variant="outline" 
+            size="icon" 
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 rounded-full h-10 w-10 bg-background/70 hover:bg-background backdrop-blur-sm"
+            aria-label="Scroll left"
+        >
+            <ChevronLeft className="h-6 w-6" />
+        </Button>
+        <div 
+          ref={scrollContainerRef}
+          className="flex w-full overflow-x-auto no-scrollbar py-8 px-20 gap-6 md:gap-8"
+        >
             {portfolioItemsData.map((item) => (
-                <Dialog key={item.id}>
+              <div key={item.id} className="flex-shrink-0 w-80">
+                <Dialog>
                     <DialogTrigger asChild>
                         <div
-                          className="group relative flex-shrink-0 h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out"
-                          style={{ aspectRatio: `${item.imageWidth} / ${item.imageHeight}` }}
+                          className="group relative w-full h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-lg transition-all duration-300 ease-in-out"
                         >
                             <Image
                                 src={item.imageUrl}
@@ -155,14 +180,9 @@ export default function PortfolioSection() {
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-300"
                                 data-ai-hint={item.dataAiHint}
-                                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 33vw"
+                                sizes="(max-width: 768px) 80vw, 320px"
                                 onContextMenu={(e) => e.preventDefault()}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                            <div className="absolute bottom-0 left-0 p-4 md:p-6">
-                                <h3 className="font-headline text-lg font-semibold text-white drop-shadow-md">{item.title}</h3>
-                                <p className="text-sm text-white/80 drop-shadow-md">{item.category}</p>
-                            </div>
                         </div>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
@@ -180,12 +200,26 @@ export default function PortfolioSection() {
                       />
                     </DialogContent>
                 </Dialog>
+                 <div className="mt-4 text-left">
+                    <h3 className="font-headline text-lg font-semibold text-primary">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">{item.category}</p>
+                </div>
+              </div>
             ))}
         </div>
+        <Button 
+            onClick={() => handleScroll('right')}
+            variant="outline" 
+            size="icon" 
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 rounded-full h-10 w-10 bg-background/70 hover:bg-background backdrop-blur-sm"
+            aria-label="Scroll right"
+        >
+            <ChevronRight className="h-6 w-6" />
+        </Button>
         
         {/* Gradient Overlays for scroll indication */}
-        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
       </div>
 
     </section>
