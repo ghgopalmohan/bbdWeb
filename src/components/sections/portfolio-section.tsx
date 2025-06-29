@@ -199,7 +199,7 @@ export default function PortfolioSection() {
                       />
                     </DialogContent>
                 </Dialog>
-                 <div className="mt-4 text-left">
+                 <div className="mt-4 text-center">
                     <h3 className="font-headline text-lg font-semibold text-primary">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.category}</p>
                 </div>
