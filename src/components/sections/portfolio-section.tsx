@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -185,9 +184,8 @@ export default function PortfolioSection() {
                       <Image
                         src={item.imageUrl}
                         alt={item.title} 
-                        layout="fill"
-                        objectFit="cover" // Changed from object-top for more general fit
-                        className="transition-transform duration-500 ease-out group-hover:scale-105"
+                        fill
+                        className="object-cover object-left-top transition-transform duration-500 ease-out group-hover:scale-105"
                         data-ai-hint={item.dataAiHint}
                         quality={75}
                         onContextMenu={(e) => e.preventDefault()}
@@ -238,5 +236,3 @@ export default function PortfolioSection() {
     </section>
   );
 }
-
-    
