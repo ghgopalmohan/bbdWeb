@@ -20,8 +20,8 @@ const serviceTabsData = [
     imageUrl: '/images/harekrishna front cover book design.jpeg',
     imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
-    imageWidth: 800,
-    imageHeight: 600,
+    imageWidth: 1200,
+    imageHeight: 900,
   },
   {
     value: 'pamphlet',
