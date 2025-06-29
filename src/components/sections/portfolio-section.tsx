@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import React,
 {
@@ -11,7 +11,6 @@ import React,
     useEffect,
     useRef
 } from 'react';
-import { PenTool, Printer, Megaphone, FileText, Package, LayoutTemplate } from 'lucide-react';
 
 interface PortfolioItem {
   id: string;
@@ -90,22 +89,10 @@ const portfolioItemsData: PortfolioItem[] = [
   },
 ];
 
-// Helper to get icon based on category
-const getIconForCategory = (category: string) => {
-    switch (category) {
-        case 'Branding & Identity': return <PenTool className="w-6 h-6 text-primary shrink-0" />;
-        case 'Print Design': return <Printer className="w-6 h-6 text-primary shrink-0" />;
-        case 'Advertising': return <Megaphone className="w-6 h-6 text-primary shrink-0" />;
-        case 'Marketing Material': return <FileText className="w-6 h-6 text-primary shrink-0" />;
-        case 'Packaging Design': return <Package className="w-6 h-6 text-primary shrink-0" />;
-        default: return <LayoutTemplate className="w-6 h-6 text-primary shrink-0" />;
-    }
-};
 
 export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeItemId, setActiveItemId] = useState(portfolioItemsData[0].id);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,16 +115,6 @@ export default function PortfolioSection() {
     };
   }, []);
   
-  const activeItem = portfolioItemsData.find(item => item.id === activeItemId) || portfolioItemsData[0];
-  const [imageKey, setImageKey] = useState(activeItem.id);
-
-  const handleAccordionChange = (value: string) => {
-    if (value) {
-      setActiveItemId(value);
-      setImageKey(value);
-    }
-  };
-
   return (
     <section id="portfolio" ref={sectionRef} className="section-padding bg-background text-foreground">
       <div className="container-custom">
@@ -152,63 +129,65 @@ export default function PortfolioSection() {
             My Works
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects that showcase my passion for design. Select a project to see the details.
+            A selection of projects that showcase my passion for design. Scroll to explore my recent work.
           </p>
         </div>
-
-        <Card 
-            className={cn(
-                "w-full max-w-5xl mx-auto shadow-xl border-border bg-card overflow-hidden",
-                isVisible ? "fade-in-up is-visible" : "fade-in-up"
-            )}
-            style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
-        >
-            <CardContent className="p-0">
-                <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-                    {/* Left Side: Image */}
-                    <div className="relative aspect-[4/5] lg:aspect-auto overflow-hidden bg-secondary">
-                        <Image
-                            key={imageKey} // Use key to re-mount and trigger animation
-                            src={activeItem.imageUrl}
-                            alt={activeItem.title}
-                            fill
-                            className="object-cover object-left-top animate-fade-in"
-                            quality={90}
-                            onContextMenu={(e) => e.preventDefault()}
-                            data-ai-hint={activeItem.dataAiHint}
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                        />
-                    </div>
-
-                    {/* Right Side: Accordion */}
-                    <div className="p-6 md:p-10 flex flex-col justify-center">
-                        <Accordion
-                            type="single"
-                            collapsible
-                            value={activeItemId}
-                            onValueChange={handleAccordionChange}
-                            className="w-full"
-                        >
-                            {portfolioItemsData.map((item) => (
-                                <AccordionItem key={item.id} value={item.id} className="border-b-border/50">
-                                    <AccordionTrigger className="text-left font-headline text-lg hover:no-underline py-5">
-                                        <div className="flex items-center gap-4">
-                                            {getIconForCategory(item.category)}
-                                            <span>{item.title}</span>
-                                        </div>
-                                    </AccordionTrigger>
-                                    <AccordionContent className="text-muted-foreground pt-2 pb-4">
-                                        <p className="font-medium text-primary text-sm mb-2">{item.category}</p>
-                                        {item.description}
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </div>
-                </div>
-            </CardContent>
-        </Card>
       </div>
+      
+      <div
+        className={cn(
+          "relative",
+          isVisible ? "fade-in-up is-visible" : "fade-in-up"
+        )}
+        style={{transitionDelay: isVisible ? '200ms' : '0ms'}}
+      >
+        <div className="flex w-full overflow-x-auto no-scrollbar py-8 pl-6 sm:pl-8 lg:pl-10 pr-6 sm:pr-8 lg:pr-10 gap-6 md:gap-8">
+            {portfolioItemsData.map((item) => (
+                <Dialog key={item.id}>
+                    <DialogTrigger asChild>
+                        <div
+                          className="group relative flex-shrink-0 h-[450px] rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out"
+                          style={{ aspectRatio: `${item.imageWidth} / ${item.imageHeight}` }}
+                        >
+                            <Image
+                                src={item.imageUrl}
+                                alt={item.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                data-ai-hint={item.dataAiHint}
+                                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 33vw"
+                                onContextMenu={(e) => e.preventDefault()}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                            <div className="absolute bottom-0 left-0 p-4 md:p-6">
+                                <h3 className="font-headline text-lg font-semibold text-white drop-shadow-md">{item.title}</h3>
+                                <p className="text-sm text-white/80 drop-shadow-md">{item.category}</p>
+                            </div>
+                        </div>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
+                      <DialogTitle className="sr-only">{item.title}</DialogTitle>
+                      <Image
+                        src={item.fullImageUrl || item.imageUrl}
+                        alt={item.title}
+                        width={item.imageWidth * 1.5}
+                        height={item.imageHeight * 1.5}
+                        className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+                        data-ai-hint={item.dataAiHint}
+                        priority
+                        quality={90}
+                        onContextMenu={(e) => e.preventDefault()}
+                      />
+                    </DialogContent>
+                </Dialog>
+            ))}
+        </div>
+        
+        {/* Gradient Overlays for scroll indication */}
+        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+      </div>
+
     </section>
   );
 }
