@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
@@ -60,18 +59,18 @@ export default function ExperienceSection() {
   }, []);
 
   return (
-    <section id="experience" ref={sectionRef} className="section-padding bg-black text-primary-foreground">
+    <section id="experience" ref={sectionRef} className="section-padding bg-background text-foreground">
       <div className="container-custom">
         {/* Title Block */}
         <div className="mb-12 md:mb-16 text-center">
           <p
-            className={cn("text-xs font-medium text-primary-foreground/70 uppercase tracking-wider mb-2", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            className={cn("text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
             MY JOURNEY
           </p>
           <h2
-            className={cn("font-headline text-3xl md:text-4xl font-semibold !leading-snug text-white", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
+            className={cn("font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '150ms' : '0ms'}}
           >
             Professional Experience
@@ -84,24 +83,24 @@ export default function ExperienceSection() {
             <div
               key={index}
               className={cn(
-                "bg-primary-foreground/5 border border-primary-foreground/10 rounded-xl p-6 text-left transition-all duration-300 hover:border-primary-foreground/30 hover:bg-primary-foreground/10 hover:-translate-y-1",
+                "bg-card border border-border rounded-xl p-6 text-left transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:-translate-y-1",
                 isVisible ? "fade-in-up is-visible" : "fade-in-up"
               )}
               style={{ transitionDelay: isVisible ? item.delay : '0ms' }}
             >
               <div className="mb-5 flex items-center gap-4">
-                 <div className="bg-white/10 p-3 rounded-lg text-white">
+                 <div className="bg-primary/10 p-3 rounded-lg text-primary">
                    <item.icon className="w-7 h-7" />
                  </div>
-                 <p className="text-sm font-semibold text-primary-foreground/80 tracking-wider">
+                 <p className="text-sm font-semibold text-muted-foreground tracking-wider">
                    {item.date}
                  </p>
               </div>
 
               <div>
-                <h3 className="font-headline text-xl lg:text-2xl font-semibold text-white mb-1">{item.title}</h3>
-                <p className="text-sm font-medium text-primary-foreground/70 mb-4">{item.company}</p>
-                <p className="text-sm text-primary-foreground/60 leading-relaxed">
+                <h3 className="font-headline text-xl lg:text-2xl font-semibold text-foreground mb-1">{item.title}</h3>
+                <p className="text-sm font-medium text-muted-foreground mb-4">{item.company}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
               </div>
