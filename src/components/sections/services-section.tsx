@@ -17,7 +17,7 @@ const serviceTabsData = [
     icon: BookOpenText,
     description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
     content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
-    imageUrl: '/images/brochure-1.jpg',
+    imageUrl: '/images/harekrishna front cover book design.jpeg',
     imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
     imageWidth: 800,
@@ -32,8 +32,8 @@ const serviceTabsData = [
     imageUrl: '/images/superdesign.jpeg',
     imageAlt: 'Pamphlet design mockup for event promotion',
     dataAiHint: 'pamphlet design event',
-    imageWidth: 800,
-    imageHeight: 600,
+    imageWidth: 1200,
+    imageHeight: 900,
   },
   {
     value: 'Logo',
@@ -190,14 +190,14 @@ export default function ServicesSection() {
                         <Image
                           src={tab.imageUrl}
                           alt={tab.imageAlt}
-                          width={800} 
-                          height={600} 
+                          width={tab.imageWidth || 800}
+                          height={tab.imageHeight || 600}
                           className={cn(
                               "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105",
                               (tab.value === 'pamphlet' || tab.value === 'Flyer') ? 'object-left-top' : 'object-top'
                           )}
                           data-ai-hint={tab.dataAiHint}
-                          quality={75}
+                          quality={95}
                           onContextMenu={(e) => e.preventDefault()}
                         />
                       </div>
