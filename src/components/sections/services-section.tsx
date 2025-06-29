@@ -202,14 +202,14 @@ export default function ServicesSection() {
                         />
                       </div>
                     </DialogTrigger>
-                    <DialogContent className="sm:max-w-2xl md:max-w-3xl lg:max-w-4xl bg-card p-1 rounded-lg shadow-2xl">
+                    <DialogContent className="p-0 bg-transparent border-none shadow-none w-auto h-auto max-w-[90vw] flex items-center justify-center">
                       <DialogTitle className="sr-only">{tab.imageAlt}</DialogTitle>
                       <Image
                         src={tab.imageUrl}
                         alt={tab.imageAlt}
-                        width={tab.imageWidth || 800} 
+                        width={tab.imageWidth || 800}
                         height={tab.imageHeight || 600}
-                        className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+                        className="w-auto h-auto max-w-full max-h-[90vh] object-contain rounded-lg"
                         data-ai-hint={tab.dataAiHint}
                         priority
                         quality={90}
