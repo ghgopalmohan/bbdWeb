@@ -19,6 +19,7 @@ import Link from 'next/link';
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Invalid email address.' }),
+  phone: z.string().optional(),
   subject: z.string().min(5, { message: 'Subject must be at least 5 characters.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
@@ -92,7 +93,7 @@ export default function ContactSection() {
     const recipientEmail = "gopalmohan.design@gmail.com";
     const mailtoSubject = encodeURIComponent(data.subject);
     const mailtoBody = encodeURIComponent(
-      `Hi I'm ${data.name}.\n\n${data.message}\n\n(My email address is: ${data.email})`
+      `Hi I'm ${data.name}.\n\nMy phone number is: ${data.phone || 'Not provided'}.\n\n${data.message}\n\n(My email address is: ${data.email})`
     );
     const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
@@ -203,16 +204,30 @@ export default function ContactSection() {
                       {errors.email && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.email.message}</p>}
                     </div>
                   </div>
-                  <div>
-                    <Label htmlFor="subject" className="form-label dark:text-slate-300">Subject</Label>
-                    <Input
-                      id="subject"
-                      {...register('subject')}
-                      placeholder="e.g. Brochure Design Inquiry"
-                      className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.subject ? 'border-destructive dark:border-red-500' : '')}
-                      aria-invalid={errors.subject ? "true" : "false"}
-                    />
-                    {errors.subject && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.subject.message}</p>}
+                   <div className="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <Label htmlFor="phone" className="form-label dark:text-slate-300">Phone Number (Optional)</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        {...register('phone')}
+                        placeholder="e.g. +91 12345 67890"
+                        className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.phone ? 'border-destructive dark:border-red-500' : '')}
+                        aria-invalid={errors.phone ? "true" : "false"}
+                      />
+                      {errors.phone && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.phone.message}</p>}
+                    </div>
+                     <div>
+                      <Label htmlFor="subject" className="form-label dark:text-slate-300">Subject</Label>
+                      <Input
+                        id="subject"
+                        {...register('subject')}
+                        placeholder="e.g. Brochure Design Inquiry"
+                        className={cn("form-input dark:bg-slate-700 dark:border-slate-600 dark:text-slate-50 dark:placeholder:text-slate-400", errors.subject ? 'border-destructive dark:border-red-500' : '')}
+                        aria-invalid={errors.subject ? "true" : "false"}
+                      />
+                      {errors.subject && <p className="text-destructive text-xs mt-1 dark:text-red-400">{errors.subject.message}</p>}
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="message" className="form-label dark:text-slate-300">Your Message</Label>
@@ -244,4 +259,3 @@ export default function ContactSection() {
     </section>
   );
 }
-
