@@ -99,7 +99,6 @@ export default function AboutSection() {
             className={cn("md:col-span-5", isVisible ? "fade-in-up is-visible" : "fade-in-up")}
             style={{transitionDelay: isVisible ? '100ms' : '0ms'}}
           >
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">INTRODUCTION</p>
             <h2 className="font-headline text-3xl md:text-4xl font-semibold !leading-snug text-primary mb-6">
               About Me
             </h2>
