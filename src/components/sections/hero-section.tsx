@@ -70,7 +70,7 @@ export default function HeroSection() {
               <div className="flex items-center space-x-4">
                 <Button
                   size="sm"
-                  variant="janicePrimary"
+                  variant="secondary"
                   className="md:size-lg px-4 py-2 md:px-8 text-xs md:text-base rounded-full group"
                   asChild
                 >
@@ -80,7 +80,7 @@ export default function HeroSection() {
                 </Button>
                 <Button
                   size="sm"
-                  variant="janiceSecondary"
+                  variant="secondary"
                   className="md:size-lg px-4 py-2 md:px-8 text-xs md:text-base rounded-full group"
                   asChild
                 >
@@ -106,7 +106,7 @@ export default function HeroSection() {
                 data-ai-hint="designer portrait modern"
                 onContextMenu={(e) => e.preventDefault()}
               />
-              <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg">
+              {/* <div className="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm p-3 rounded-xl shadow-lg">
                 <Image
                     src="/images/qrcode.png"
                     alt="QR Code for Gopal Mohan's Contact"
@@ -116,7 +116,7 @@ export default function HeroSection() {
                     data-ai-hint="qr code scan"
                     onContextMenu={(e) => e.preventDefault()}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
