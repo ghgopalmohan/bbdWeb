@@ -16,7 +16,7 @@ const serviceTabsData = [
     title: 'Brochure Design',
     icon: BookOpenText,
     description: 'Crafting compelling and informative brochures that effectively communicate your brand message and drive engagement.',
-    content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy. My process involves understanding your objectives, designing a user-centric layout, and ensuring the final product is impactful and professional.',
+    content: 'From concept to print-ready files, I specialize in brochure designs that blend aesthetic appeal with clear information hierarchy.',
     imageUrl: '/images/harekrishna front cover book design.jpeg',
     imageAlt: 'Professionally designed brochure layout example',
     dataAiHint: 'brochure design layout',
@@ -40,7 +40,7 @@ const serviceTabsData = [
     title: 'Logo Design',
     icon: Wand2,
     description: 'Creating unique and memorable logos that form the cornerstone of your brand identity.',
-    content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience. My process includes research, conceptualization, and refinement to deliver a timeless and impactful logo.',
+    content: 'I develop logos that are not only visually appealing but also strategically aligned with your brand values and target audience.',
     imageUrl: '/images/logo-1.jpg',
     imageAlt: 'Modern and impactful logo design example',
     dataAiHint: 'logo design modern',
@@ -126,7 +126,7 @@ export default function ServicesSection() {
               My Service
             </h2>
              <p className="text-md text-muted-foreground mt-3 max-w-xl">
-              Offering design and printing solutions to elevate your brand's visual identity and user engagement.
+              Offering design and printing solutions to elevate your brand's identity.
             </p>
           </div>
           <div

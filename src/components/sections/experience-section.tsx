@@ -10,7 +10,7 @@ const experienceData = [
     date: "1994 - 2018",
     title: "Founder & Director",
     company: "Business Bonds Directory",
-    description: "Founded and grew a successful business directory company with 10 branches across Andhra Pradesh, specializing in advertising design.",
+    description: "Founded and grew a successful business directory(Yellow Pages) company with 10 branches across Andhra Pradesh, specializing in advertising-designing-printing.",
     delay: "200ms",
   },
   {
@@ -18,7 +18,7 @@ const experienceData = [
     date: "2018 - 2020",
     title: "Publisher & Design Lead",
     company: "Specialized Medical Directory",
-    description: "Published a specialized medical directory for Vijayawada, earning industry recognition for its design and usability.",
+    description: "Published a specialized doctor's directory for Vijayawada, earning industry recognition for its design and usability.",
     delay: "300ms",
   },
   {
@@ -26,7 +26,7 @@ const experienceData = [
     date: "2021 - Present",
     title: "Freelance Designer & Printer",
     company: "Corporate & Global Clients",
-    description: "Partnering with leading companies in India & abroad to deliver a wide range of creative print and branding solutions.",
+    description: "Rendering services to leading companies in India and abroad, delivering a wide range of creative design, branding, and printing solutions.",
     delay: "400ms",
   },
 ];

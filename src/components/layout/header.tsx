@@ -47,7 +47,7 @@ export default function Header() {
     >
       <div className="container-custom flex h-20 items-center justify-between">
         <Link href="#home" className="font-headline text-2xl md:text-3xl font-bold text-primary dark:text-primary-dark hover:opacity-80 transition-opacity">
-          GM
+          BBD
         </Link>
 
         <nav className="hidden items-center space-x-8 md:flex">
@@ -82,7 +82,7 @@ export default function Header() {
               >
                 <div className="mb-8 flex justify-between items-center">
                    <Link href="#home" className="font-headline text-2xl font-bold text-primary dark:text-primary-dark" onClick={closeMobileMenu}>
-                      GM
+                      BBD
                     </Link>
                     <Button variant="ghost" size="icon" onClick={closeMobileMenu} aria-label="Close menu" className="text-foreground dark:text-foreground-dark hover:text-primary dark:hover:text-primary-dark">
                       <X className="h-6 w-6" />
@@ -107,7 +107,7 @@ export default function Header() {
                     <ThemeToggle /> {/* Kept for structure, but it currently renders null */}
                 </div>
                 <div className="mt-4 text-center">
-                  <p className="text-xs text-muted-foreground dark:text-slate-500">GM © {new Date().getFullYear()}</p>
+                  <p className="text-xs text-muted-foreground dark:text-slate-500">BBD © {new Date().getFullYear()}</p>
                 </div>
               </SheetContent>
             </Sheet>

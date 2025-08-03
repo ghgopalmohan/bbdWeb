@@ -15,7 +15,7 @@ interface Testimonial {
 const testimonialsData: Testimonial[] = [
   {
     id: 1,
-    quote: "Gopal Mohan's dedication and design expertise have been invaluable. The clarity and impact of his work are truly commendable. We saw a significant uplift in engagement.",
+    quote: "Gopal Mohan’s dedication and design skills have been invaluable. The clarity and impact of his work are truly commendable and he’s always available 24/7, which makes working with him really easy.",
     author: "Vilasa Vigraha Dasa",
     designation: "Vice President, Akshaya Patra Foundation",
   },
@@ -27,7 +27,7 @@ const testimonialsData: Testimonial[] = [
   },
   {
     id: 3,
-    quote: "Consistently high-quality designs that meet all our branding needs. A reliable and creative partner for any business seeking to make a visual impact. Their team is responsive and talented.",
+    quote: "Consistently high-quality designs that meet all our branding needs. A reliable and creative partner for any business seeking to make a visual impact. He is responsive and talented.",
     author: "Srinivas Anumanchipalli",
     designation: "Cheif Financial Officer, Axiscades",
   },
@@ -40,32 +40,32 @@ const testimonialsData: Testimonial[] = [
   {
     id: 5,
     quote: "Gopal is a true professional. His designs are not only beautiful but also strategically sound. He took the time to understand our vision and brought it to life flawlessly. The results speak for themselves.",
-    author: "Srikanth Kandoori",
-    designation: "Vice President, Wells Fargo",
+    author: "Srikanth Velkur",
+    designation: "Managing Director, SS Furniture",
   },
   {
     id: 6,
     quote: "The menu designs were fantastic! Our customers love the new look, and it's made a real difference to our restaurant's atmosphere. Gopal is highly recommended for quality, speed, and creativity.",
-    author: "Anita Desai",
-    designation: "Owner, The Spice Route Cafe",
+    author: "Vinay",
+    designation: "Owner, Acculex",
   },
   {
     id: 7,
     quote: "Consistently delivers top-notch designs that align perfectly with our hotel's branding. Mr. Mohan is reliable, exceptionally creative, and an absolute pleasure to collaborate with on all projects, big or small.",
     author: "Apparao",
     designation: "Managing Partner, Indraprastha Hotel",
-  },
+  }, 
   {
     id: 8,
     quote: "From brochures to banners, every piece of design work has been outstanding. The attention to detail is impressive, and the turnaround time is always quick. We couldn't be happier with the service.",
-    author: "Sanjay Patel",
-    designation: "Director, BrightFuture Academy",
+    author: "Kishore Bathina",
+    designation: "Director, Comfort Industries",
   },
   {
     id: 9,
     quote: "A master of his craft! Gopal transformed our outdated materials into something modern and engaging. His speed and quality are unmatched in the market. Truly a game-changer for our brand.",
-    author: "Meera Krishnan",
-    designation: "Events Coordinator, Harmony Hall",
+    author: "Manoj Reddy",
+    designation: "Director, Bouncer Mattress",
   },
 ];
 

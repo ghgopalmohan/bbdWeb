@@ -10,13 +10,13 @@ const stylePointsData = [
     number: "1",
     icon: Rocket,
     title: "Fastest in Market",
-    description: "Delivering high-quality results with exceptional speed and efficiency, ensuring your project is market-ready in record time.",
+    description: "Delivering high-quality designs with exceptional speed and efficiency, ensuring your project is market-ready in record time.",
   },
   {
     number: "2",
     icon: Award,
     title: "Low Cost with Best Quality",
-    description: "Offering premium design and development services at competitive prices, maximizing your return on investment without compromising excellence.",
+    description: "Offering design, printing, and door-delivery services at competitive prices, maximizing your return on investment without compromising excellence.",
   },
   {
     number: "3",

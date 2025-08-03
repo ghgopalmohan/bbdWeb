@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
           <div className="md:col-span-4">
             <Link href="#home" className="font-headline text-3xl font-bold text-white hover:opacity-80 transition-opacity inline-block mb-3">
-              GM
+              BBD
             </Link>
             <p className="text-sm max-w-xs leading-relaxed">
             Professional Designer & Printer.
@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm">
           <p className="mb-4 sm:mb-0">
-            &copy; {currentYear} GM. All rights reserved.
+            &copy; {currentYear} BBD. All rights reserved.
           </p>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {footerNavLinks.map((item) => (
