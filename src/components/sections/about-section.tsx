@@ -16,7 +16,7 @@ interface CollageImage {
 
 const collageImagesData: CollageImage[] = [
   { src: "/images/bbd22.jpeg", alt: "Sample design mockup by Gopal Mohan", dataAiHint: "design mockup app", imageWidth: 800, imageHeight: 600 },
-  { src: "/images/bbd33.tiff", alt: "Branding assets example by Gopal Mohan", dataAiHint: "branding assets styleguide", imageWidth:800, imageHeight: 600 },
+  { src: "/images/bbd33.jpg", alt: "Branding assets example by Gopal Mohan", dataAiHint: "branding assets styleguide", imageWidth:800, imageHeight: 600 },
 ];
 
 export default function AboutSection() {

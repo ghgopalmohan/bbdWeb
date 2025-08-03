@@ -229,7 +229,7 @@ export default function PortfolioSection() {
                                 fill
                                 className="object-cover object-left-top group-hover:scale-105 transition-transform duration-300"
                                 data-ai-hint={item.dataAiHint}
-                                sizes="(max-width: 768px) 80vw, 320px"
+                                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 320px"
                                 onContextMenu={(e) => e.preventDefault()}
                             />
                         </div>
@@ -267,8 +267,8 @@ export default function PortfolioSection() {
         </Button>
         
         {/* Gradient Overlays for scroll indication */}
-        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-        <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+        <div className="hidden md:block absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+        <div className="hidden md:block absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
       </div>
 
     </section>
