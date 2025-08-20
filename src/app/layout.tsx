@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 // Removed ThemeProvider
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'Gopal Mohan – Professional Photoshop Designer | Creative Design Services',
@@ -28,6 +29,7 @@ export default function RootLayout({
         </div>
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
