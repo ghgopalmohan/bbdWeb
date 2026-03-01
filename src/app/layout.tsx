@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 // Removed ThemeProvider
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: 'Gopal Mohan – Professional Photoshop Designer | Creative Design Services',
@@ -30,8 +28,28 @@ export default function RootLayout({
         </div>
         {children}
         <Toaster />
-        <Analytics />
-        <SpeedInsights />
+          <script 
+            src="http://localhost:3001/embed-popup.js" 
+            data-agent-id="2eee6ff4-9034-4a92-8f55-ca4b833833bd"
+            data-api-key="pk_M7fkXZeNB5qip63sT31qqvTQ"
+            data-primary-color="#18181b"
+            data-bg-color="#ffffff"
+            data-surface-color="#f4f4f5"
+            data-text-color="#18181b"
+            data-border-color="#e4e4e7"
+            data-radius="16"
+            data-width="500"
+            data-height="500"
+            data-fb-title="How was your call?"
+            data-fb-desc="Hi"
+            data-fb-stars="5"
+            data-fb-placeholder="We'd love to hear more..."
+            data-fb-btn="Submit Feedback"
+            data-brand-title="Reacherr Support"
+            data-brand-desc="24/7 AI Support"
+            data-brand-logo=""
+            async
+          ></script>
       </body>
     </html>
   );
